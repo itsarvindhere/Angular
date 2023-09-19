@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,19 +7,9 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor() { }
 
   ngOnInit() {
   }
-
-  onLoadServers() {
-    // Imagine we do some calculation first
-    console.log("Alright we are navigating to the servers route");
-
-    // Now we want to navigate to a different route
-    // Here we are using absolute path
-    // So, it will attach 'servers' to the root URL localhost:4200
-    this.router.navigate(['/servers'])
-  } 
 
 }

@@ -1,37 +1,28 @@
-import { Component, ViewEncapsulation } from '@angular/core';
-import { Element } from './Element.model';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  serverElements: Element[] = [new Element('server', 'TestServer', 'Content of Test Server 1')];
+  serverElements = [];
+  newServerName = '';
+  newServerContent = '';
 
-    gameValues: Number[] = [];
-
-
-
-  onServerAdded(serverData: {serverName: string, serverContent: string}) {
+  onAddServer() {
     this.serverElements.push({
       type: 'server',
-      name: serverData.serverName,
-      content: serverData.serverContent
+      name: this.newServerName,
+      content: this.newServerContent
     });
   }
 
-  onBlueprintAdded(blueprintData: {blueprintName: string, blueprintContent: string}) {
+  onAddBlueprint() {
     this.serverElements.push({
       type: 'blueprint',
-      name: blueprintData.blueprintName,
-      content: blueprintData.blueprintContent
+      name: this.newServerName,
+      content: this.newServerContent
     });
-  }
-
-
-  onGameStarted(data: Number) {
-    this.gameValues.push(data);
   }
 }

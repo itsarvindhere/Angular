@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ServersService } from './servers.service';
-import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-servers',
@@ -10,21 +9,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ServersComponent implements OnInit {
   public servers: {id: number, name: string, status: string}[] = [];
 
-  constructor(private serversService: ServersService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private serversService: ServersService) { }
 
   ngOnInit() {
     this.servers = this.serversService.getServers();
-  }
-
-  reloadPage(){
-    // Some computation
-    console.log("Reloading the page")
-
-    // Using a Relative path
-    // this.router.navigate(['servers'], {relativeTo: this.activatedRoute})
-
-    // Without relativeTo property, router.navigate will always use absolute path, no matter if we provide a relative or absolute path to it
-    this.router.navigate(['servers'])
   }
 
 }

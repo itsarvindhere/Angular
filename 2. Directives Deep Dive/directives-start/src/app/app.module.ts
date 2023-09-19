@@ -4,14 +4,10 @@ import { FormsModule } from '@angular/forms';
 
 
 import { AppComponent } from './app.component';
-import { BasicHighlightDirective } from './basic-highlight.directive';
-import { NgNotIfDirective } from './ng-not-if.directive';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    BasicHighlightDirective,
-    NgNotIfDirective
+    AppComponent
   ],
   imports: [
     BrowserModule,
