@@ -1,0 +1,43 @@
+<div class="container">
+  <app-inputform 
+  (someXyzName)="onServerAdded($event)"
+  (blueprintCreated)="onBlueprintAdded($event)"
+  >
+  </app-inputform>
+  <hr>
+  <div class="row">
+    <div class="col-xs-12">
+      <app-server-element 
+      *ngFor="let serverElement of serverElements"
+      [serverElement]="serverElement"
+      >
+      <div id="xyz" class="panel-body">
+        <p #projectedParagraph>
+            <strong *ngIf="serverElement.type === 'server'" style="color: red">{{ serverElement.content }}</strong>
+            <em *ngIf="serverElement.type === 'blueprint'">{{ serverElement.content }}</em>
+        </p>
+      </div>
+
+      
+    </app-server-element>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <app-game-control (gameStarted)="onGameStarted($event)"></app-game-control>
+
+  <div *ngFor="let gameValue of gameValues">
+
+    <ng-container *ngIf="gameValue % 2 === 0">
+      <app-even [gameValue] = "gameValue"></app-even>
+    </ng-container>
+
+    <ng-container *ngIf="gameValue % 2 !== 0">
+      <app-odd [gameValue] = "gameValue"></app-odd>
+    </ng-container>
+
+  </div>
+  
+</div>
