@@ -19,3 +19,18 @@
 <button
   class="btn btn-primary"
   (click)="onUpdateServer()">Update Server</button>
+
+
+
+<!-- THIS IS ADDED TO SHOW THE DISADVANTAGE OF USING "snapshot" object to access values of Query parameters and fragments -->
+<p>allowEdit value is {{allowEdit}}</p>
+<p>fragment value is {{fragment}}</p>
+
+<a 
+  [routerLink]="['/servers', '5', 'edit']"
+  [queryParams]="{allowEdit: 0}"
+  fragment="newServerName"
+ >
+  Change allowEdit to 0 and fragment to "newServerName
+</a>
+
