@@ -2,8 +2,8 @@
   <div class="col-xs-12 col-sm-4">
     <div class="list-group">
       <a
-        [routerLink]="['/servers', 5, 'edit']"
-        [queryParams]="{allowEdit: '1'}"
+        [routerLink]="['/servers', server.id]"
+        [queryParams]="{allowEdit: server.id == 3 ? '1' : '0'}"
         fragment="serverName"
         href="#"
         class="list-group-item"
@@ -15,10 +15,8 @@
   <div class="col-xs-12 col-sm-4">
     <!-- Relative Path -->
     <!-- <a routerLink="../servers">Reload this Page</a> -->
-    <button class="btn btn-primary" (click)="reloadPage()">Reload Servers Page</button>
-    <app-edit-server></app-edit-server>
-    <hr>
-    <app-server></app-server>
+    <!-- <button class="btn btn-primary" (click)="reloadPage()">Reload Servers Page</button> -->
+    <router-outlet></router-outlet>
   </div>
 </div>
 

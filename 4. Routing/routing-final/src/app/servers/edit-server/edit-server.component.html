@@ -1,29 +1,37 @@
-<div class="form-group">
-  <label for="name">Server Name</label>
-  <input
-    type="text"
-    id="name"
-    class="form-control"
-    [(ngModel)]="serverName">
-</div>
-<div class="form-group">
-  <label for="status">Server Status</label>
-  <select
-    id="status"
-    class="form-control"
-    [(ngModel)]="serverStatus">
-    <option value="online">Online</option>
-    <option value="offline">Offline</option>
-  </select>
-</div>
-<button
-  class="btn btn-primary"
-  (click)="onUpdateServer()">Update Server</button>
+<h4 *ngIf="!allowEdit; else editServer">You are not allowed to edit this server!</h4>
+
+<ng-template #editServer>
+  <div class="form-group" *ngIf="allowEdit">
+    <label for="name">Server Name</label>
+    <input
+      type="text"
+      id="name"
+      class="form-control"
+      [(ngModel)]="serverName">
+  </div>
+  <div class="form-group">
+    <label for="status">Server Status</label>
+    <select
+      id="status"
+      class="form-control"
+      [(ngModel)]="serverStatus">
+      <option value="online">Online</option>
+      <option value="offline">Offline</option>
+    </select>
+  </div>
+  <button
+    class="btn btn-primary"
+    (click)="onUpdateServer()">Update Server
+  </button>
+<ng-template #editServer>
+
+
 
 
 
 <!-- THIS IS ADDED TO SHOW THE DISADVANTAGE OF USING "snapshot" object to access values of Query parameters and fragments -->
-<p>allowEdit value is {{allowEdit}}</p>
+
+<!-- <p>allowEdit value is {{allowEdit}}</p>
 <p>fragment value is {{fragment}}</p>
 
 <a 
@@ -32,5 +40,5 @@
   fragment="newServerName"
  >
   Change allowEdit to 0 and fragment to "newServerName
-</a>
+</a> -->
 

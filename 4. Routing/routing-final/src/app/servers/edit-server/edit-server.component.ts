@@ -13,12 +13,18 @@ export class EditServerComponent implements OnInit {
   serverName = '';
   serverStatus = '';
 
-  allowEdit = '';
+  allowEdit = false;
   fragment = '';
 
   constructor(private serversService: ServersService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+
+    this.route.params.subscribe(params => {
+      this.server = this.serversService.getServer(+params.id);
+      this.serverName = this.server.name;
+      this.serverStatus = this.server.status;
+    });
     
     // Accessing Query Parameters using snapshot object
     // this.allowEdit = this.route.snapshot.queryParams.allowEdit;
@@ -33,18 +39,13 @@ export class EditServerComponent implements OnInit {
 
     // Accesing Query Parameters using "queryParamMap" observable
     this.route.queryParamMap.subscribe(params => {
-      this.allowEdit = params.get('allowEdit');
+      this.allowEdit = params.get('allowEdit') === '1';
     })
 
     // Accesing Fragment using "fragment" observable
     this.route.fragment.subscribe(fragment => {
       this.fragment = fragment;
     })
-
-
-    this.server = this.serversService.getServer(1);
-    this.serverName = this.server.name;
-    this.serverStatus = this.server.status;
   }
 
   onUpdateServer() {

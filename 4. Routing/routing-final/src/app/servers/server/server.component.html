@@ -1,2 +1,11 @@
 <h5>{{ server.name }}</h5>
 <p>Server status is {{ server.status }}</p>
+<!-- Relative Path since we are already at servers/id at this point -->
+<a 
+ class="btn btn-primary" 
+ [routerLink]="['edit']" 
+ [queryParams]="{test: 20}"
+ queryParamsHandling="merge"
+> 
+    Edit Server
+</a>
