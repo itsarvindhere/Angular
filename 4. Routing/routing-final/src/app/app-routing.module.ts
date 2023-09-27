@@ -10,6 +10,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 
 // ROUTES
 const routes: Routes = [
+  // {path: '', redirectTo: "/users", pathMatch: 'full'},
     {path: '', component: HomeComponent},
     {path: 'users', component: UsersComponent, children: [
       {path: ':id/:name', component: UserComponent}
