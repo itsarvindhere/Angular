@@ -1,4 +1,9 @@
+<div style="margin-top: 20px;">
+    <button *ngIf="!isLoggedIn" class="btn btn-default" (click)="onLogin()">Log In</button>
+    <button *ngIf="isLoggedIn"class="btn btn-default" (click)="onLogout()">Log Out</button>
+</div>
 <h4>Welcome to Server Manager 4.0</h4>
 <p>Manage your Servers and Users.</p>
-<button (click)="onLoadServer1(1)">Load Server 1</button>
+<button class="btn btn-primary"(click)="onLoadServer1(1)">Load Server 1</button>
+
 

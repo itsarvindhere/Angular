@@ -16,10 +16,15 @@ const routes: Routes = [
     {path: 'users', component: UsersComponent, children: [
       {path: ':id/:name', component: UserComponent}
     ]},
-    {path: 'servers', component: ServersComponent, children: [
+    {
+      path: 'servers', 
+      component: ServersComponent,
+      // canActivate: [AuthGuard],
+      canActivateChild: [AuthGuard], 
+      children: [
       {path: ':id', component: ServerComponent},
       {path: ':id/edit', component: EditServerComponent}
-    ], canActivate: [AuthGuard]},
+    ]},
     {path: '**', component: PageNotFoundComponent}
   ];
 
