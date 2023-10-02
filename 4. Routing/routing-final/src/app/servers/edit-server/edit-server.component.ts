@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ServersService } from '../servers.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CanDeactivateComponent } from 'src/app/canDeactivateComponent';
 
 @Component({
   selector: 'app-edit-server',
   templateUrl: './edit-server.component.html',
   styleUrls: ['./edit-server.component.css']
 })
-export class EditServerComponent implements OnInit {
+export class EditServerComponent implements OnInit, CanDeactivateComponent {
   server: {id: number, name: string, status: string};
   serverName = '';
   serverStatus = '';
@@ -16,7 +17,10 @@ export class EditServerComponent implements OnInit {
   allowEdit = false;
   fragment = '';
 
-  constructor(private serversService: ServersService, private route: ActivatedRoute) { }
+  // Whether the user saved the changes made or not
+  changesSaved = false;
+
+  constructor(private serversService: ServersService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
 
@@ -50,6 +54,31 @@ export class EditServerComponent implements OnInit {
 
   onUpdateServer() {
     this.serversService.updateServer(this.server.id, {name: this.serverName, status: this.serverStatus});
+
+    // Set changesSaved to True
+    this.changesSaved = true;
+
+    // Navigate back to the previous page
+    this.router.navigate(['../'], {relativeTo: this.route, queryParamsHandling: 'merge'});
+  }
+
+
+  // On leaving the page
+  onExit() {
+
+    // If the user is not allowed to edit the server at all, return true
+    if (!this.allowEdit) return true
+
+    // If any of the values are changes in the input fields but the changes are not saved
+    if ((this.serverName != this.server.name || this.serverStatus != this.server.status) && !this.changesSaved) {
+      if(confirm("Are you sure you want to leave?"))  {
+        return true;
+      } else{
+        return false;
+      }
+    }
+
+    return true;
   }
 
 }
