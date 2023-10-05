@@ -21,8 +21,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     UserComponent,
     EditServerComponent,
     ServerComponent,
-    PageNotFoundComponent
-  ],
+    PageNotFoundComponent  ],
   imports: [
     BrowserModule,
     FormsModule,

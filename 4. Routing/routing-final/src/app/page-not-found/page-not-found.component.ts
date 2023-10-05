@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-page-not-found',
@@ -7,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageNotFoundComponent implements OnInit {
 
-  constructor() { }
+  constructor(private titleService: Title, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle(this.route.snapshot.data.title)
   }
 
 }

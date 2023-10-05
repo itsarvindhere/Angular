@@ -13,20 +13,20 @@ import { CanDeactivateGuard } from './can-deactivate.guard';
 // ROUTES
 const routes: Routes = [
   // {path: '', redirectTo: "/users", pathMatch: 'full'},
-    {path: '', component: HomeComponent},
+    {path: '', component: HomeComponent, data: {title: "Home"}},
     {path: 'users', component: UsersComponent, children: [
-      {path: ':id/:name', component: UserComponent}
-    ]},
+      {path: ':id/:name', component: UserComponent, data: {title: "User Details"}}
+    ], data: {title: "Users"}},
     {
       path: 'servers', 
       component: ServersComponent,
       // canActivate: [AuthGuard],
       canActivateChild: [AuthGuard], 
       children: [
-      {path: ':id', component: ServerComponent},
-      {path: ':id/edit', component: EditServerComponent, canDeactivate: [CanDeactivateGuard]}
-    ]},
-    {path: '**', component: PageNotFoundComponent}
+      {path: ':id', component: ServerComponent, data: {title: "Server Details"} },
+      {path: ':id/edit', component: EditServerComponent, canDeactivate: [CanDeactivateGuard], data: {title: "Edit Server"}}
+    ],data: {title: "Servers"}},
+    {path: '**', component: PageNotFoundComponent, data: {title: "404 Page"}}
   ];
 
 @NgModule({

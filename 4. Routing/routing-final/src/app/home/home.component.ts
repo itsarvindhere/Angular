@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -11,9 +12,17 @@ export class HomeComponent implements OnInit {
 
   isLoggedIn = false;
 
-  constructor(private router: Router, private authService: AuthService) { }
-
+  constructor(private router: Router, private authService: AuthService, private titleService: Title, private route: ActivatedRoute) { }
+  
   ngOnInit() {
+    // this.titleService.setTitle(this.route.snapshot.data.title)
+
+    this.route.data.subscribe(data => {
+      console.log("Data From Route", data)
+      this.titleService.setTitle(data.title);
+    })
+
+
     this.authService.loginStatus.subscribe(data => {
       this.isLoggedIn = data;
     })

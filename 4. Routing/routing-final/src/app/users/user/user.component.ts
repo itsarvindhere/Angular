@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -11,10 +12,10 @@ export class UserComponent implements OnInit, OnDestroy {
   user: {id: number, name: string};
   paramsSubscription: Subscription;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private titleService: Title) { }
 
   ngOnInit() {
-    console.log("Active Route", this.route)
+    this.titleService.setTitle(this.route.snapshot.data.title)
     // let id  = this.route.snapshot.params['id'];
     // let name = this.route.snapshot.params['name'];
 
