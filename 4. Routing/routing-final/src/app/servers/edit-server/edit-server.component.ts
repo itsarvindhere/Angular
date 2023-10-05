@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { ServersService } from '../servers.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CanDeactivateComponent } from 'src/app/canDeactivateComponent';
-import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-edit-server',
@@ -21,12 +20,9 @@ export class EditServerComponent implements OnInit, CanDeactivateComponent {
   // Whether the user saved the changes made or not
   changesSaved = false;
 
-  constructor(private serversService: ServersService, private route: ActivatedRoute, private router: Router, private titleService: Title) { }
+  constructor(private serversService: ServersService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    
-    this.titleService.setTitle(this.route.snapshot.data.title)
-
     this.route.params.subscribe(params => {
       this.server = this.serversService.getServer(+params.id);
       this.serverName = this.server.name;

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServersService } from './servers.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-servers',
@@ -11,10 +10,9 @@ import { Title } from '@angular/platform-browser';
 export class ServersComponent implements OnInit {
   public servers: {id: number, name: string, status: string}[] = [];
 
-  constructor(private serversService: ServersService, private router: Router, private route: ActivatedRoute, private titleService: Title) { }
+  constructor(private serversService: ServersService, private router: Router) { }
 
   ngOnInit() {
-    this.titleService.setTitle(this.route.snapshot.data.title)
     this.servers = this.serversService.getServers();
   }
 
