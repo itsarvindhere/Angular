@@ -9,6 +9,7 @@ import { ServerComponent } from './servers/server/server.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthGuard } from './auth.guard';
 import { CanDeactivateGuard } from './can-deactivate.guard';
+import { ServerResolver } from './servers/server/server-resolver.service';
 
 // ROUTES
 const routes: Routes = [
@@ -23,14 +24,14 @@ const routes: Routes = [
       // canActivate: [AuthGuard],
       canActivateChild: [AuthGuard], 
       children: [
-      {path: ':id', component: ServerComponent, title: "Server Details"},
+      {path: ':id', component: ServerComponent, title: "Server Details", resolve: {server: ServerResolver}},
       {path: ':id/edit', component: EditServerComponent, canDeactivate: [CanDeactivateGuard], title: "Edit Server"}
     ],title: "Servers"},
     {path: '**', component: PageNotFoundComponent, title: "404 Page"}
   ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {useHash: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
