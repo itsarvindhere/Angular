@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+      <form #f="ngForm" (ngSubmit)="onSubmit()">
         <div id="user-data">
           <div class="form-group">
             <label for="username">Username</label>
@@ -11,6 +11,7 @@
               class="form-control"
               name="username" 
               ngModel
+              required
             >
           </div>
           <button class="btn btn-default" type="button">Suggest an Username</button>
@@ -22,6 +23,8 @@
               class="form-control"
               name="email"
               ngModel
+              required
+              email
             >
           </div>
         </div>
@@ -32,6 +35,7 @@
             class="form-control"
             name="secret"
             ngModel
+            required
           >
             <option value="pet">Your first Pet?</option>
             <option value="teacher">Your first teacher?</option>
