@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, NgModelGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +11,12 @@ export class AppComponent {
   @ViewChild('f')
   signupForm: NgForm;
 
+  @ViewChild('userData')
+  userDataGroup : NgModelGroup;
+  
+  defaultQuestion = "pet";
+  answer = '';
+
   suggestUserName() {
     const suggestedName = 'Superuser';
   }
@@ -21,7 +27,12 @@ export class AppComponent {
   // }
 
     onSubmit() {
-      console.log(this.signupForm);
+      console.log("Form Data", this.signupForm);
+      console.log("User Data", this.userDataGroup);
+    }
+
+    print(data) {
+      console.log(data)
     }
 
 }
