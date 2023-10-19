@@ -18,7 +18,7 @@
               required
             >
           </div>
-          <button class="btn btn-default" type="button">Suggest an Username</button>
+          <button class="btn btn-default" type="button" (click)="suggestUserName()">Suggest an Username</button>
           <div class="form-group">
             <label for="email">Mail</label>
             <input 
@@ -32,6 +32,21 @@
               #email="ngModel"
             >
             <p *ngIf="email.invalid && email.dirty" class="text-danger">Please enter a valid email address!</p>
+          </div>
+
+          <div class="form-group">
+            <label for="gender">Gender</label>
+            <div id="gender" class="radio" *ngFor="let gender of genders">
+              <label>
+                <input
+                  type="radio"
+                  name="gender"
+                  ngModel
+                  [value]="gender"
+                >
+                {{gender}}
+              </label>
+            </div>
           </div>
         </div>
         <div class="form-group">
@@ -64,6 +79,17 @@
         Submit
       </button>
       </form>
+    </div>
+  </div>
+  <hr>
+  <div class="row" *ngIf="submitted">
+    <div class="col-xs-12">
+      <h3>Your Data</h3>
+      <p>Username: {{user.username}}</p>
+      <p>Mail: {{user.email}}</p>
+      <p>Gender: {{user.gender}}</p>
+      <p>Secret Question: {{user.secretQuestion}}</p>
+      <p>Answer: {{user.answer}}</p>
     </div>
   </div>
 </div>
