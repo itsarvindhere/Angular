@@ -1,0 +1,80 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <!-- Add a Form with the following Inputs (and Validators)
+           1) Mail address (should not be empty and should be an email address)
+           2) A Dropdown which allows the user to select from three different Subscriptions ("Basic", "Advanced", "Pro")
+              Set "Advanced" as Default
+           3) A Password field (should not be empty)
+           4) A Submit Button
+
+           Display a warning message below each input if it's invalid.
+
+           Upon submitting the form, you should simply print the Value of the Form to the Console.
+           Optionally, display it in your template.
+      -->
+      <h1>TEMPLATE DRIVEN FORM</h1>
+      <hr>
+      <form #tdForm="ngForm" (ngSubmit)="handleFormSubmit()">
+        <!-- EMAIL FIELD -->
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input 
+            id="email" 
+            type="email" 
+            class="form-control" 
+            name="email"
+            ngModel
+            required
+            email
+            #email="ngModel"
+          >
+          <p *ngIf="email.invalid && email.touched" class="text-danger">Enter a valid email address!</p>
+        </div>
+
+        <!-- SUBSCRIPTION DROPDOWN  WITH DEFAULT VALUE AS 'ADVANCED'-->
+        <div class="form-group">
+          <label for="subscription">Choose Subscription</label>
+          <select 
+            id="subscription"
+            class="form-control"
+            [ngModel]="'Advanced'"
+            name="subscription"
+          >
+            <option value="Basic">Basic</option>
+            <option value="Advanced">Advanced</option>
+            <option value="Pro">Pro</option>
+          </select>
+        </div>
+
+        <!-- PASSWORD FIELD -->
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input 
+            type="password" 
+            class="form-control"
+            ngModel
+            name="password"
+            required
+            #password="ngModel"
+          >
+          <p *ngIf="password.invalid && password.touched" class="text-danger">Enter a password!</p>
+        </div>
+
+        <!-- SUBMIT BUTTON -->
+        <button type="submit" [disabled]="tdForm.invalid" class="btn btn-primary">Submit</button>
+
+      </form>
+      <hr>
+
+      <!-- This will show up when form is submitted -->
+      <ng-container *ngIf="formSubmitted">
+        <h3> Submitted Data </h3>
+        <p>Email: {{formData.email}}</p>
+        <p>Subscription: {{formData.subscription}}</p>
+        <p>Password: {{formData.password}}</p>
+      </ng-container>
+
+    </div>
+  </div>
+</div>
