@@ -4,10 +4,12 @@ import { FormsModule } from '@angular/forms';
 
 
 import { AppComponent } from './app.component';
+import { ForbiddenNameDirective } from './forbidden-name.directive';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ForbiddenNameDirective
   ],
   imports: [
     BrowserModule,

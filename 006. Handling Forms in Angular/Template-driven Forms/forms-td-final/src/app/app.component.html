@@ -16,7 +16,23 @@
               name="username" 
               ngModel
               required
+              forbiddenName="john"
+              #username="ngModel"
             >
+
+            <!-- Errors -->
+            <p class="text-danger" *ngIf="username.invalid && username.touched">
+
+              <!-- Required Validation Fails -->
+              <span *ngIf="username.errors?.['required']">
+                Please Enter a Username
+              </span>
+
+              <!-- Forbidden Name Validation Fails -->
+              <span *ngIf="username.errors?.['forbiddenName']">
+                Username cannot be {{username.errors?.['notAllowed']}}
+              </span>
+            </p>
           </div>
           <button class="btn btn-default" type="button" (click)="suggestUserName()">Suggest an Username</button>
           <div class="form-group">
@@ -31,7 +47,7 @@
               email
               #email="ngModel"
             >
-            <p *ngIf="email.invalid && email.dirty" class="text-danger">
+            <p *ngIf="email.invalid && email.touched" class="text-danger">
               <!-- If "required" validation fails -->
               <span *ngIf="email.errors?.['required']">
                 Please enter an email!
