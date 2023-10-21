@@ -31,7 +31,17 @@
               email
               #email="ngModel"
             >
-            <p *ngIf="email.invalid && email.dirty" class="text-danger">Please enter a valid email address!</p>
+            <p *ngIf="email.invalid && email.dirty" class="text-danger">
+              <!-- If "required" validation fails -->
+              <span *ngIf="email.errors?.['required']">
+                Please enter an email!
+              </span>
+
+              <!-- If "email" validation fails -->
+              <span *ngIf="email.errors?.['email']">
+                Please enter a valid email!
+              </span>
+            </p>
           </div>
 
           <div class="form-group">
