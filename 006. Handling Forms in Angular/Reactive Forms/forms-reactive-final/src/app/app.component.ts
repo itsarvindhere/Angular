@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +8,7 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class AppComponent implements OnInit {
   genders = ['male', 'female'];
-
+  forbiddenNames = ['admin', 'sudo']
   signupForm: FormGroup;
 
   ngOnInit() {
@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
 
       // Form Group inside a Form Group
       userData: new FormGroup({
-        username: new FormControl('', Validators.required),
+        username: new FormControl('', [Validators.required, this.forbiddenName]),
       email: new FormControl('', [Validators.required, Validators.email])
       }),
       gender: new FormControl('male'),
@@ -46,6 +46,16 @@ export class AppComponent implements OnInit {
   // Delete a hobby
   deleteHobby(i: number) {
     (this.signupForm.get('hobbies') as FormArray).removeAt(i);
+  }
+
+  // Forbidden Name Validator
+  forbiddenName = (control: FormControl): ValidationErrors => {
+
+    if (this.forbiddenNames.includes(control.value)){
+      return {"forbiddenName": true, "notAllowed": control.value}
+    }
+
+    return null
   }
 
 }
