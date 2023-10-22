@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -20,13 +20,32 @@ export class AppComponent implements OnInit {
         username: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email])
       }),
-      gender: new FormControl('male')
+      gender: new FormControl('male'),
+      hobbies: new FormArray([])
     });
   }
 
   // Handle Form Submission
   onSubmit(){
     console.log(this.signupForm);
+  }
+
+  // On click of "Add Hobby" button
+  handleAddHobbyClick(){
+    // Add a new control to the FormArray
+    // We will also add a "requied" validator to the new control
+    const newInput = new FormControl('', Validators.required);
+    (this.signupForm.get('hobbies') as FormArray).push(newInput);
+  }
+
+  // To get the controls in Form Array
+  getHobbiesControls() {
+    return (this.signupForm.get('hobbies') as FormArray).controls;
+  }
+
+  // Delete a hobby
+  deleteHobby(i: number) {
+    (this.signupForm.get('hobbies') as FormArray).removeAt(i);
   }
 
 }

@@ -52,6 +52,28 @@
             {{ gender }}
           </label>
         </div>
+        <div formArrayName="hobbies">
+          <h3>Your Hobbies</h3>
+          <button 
+            type="button" 
+            class="btn btn-default"
+            (click)="handleAddHobbyClick()"
+          >
+            Add Hobby
+          </button>
+          <div class="form-group">
+            <div *ngFor="let hobbyControl of getHobbiesControls();let i = index" style="display: flex; gap: 16px; margin-top: 16px;">
+              <input 
+              type="text"
+              class="form-control"
+              [formControlName]="i"
+            >
+            <button class="btn btn-danger" (click)="deleteHobby(i)">Delete Hobby</button>
+            </div>
+            
+          </div>
+        </div>
+        <hr>
         <button class="btn btn-primary" type="submit">Submit</button>
       </form>
     </div>
