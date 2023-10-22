@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { Observable, of } from 'rxjs';
+import { delay, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +20,7 @@ export class AppComponent implements OnInit {
       // Form Group inside a Form Group
       userData: new FormGroup({
         username: new FormControl('', [Validators.required, this.forbiddenName]),
-      email: new FormControl('', [Validators.required, Validators.email])
+      email: new FormControl('', [Validators.required, Validators.email], [this.forbiddenEmail])
       }),
       gender: new FormControl('male'),
       hobbies: new FormArray([])
@@ -56,6 +58,24 @@ export class AppComponent implements OnInit {
     }
 
     return null
+  }
+
+  // Forbidden Email Validator
+  forbiddenEmail = (control: FormControl): Promise<any> | Observable<any> => {
+
+    // RXJS
+    return of(control.value).pipe(map(val => val === 'test@test.com' ? {'forbiddenEmail' : true} : null), delay(1500))
+
+    
+    // return new Observable(observer => {
+    //   // To mimic an async operation that waits for some time
+    //   setTimeout(() => {
+    //     if (control.value === 'test@test.com') {
+    //       observer.next({'forbiddenEmail': true})
+    //     }
+    //     observer.complete()
+    //   }, 1500)
+    // })
   }
 
 }

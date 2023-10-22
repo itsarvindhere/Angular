@@ -45,6 +45,11 @@
               <span *ngIf="signupForm.get('userData.email').errors?.['email']">
                 Enter a valid email!
               </span>
+
+              <!-- If "forbiddenEmail" validation failed -->
+              <span *ngIf="signupForm.get('userData.email').errors?.['forbiddenEmail']">
+                Email is already taken. Pleae enter a different email!
+              </span>
             </p>
           </div>
       </div>
