@@ -25,6 +25,8 @@ export class AppComponent implements OnInit {
       gender: new FormControl('male'),
       hobbies: new FormArray([])
     });
+
+    this.signupForm.get('userData.email').valueChanges.subscribe(data => console.log(data));
   }
 
   // Handle Form Submission
