@@ -1,10 +1,16 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <input class="form-control" type="text" placeholder="Search" [(ngModel)]="filteredStatus">
+      <br>
+      <button class="btn btn-primary" type="button" (click)="onAddServer()">Add Server</button>
+      <br><br>
+      App Status : {{(statusObs | async) || "Loading..."}}
+      <hr>
       <ul class="list-group">
         <li
           class="list-group-item"
-          *ngFor="let server of servers"
+          *ngFor="let server of servers | filter : filteredStatus | sort : 'DESC' "
           [ngClass]="getStatusClasses(server)">
           <span
             class="badge">
