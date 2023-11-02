@@ -52,7 +52,7 @@
   <div class="row">
     <div class="col-xs-12 col-md-6 col-md-offset-3">
 
-      <ng-container *ngIf="!isFetching">
+      <ng-container *ngIf="!isFetching && !error">
         <p *ngIf="loadedPosts.length == 0">
           No posts available!
         </p>
@@ -70,7 +70,10 @@
       </ng-container>
 
       <p *ngIf="isFetching">Loading...</p>
-      
+      <div class="alert alert-danger" *ngIf="error">
+        <h3>An Error Occured!</h3>
+        <p>{{error}}</p>
+      </div>
     </div>
   </div>
 </div>

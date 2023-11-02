@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Post } from 'src/types';
 
@@ -9,13 +9,22 @@ import { Post } from 'src/types';
 })
 export class PostsService {
 
+  error = new Subject<string>();
+
   url = "https://angular-http-intro-c936e-default-rtdb.firebaseio.com/posts.json";
 
   constructor(private http: HttpClient) { }
 
   // Create a new Post
   createPost(post : Post) {
-    return this.http.post<{name: string}>(this.url, post);
+    this.http.post<{name: string}>(this.url, post).subscribe({
+      next: data => {
+        console.log("Post Created", data)
+      },
+      error: e => {
+        this.error.next("Couldn't Create a new Post. Please Try Again.");
+      }
+    });;
   }
 
   // Fetch Posts

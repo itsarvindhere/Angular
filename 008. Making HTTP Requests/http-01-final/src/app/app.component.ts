@@ -1,29 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {Post} from '../types';
 import { PostsService } from './posts.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   loadedPosts = [];
   isFetching = false;
+  error = '';
+
+  private errorSub: Subscription;
 
   constructor(private postsService: PostsService) {}
 
   ngOnInit() {
     this.fetchPosts();
+
+    this.errorSub = this.postsService.error.subscribe(errorMessage => this.error = errorMessage);
   }
 
   onCreatePost(post: Post) {
     // Send Http request
-    this.postsService.createPost(post).subscribe({
-      next: data => {
-        this.fetchPosts();
-      }
-    });
+    this.postsService.createPost(post);
   }
 
   onFetchPosts() {
@@ -48,9 +51,15 @@ export class AppComponent implements OnInit {
         this.loadedPosts = posts;
         this.isFetching = false;
       },
-      error: e => {
+      error: (e: HttpErrorResponse ) => {
+        console.log(e)
+        this.error = "Something went wrong while fetching your posts. Please try again!"
         this.isFetching = false;
       }
     })
+  }
+
+  ngOnDestroy(): void {
+      this.errorSub.unsubscribe();
   }
 }
