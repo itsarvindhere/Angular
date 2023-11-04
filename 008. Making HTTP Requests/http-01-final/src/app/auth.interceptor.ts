@@ -18,7 +18,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    console.log("Request is on its way", request)
+    console.log("Inside Auth Interceptor  - Request Sent", request)
     // request.headers.append("auth-header", "123");
     
     const modifiedRequest = request.clone({
@@ -31,14 +31,11 @@ export class AuthInterceptor implements HttpInterceptor {
       }
     });
 
-    console.log("Modified REquest is", modifiedRequest)
-
     // You always get an "event" as the response here
     // So that you have a granular access to the response
     return next.handle(modifiedRequest).pipe(tap(event => {
      if(event.type === HttpEventType.Response) {
-      console.log("Response arrived")
-      console.log("Body is", event.body);
+      console.log("Inside Auth Interceptor - Response Received", event.body)
      }
     }));
   }
