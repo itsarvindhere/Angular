@@ -1,7 +1,9 @@
 <div class="row d-flex justify-content-center">
     <div class="col-xs-12 col-md-6">
+        <div *ngIf="error" class="alert alert-danger" role="alert">
+            {{error}}
+          </div>
         <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
-
             <!-- Email Field -->
             <div class="mb-3">
                 <label class="form-label" for="email">Email </label>
@@ -37,9 +39,16 @@
             </div>
 
             <!-- Button -->
-            <div class="mt-4">
-                <button [disabled]="authForm.invalid" class="btn btn-primary w-100">{{ isLoginMode ? 'Log In' : 'Sign Up'}}</button>
-            </div>
+
+                <div class="mt-4">
+                    <button [disabled]="authForm.invalid" class="btn btn-primary w-100">
+                        <span *ngIf="requestInProgress" class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+
+                        <span *ngIf="!requestInProgress">
+                            {{ isLoginMode ? 'Log In' : 'Sign Up'}}
+                        </span>
+                    </button>
+                </div>
 
             <p class="mt-2 text-center">
                 <span *ngIf="isLoginMode">
