@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand bg-body-secondary">
+    <div class="container-fluid">
+        <a class="navbar-brand">
+                Recipe Book
+        </a>
+        <div class="collapse navbar-collapse d-flex justify-content-between">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a routerLink="/recipes" routerLinkActive="active"  class="nav-link">Recipes</a>
+              </li>
+              <li class="nav-item">
+                <a routerLink="/shopping-list" routerLinkActive="active" class="nav-link">Shopping List</a>
+              </li>
+
+              <li class=" nav-item dropdown">
+                <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" >Manage <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" (click)="onSaveClick()"> Save Data</a></li>
+                  <li><a class="dropdown-item" (click)="onFetchClick()"> Fetch Data</a></li>
+                </ul>
+            </li>
+            </ul>
+            <a routerLink="/auth" routerLinkActive="active"  class="nav-link">Login</a>
+          </div>
+
+    </div>
+    
+</nav>
