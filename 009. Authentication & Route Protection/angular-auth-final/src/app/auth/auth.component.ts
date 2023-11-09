@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from './auth.service';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-auth',
@@ -17,6 +18,9 @@ export class AuthComponent {
 
   // Error Message
   error = '';
+
+  // Subscription
+  authSub !: Subscription;
 
   constructor(private authService : AuthService){}
 
@@ -37,27 +41,24 @@ export class AuthComponent {
     // Make the HTTP Request if we have a valid data
     if (email && password) {
 
-      // For Login Mode
-      if (this.isLoginMode) {
+      this.requestInProgress = true;
 
-      } 
+      // Make the request depending on whether it is login or signup request
+      const request = this.isLoginMode ? this.authService.login(email, password) : this.authService.signup(email,password);
 
-      // For Signup Mode
-      else {
-        this.requestInProgress = true;
-        this.authService.signup(email,password).subscribe({
+      this.authSub = request.subscribe({
           next: data => {
             this.requestInProgress = false;
-            console.log("User Created. Data is", data)
+            console.log("Data is", data)
           },
           error: error => {
             this.requestInProgress = false;
             this.error = error;
-            setTimeout(() => 
-            this.error = '', 2000)
+            setTimeout(() => {
+              this.error = ''
+            }, 3000)
           }
-        })
-      }
+      })
     }
 
     form.reset();
