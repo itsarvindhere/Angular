@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject, catchError, of, tap, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, catchError, of, tap, throwError } from 'rxjs';
 import { User } from './user.model';
 
 interface AuthResponse {
@@ -18,11 +18,11 @@ interface AuthResponse {
 export class AuthService {
 
   // User Subject
-  user = new Subject<User>();
+  user = new BehaviorSubject<User | null>(null);
 
   constructor(private http: HttpClient) { }
 
-  apiKey = "YOUR API KEY HERE";
+  apiKey = "YOUR API TOKEN HERE";
 
   // Create a new User
   signup(email: string, password: string) : Observable<AuthResponse>
@@ -74,6 +74,9 @@ export class AuthService {
       case 'INVALID_PASSWORD':
         errorMessage = "The password is wrong. Please check the password and try again!"
         break
+      case 'INVALID_LOGIN_CREDENTIALS':
+        errorMessage = "The email or password is wrong. Please check the credentials and try again!"
+        break
       case 'USER_DISABLED':
         errorMessage = "This user account has been disabled!"
         break
@@ -101,7 +104,6 @@ export class AuthService {
     const tokenExpirationDate = new Date(new Date().getTime() + +userData.expiresIn * 1000);
 
     const newUser = new User(userData.email, userData.localId, userData.idToken, tokenExpirationDate)
-
     this.user.next(newUser);
   }
 

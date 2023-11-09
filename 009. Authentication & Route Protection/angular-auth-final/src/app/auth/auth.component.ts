@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from './auth.service';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -11,7 +12,7 @@ import { Observable, Subscription } from 'rxjs';
 export class AuthComponent {
 
   // Currently active mode
-  isLoginMode = false;
+  isLoginMode = true;
 
   // To show or hide the loading spinner
   requestInProgress = false;
@@ -22,7 +23,7 @@ export class AuthComponent {
   // Subscription
   authSub !: Subscription;
 
-  constructor(private authService : AuthService){}
+  constructor(private authService : AuthService, private router: Router){}
 
   // Change Modes between "Log In" and "Sign Up"
   changeMode() {
@@ -49,7 +50,9 @@ export class AuthComponent {
       this.authSub = request.subscribe({
           next: data => {
             this.requestInProgress = false;
-            console.log("Data is", data)
+            // Navigate the User to the '/recipes' page
+            this.router.navigate(['/recipes']);
+
           },
           error: error => {
             this.requestInProgress = false;
@@ -60,8 +63,6 @@ export class AuthComponent {
           }
       })
     }
-
-    form.reset();
     
   }
 

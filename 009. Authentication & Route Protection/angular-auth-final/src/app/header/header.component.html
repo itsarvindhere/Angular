@@ -3,8 +3,8 @@
         <a class="navbar-brand">
                 Recipe Book
         </a>
-        <div class="collapse navbar-collapse d-flex justify-content-between">
-            <ul class="navbar-nav">
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav" *ngIf="isLoggedIn">
               <li class="nav-item">
                 <a routerLink="/recipes" routerLinkActive="active"  class="nav-link">Recipes</a>
               </li>
@@ -20,8 +20,12 @@
                 </ul>
             </li>
             </ul>
-            <a routerLink="/auth" routerLinkActive="active"  class="nav-link">Login</a>
-          </div>
+        </div>
+
+        <div class="ml-auto">
+          <a routerLink="/auth" routerLinkActive="active"  class="nav-link" *ngIf="!isLoggedIn">Login</a>
+          <a routerLink="/auth" routerLinkActive="active"  class="nav-link" *ngIf="isLoggedIn">Logout</a>
+        </div>
 
     </div>
     
