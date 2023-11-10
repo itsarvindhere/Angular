@@ -1,8 +1,8 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable, OnDestroy, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Recipe } from '../recipes/Recipe.model';
 import { RecipeService } from '../recipes/recipe.service';
-import { Subscription, map, of, switchMap, take, tap } from 'rxjs';
+import { Subscription, map, tap } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 
 @Injectable({
@@ -41,14 +41,7 @@ export class DataStorageService  implements OnDestroy {
 
   // Fetch Recipes from the Database
   fetchRecipes() {
-
-    return this.authService.user
-    .pipe(
-      switchMap(userData => 
-        {
-          return this.http.get<Recipe[]>(this.url, {params: new HttpParams().set("auth", userData?.token ?? '')})
-        }),
-
+    return this.http.get<Recipe[]>(this.url).pipe(
       // On the observable returned in switchMap above, below operators are applied
       map(data => {
         data.forEach(recipe => {

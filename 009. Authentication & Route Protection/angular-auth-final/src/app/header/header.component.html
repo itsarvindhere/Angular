@@ -24,7 +24,7 @@
 
         <div class="ml-auto">
           <a routerLink="/auth" routerLinkActive="active"  class="nav-link" *ngIf="!isLoggedIn">Login</a>
-          <a routerLink="/auth" routerLinkActive="active"  class="nav-link" *ngIf="isLoggedIn">Logout</a>
+          <a routerLink="/auth" routerLinkActive="active"  class="nav-link" (click)="onLogout()" *ngIf="isLoggedIn">Logout</a>
         </div>
 
     </div>

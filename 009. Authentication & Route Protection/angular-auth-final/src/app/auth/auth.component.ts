@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from './auth.service';
 import { Subscription } from 'rxjs';
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.css']
 })
-export class AuthComponent {
+export class AuthComponent implements OnDestroy {
 
   // Currently active mode
   isLoginMode = true;
@@ -64,6 +64,10 @@ export class AuthComponent {
       })
     }
     
+  }
+
+  ngOnDestroy(): void {
+      this.authSub?.unsubscribe();
   }
 
 }

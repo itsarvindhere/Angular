@@ -1,18 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-  // Name of the link that is clicked on header
-  // By default, we will show the Recipes component on page load
-  headerLinkName: any = "recipes";
+  constructor(private authService: AuthService){}
 
-  onHeaderLinkClick(linkName: String) {
-    this.headerLinkName = linkName;
+  ngOnInit() {
+    // Auto Login Functionality
+    this.authService.autoLogin();
+
   }
   
 }
