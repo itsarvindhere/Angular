@@ -7,6 +7,7 @@ import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.compon
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { recipesResolver } from './recipes/recipes-resolver';
 import { AuthComponent } from './auth/auth.component';
+import { authGuard } from './auth/auth.guard';
 
 // ROUTE CONFIGURATION
 const routes: Routes = [
@@ -16,7 +17,7 @@ const routes: Routes = [
     {path: 'new', component: RecipeEditComponent, title: "Add New Recipe"},
     {path: ':id', component: RecipeDetailComponent, title: "Recipe Details"},
     {path: ':id/edit', component: RecipeEditComponent, title: "Edit Recipe"}
-  ], resolve: [recipesResolver]},
+  ], resolve: [recipesResolver], canActivate: [authGuard]},
   {path: 'shopping-list', component: ShoppingListComponent, title: "Shopping List"},
   {path: 'auth', component: AuthComponent}
 ];
