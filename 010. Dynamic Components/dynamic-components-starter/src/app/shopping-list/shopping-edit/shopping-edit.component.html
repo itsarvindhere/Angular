@@ -1,0 +1,58 @@
+<div class="row">
+    <div class="col-xs-12">
+        <form #editForm="ngForm" (ngSubmit)="onAddClick()">
+            <div class="d-flex gap-4">
+                <div class="col-sm-4 form-group">
+                    <label for="name">Name</label>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        id="name"
+                        name="name"
+                        ngModel
+                        #nameInput="ngModel"
+                        required
+                    >
+                    <p class="text-danger" *ngIf="nameInput.invalid && nameInput.touched">
+                        <span *ngIf="nameInput.errors?.['required']">
+                            Please provide a name for the Ingredient!
+                        </span>
+                    </p>
+                </div>
+                <div class="col-sm-4 form-group">
+                    <label for="amount">Amount</label>
+                    <input 
+                        type="number" 
+                        class="form-control" 
+                        id="amount" 
+                        name="amount"
+                        ngModel
+                        #amountInput="ngModel"
+                        required
+                        min="1"
+                    >
+
+                    <p class="text-danger" *ngIf="amountInput.invalid && amountInput.touched">
+                        <span *ngIf="amountInput.errors?.['required']">
+                            Please provide an amount for the Ingredient!
+                        </span>
+
+                        <span *ngIf="amountInput.errors?.['min']">
+                            Amount should be greater than 0!
+                        </span>
+                    </p>
+
+                </div>
+            </div>
+            <div class="d-flex gap-2 mt-2">
+                <button class="btn btn-success" type="submit" [disabled]="editForm.invalid">
+                            <lucide-icon name="file-plus-2"></lucide-icon>
+                        </button>
+
+                <button class="btn btn-primary" type="button" (click)="clearForm()">
+                            <lucide-icon name="rotate-ccw"></lucide-icon>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
