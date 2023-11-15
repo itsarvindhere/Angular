@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-alert',
@@ -10,4 +10,15 @@ export class AlertComponent {
   // Message to show in the Alert Modal
   // It will be passed from outside
   @Input() message !: string;
+
+  // Event to emit when close button is clicked
+  @Output() close = new EventEmitter();
+
+  // Method executed on click of the close button or the backdrop
+  onClose() {
+    // Emit the event
+    this.close.emit();
+  }
+
+
 }

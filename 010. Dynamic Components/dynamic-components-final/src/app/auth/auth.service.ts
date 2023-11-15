@@ -26,7 +26,7 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  apiKey = "YOUR API KEY HERE";
+  apiKey = "AIzaSyB16riUrCX_xld6pHaAHiuggpjD4Dx81cY";
 
   // Create a new User
   signup(email: string, password: string) : Observable<AuthResponse>
