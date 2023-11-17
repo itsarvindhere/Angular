@@ -5,7 +5,8 @@
         </div> -->
 
         <!-- ALERT MODAL -->
-        <app-alert (close)="error = '';" [message]="error" *ngIf="error"></app-alert>
+        <!-- <app-alert (close)="error = '';" [message]="error" *ngIf="error"></app-alert> -->
+        <ng-template #alertModal></ng-template>
 
         <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
             <!-- Email Field -->
