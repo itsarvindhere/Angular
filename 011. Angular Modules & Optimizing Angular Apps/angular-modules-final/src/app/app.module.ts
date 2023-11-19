@@ -6,8 +6,6 @@ import {LucideAngularModule, MoveLeft, Save, PlusCircle, Trash2, Pencil, RotateC
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ShortenPipe } from './shorten.pipe';
 import { AuthComponent } from './auth/auth.component';
@@ -15,15 +13,13 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { AlertComponent } from './shared/alert/alert.component';
 import { RecipesModule } from './recipes/recipes.module';
 import { CommonModule } from '@angular/common';
+import { ShoppingListModule } from './shopping-list/shopping-list.module';
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    ShoppingListComponent,
-    ShoppingEditComponent,
     ShortenPipe,
     AuthComponent,
-    AlertComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +28,8 @@ import { CommonModule } from '@angular/common';
     ReactiveFormsModule,
     HttpClientModule,
     LucideAngularModule.pick({Save, MoveLeft, PlusCircle, Trash2, Pencil, RotateCcw, FilePlus2}),
-    RecipesModule
+    RecipesModule,
+    ShoppingListModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]

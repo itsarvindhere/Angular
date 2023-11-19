@@ -10,6 +10,7 @@ import {LucideAngularModule, MoveLeft, Save, PlusCircle, Trash2, Pencil, RotateC
 import { RouterModule } from "@angular/router";
 import { BrowserModule } from "@angular/platform-browser";
 import { RecipesRoutingModule } from "./recipes-routing.module";
+import { SharedModule } from "../shared/shared.module";
 
 @NgModule({
     declarations: [
@@ -22,11 +23,10 @@ import { RecipesRoutingModule } from "./recipes-routing.module";
     ],
     
     imports: [
-        BrowserModule,
         ReactiveFormsModule,
-        LucideAngularModule.pick({Save, MoveLeft, PlusCircle, Trash2, Pencil, RotateCcw, FilePlus2}),
         RouterModule,
-        RecipesRoutingModule
+        RecipesRoutingModule,
+        SharedModule
     ]
 })
 export class RecipesModule{}
