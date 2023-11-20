@@ -11,7 +11,7 @@ import { authGuard } from "../auth/auth.guard";
 // Routes Configuration
 const routes: Routes = 
     [
-    {path: 'recipes', component: RecipesComponent, title: "Recipes", children: [
+    {path: '', component: RecipesComponent, title: "Recipes", children: [
         {path: '', component: RecipeStartComponent, title: "Recipes"},
         {path: 'new', component: RecipeEditComponent, title: "Add New Recipe"},
         {path: ':id/edit', component: RecipeEditComponent, title: "Edit Recipe"},
