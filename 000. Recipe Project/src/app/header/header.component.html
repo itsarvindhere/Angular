@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand bg-body-secondary">
+    <div class="container-fluid">
+        <a class="navbar-brand">
+                Recipe Book
+        </a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav" *ngIf="isLoggedIn">
+              <li class="nav-item">
+                <a routerLink="/recipes" routerLinkActive="active"  class="nav-link">Recipes</a>
+              </li>
+              <li class="nav-item">
+                <a routerLink="/shopping-list" routerLinkActive="active" class="nav-link">Shopping List</a>
+              </li>
+
+              <li class=" nav-item dropdown">
+                <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" >Manage <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" (click)="onSaveClick()"> Save Data</a></li>
+                  <li><a class="dropdown-item" (click)="onFetchClick()"> Fetch Data</a></li>
+                </ul>
+            </li>
+            </ul>
+        </div>
+
+        <div class="ml-auto">
+          <a routerLink="/auth" routerLinkActive="active"  class="nav-link" *ngIf="!isLoggedIn">Login</a>
+          <a routerLink="/auth" routerLinkActive="active"  class="nav-link" (click)="onLogout()" *ngIf="isLoggedIn">Logout</a>
+        </div>
+
+    </div>
+    
+</nav>

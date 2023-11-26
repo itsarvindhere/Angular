@@ -1,0 +1,36 @@
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.60);
+    z-index: 50;
+}
+
+.alert-box {
+    position: fixed;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    padding: 16px;
+    z-index: 100;
+    background-color: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.26);
+    border-radius: 20px;
+    color: gray;
+    text-align: center;
+    animation: appear 0.5s;
+}
+
+.alert-box-actions {
+    text-align: center;
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+        top: 0;
+    }
+}
