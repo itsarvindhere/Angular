@@ -1,27 +1,50 @@
 # RecipeProject
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.7.
+This Angular Application was created as a part of the ["Angular - The Complete Guide"](https://www.udemy.com/course/the-complete-guide-to-angular-2/) Udemy Course by Maximilian Schwarzmüller. 
 
-## Development server
+If you are new to Angular, I highly recommend you to go over the rest of the sections to get a good understanding of the basics.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+In this application, we have three main pages - 
 
-## Code scaffolding
+    1. Recipes
+    2. Shopping List
+    3. Authentication
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## RECIPES PAGE
 
-## Build
+The Recipes page shows all the Recipes and you can add/edit/remove Recipes from this page. 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## SHOPPING LIST PAGE
 
-## Running unit tests
+The Shopping List page shows a list of ingredients and for each Recipe, you will find a button that says "Add to Shopping List". This option lets you move all the ingredients of that Recipe to the Shopping List. Just like the Recipes, you can add/edit/remove ingredients from the Shopping List page.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## AUTHENTICATION PAGE
 
-## Running end-to-end tests
+This page is the first page that shows up if you are not already authenticated. You can signup or login to your account via this page and only if you are authenticated, you can access and use the application.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+# THE BACKEND
 
-## Further help
+This project focuses on Angular so the backend is not created by us and instead, we use Google's Firebase to have a Realtime Database for our Recipes and also for Authentication. Make sure you provide your own API key in the "environments.ts" and "environment.development.ts" files whenever you clone this project on your system otherwise the calls to the Firebase Realtime Database will fail.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+# ANGULAR CONCEPTS USED IN THE PROJECT
+
+The main focus of this project is to get a hands-on experience with all the main Angular concepts. This project uses these concepts - 
+
+    - Data Binding
+    - Directives
+    - Services
+    - Routing
+    - RxJS Observables and Operators
+    - Template Driven Forms
+    - Reactive Forms
+    - Pipes
+    - HttpClient
+    - Authentication
+    - Route Guards
+    - Dynamic Components
+    - Angular Modules
+    - Lazy Loading
+    - Pre-Loading
+    - Providing Services
+    - And more........
+
