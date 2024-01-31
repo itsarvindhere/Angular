@@ -1,0 +1,28 @@
+<h1>Understanding Angular Animations</h1>
+
+<button (click)="fadeInOut()"> Fade in / out</button>
+
+
+<div 
+  [@fadeInOut]="isShown ? 'open': 'close'"
+  (@fadeInOut.start)="onAnimationStart($event)"
+  (@fadeInOut.done)="onAnimationEnd($event)"
+>
+  This is a block with fade in / out
+</div>
+
+
+<label>Item Name </label>
+<input type="text" #inputBox>
+<button (click)="addItem(inputBox.value)"> Add Item</button>
+
+<ul>
+  <li @listItem *ngFor="let item of items; let i=index;">
+    {{item}}
+    <button (click)="deleteItem(i)">Delete Item</button>
+  </li>
+</ul>
+
+<!-- <div *ngIf="isShown" @fadeIn @fadeOut>
+  This is a block with fade in / out
+</div> -->
