@@ -51,7 +51,7 @@ describe('UsersService', () => {
 
         it('should get usernames', () => {
             // utilsServiceMock.pluck.mockReturnValue(['foo']);
-            jest.spyOn(utilsService, 'pluck');
+            jest.spyOn(utilsService, 'pluck').mockReturnValue(['foo']);
             userService.users = [{id: '3', name: 'foo'}];
             userService.getUsernames();
             expect(utilsService.pluck).toHaveBeenCalledWith(
