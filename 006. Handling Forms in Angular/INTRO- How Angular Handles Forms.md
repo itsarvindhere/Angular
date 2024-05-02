@@ -9,10 +9,10 @@ But, for certain use cases, the Reactive Forms are preferred, whereas for others
 
 ## TEMPLATE-DRIVEN FORMS
 
-The name says it all. These types of forms in Angular have the main logic in the HTML Template itself. So, we use directives in the template tp create and manipulate the underlying object model.
+The name says it all. These types of forms in Angular have the main logic in the HTML Template itself. So, we use directives in the template to create and manipulate the underlying object model.
 Angular automatically infers the structure of the form from the DOM.
 
-These type of forms are useful in adding some simple forms to an app like maybe an email list signup form or login form etc. They're straightforward to add to an app but, when it comes to scaling them, that's not very intiuitive. The templaet can become quite complicated and messy as we keep adding new form controls in template driven forms.
+These type of forms are useful in adding some simple forms to an app like maybe an email list signup form or login form etc. They're straightforward to add to an app but, when it comes to scaling them, that's not very intiuitive. The template can become quite complicated and messy as we keep adding new form controls in template driven forms.
 
 But, If you have very basic form requirements and logic that can be managed solely in the template, template-driven forms could be a good fit.
 
