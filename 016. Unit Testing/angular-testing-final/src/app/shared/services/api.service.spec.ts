@@ -2,6 +2,7 @@ import { TestBed } from "@angular/core/testing";
 import { ApiService } from "./api.service";
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing"
 import { TagInterface } from "../types/tag.interface";
+import { HttpErrorResponse } from "@angular/common/http";
 
 describe('APIService', () => { 
 
@@ -75,6 +76,29 @@ describe('APIService', () => {
 
             expect(req.request.method).toEqual('POST');
             expect(req.request.body).toEqual({"name": "foo"});
+        });
+
+        it('should throw an error if the requrst fails', () => {
+
+            let error: HttpErrorResponse | undefined;
+            apiService.createTag('foo').subscribe({
+                next: () => {},
+                error: (e) => {
+                    error = e;
+                }
+            });
+
+            const req = httpTestingController.expectOne('http://localhost:3004/tags');
+
+            req.flush('Server Error', {
+                status: 403,
+                statusText: 'Unauthorized'
+            });
+
+            if (!error) throw new Error("Error needs to be defined");
+
+            expect(error.status).toEqual(403);
+            expect(error.statusText).toEqual('Unauthorized');
         });
 
     });
