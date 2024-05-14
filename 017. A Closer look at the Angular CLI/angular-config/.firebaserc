@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "angular-cli-test-49e3f": {
+      "hosting": {
+        "angular-config": [
+          "angular-cli-test-49e3f"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "angular-cli-test-49e3f"
+  }
+}

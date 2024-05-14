@@ -25,6 +25,7 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -84,10 +85,28 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.css"
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "angular-config:build:production",
+              "serveTarget": "angular-config:serve:production"
+            },
+            "development": {
+              "buildTarget": "angular-config:build:development",
+              "serveTarget": "angular-config:serve:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }

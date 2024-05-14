@@ -1,0 +1,9 @@
+{
+  "hosting": [
+    {
+      "target": "angular-config",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}
