@@ -1,5 +1,6 @@
 import { NgFor } from '@angular/common';
-import { Component, computed, signal, effect, Input, input } from '@angular/core';
+import { Component, computed, signal, effect, input, output } from '@angular/core';
+import { interval, of } from 'rxjs';
 
 @Component({
   selector: 'app-signals',
@@ -18,8 +19,9 @@ export class SignalsComponent {
 
   // Signal Inputs
   test = input.required<string>();
-
   derived = computed(() => this.test() + ". Added at the end");
+
+  btnClicked = output<string>();
 
   
   constructor() {
@@ -39,4 +41,12 @@ export class SignalsComponent {
     this.counter.update(prev => prev - 1) ;
     this.actions.update(prev => [...prev, 'DECREMENT']);
   }
+
+  onClick() {
+    this.btnClicked.emit("Data sent from Child to Parent!");
+  }
 }
+function outputFromObservable<T>() {
+  throw new Error('Function not implemented.');
+}
+

@@ -9,4 +9,9 @@ import { SignalsComponent } from './signals/signals.component';
     standalone: true,
     imports: [DefaultComponent, SignalsComponent]
 })
-export class AppComponent {}
+export class AppComponent {
+
+    showAlert(val: string) {
+        alert("Data passed by child is -> " + val);
+    }
+}
