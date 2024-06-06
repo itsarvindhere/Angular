@@ -1,0 +1,72 @@
+<h1>Let's Lern the new control flows</h1>
+
+<h2>The if condition</h2>
+<button (click)="toggleFruit()">Toggle Apple</button>
+
+<!-- USING *ngIF -->
+<!-- <div *ngIf="isApple; else other">
+  This is an apple!
+</div>
+<ng-template #other>
+  This is not an apple!
+</ng-template> -->
+
+<!-- USING @if -->
+
+<div>
+  @if (isApple) {
+    This is an apple!
+  } @else {
+    This is not an apple!
+  }
+</div>
+
+<hr>
+
+<h2>The switch condition</h2>
+<button (click)="selectFruit('Apple')">Apple</button>
+<button (click)="selectFruit('Banana')">Banana</button>
+<button (click)="selectFruit('Mango')">Mango</button>
+<button (click)="selectFruit('Orange')">Orange</button>
+
+<!-- USING ngSwitch -->
+
+<!-- <div [ngSwitch]="fruit">
+
+  <p *ngSwitchCase="'Apple'">You selected an Apple.</p>
+  <p *ngSwitchCase="'Orange'">You selected an Orange.</p>
+  <p *ngSwitchCase="'Banana'">You selected an Banana.</p>
+  <p *ngSwitchCase="'Mango'">You selected an Mango.</p>
+  <p *ngSwitchDefault>Fruit not selected!</p>
+
+</div> -->
+
+
+<!-- USING @switch -->
+
+@switch (fruit) {
+  @case ('Apple') { <p> You selected an Apple. </p> }
+  @case ('Orange') { <p> You selected an Apple. </p> }
+  @case ('Banana') { <p> You selected an Apple. </p> }
+  @case ('Mango') { <p> You selected an Apple. </p> }
+  @default { <p> Fruit not selected!</p>}
+}
+
+<hr>
+<h2>The for condition</h2>
+
+<!-- Using *ngFor -->
+
+<!-- <ul>
+  <li *ngFor="let fruit of fruits"> {{fruit}}</li>
+</ul> -->
+
+<!-- Using @for -->
+
+<ul>
+@for (fruit of fruits; track $index) {
+  <li>{{fruit}}</li>
+} @empty {
+  <p>There are no fruits!</p>
+}
+</ul>
