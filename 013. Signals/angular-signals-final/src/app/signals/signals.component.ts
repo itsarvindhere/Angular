@@ -1,5 +1,5 @@
 import { NgFor } from '@angular/common';
-import { Component, computed, signal, effect } from '@angular/core';
+import { Component, computed, signal, effect, Input, input } from '@angular/core';
 
 @Component({
   selector: 'app-signals',
@@ -11,6 +11,15 @@ export class SignalsComponent {
   actions = signal<string[]>([]);
   counter = signal(0);
   doubleCounter = computed(() => this.counter() * 2)
+
+  // Traditional Approach
+  // @Input({required: true})
+  // test !: string;
+
+  // Signal Inputs
+  test = input.required<string>();
+
+  derived = computed(() => this.test() + ". Added at the end");
 
   
   constructor() {
