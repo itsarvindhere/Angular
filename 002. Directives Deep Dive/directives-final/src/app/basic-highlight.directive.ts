@@ -1,34 +1,32 @@
 import { Directive, ElementRef, HostBinding, HostListener, Input, OnInit, Renderer2 } from '@angular/core';
 
 @Directive({
-  selector: '[appBasicHighlight]'
+  selector: '[appBasicHighlight]',
+  host: {
+    '[style.backgroundColor]': 'backgroundColor',
+    '(mouseenter)': 'onMouseHover()',
+    '(mouseleave)': 'onMouseLeave()'
+  }
 })
 export class BasicHighlightDirective implements OnInit {
 
   @Input('appBasicHighlight') highlightColor: string = 'green';
-
-  @HostBinding('style.background-color')
   backgroundColor: string;
 
   constructor() {}
 
   // ngOnInit
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void {}
 
-  // HostListener
-  @HostListener('mouseenter', ['$event.target']) 
-  onMouseHover(element) {
+  onMouseHover() {
     // console.log("Element on which event occured is", element)
     // this.renderer.setStyle(this.elementRef.nativeElement, 'background-color', "green");
     this.backgroundColor = this.highlightColor;
   }
 
-  @HostListener('mouseleave') onMouseLeave() {
+  onMouseLeave() {
     // this.renderer.setStyle(this.elementRef.nativeElement, 'background-color', "transparent");
     this.backgroundColor = 'transparent';
   }
-
 
 }
