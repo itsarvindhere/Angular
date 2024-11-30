@@ -1,9 +1,33 @@
+
+
 <h1>Signals</h1>
 
-<p> Value received from Parent -> {{test()}}</p>
-<p> Derived Value -> {{derived()}}</p>
+<hr>
 
-<button (click)="onClick()">Show Alert</button>
+<div style="text-align: center;">
+  <p> Communication between Components using Signals </p>
+
+  <div>
+    <app-child1></app-child1>
+  </div>
+
+  <div>
+    <app-child2></app-child2>
+  </div>
+
+
+</div>
+
+<hr>
+
+<div style="text-align: center;">
+  <p> Value received from Parent -> {{test()}}</p>
+  <p> Derived Value -> {{derived()}}</p>
+
+  <button (click)="onClick()">Show Alert</button>
+</div>
+
+<hr>
 
 <div id="counter">
   <!-- Use a getter to read the value of a signal -->
@@ -20,3 +44,5 @@
   <!-- Use a getter to read the value of a signal -->
   <li *ngFor="let action of actions()">{{ action }}</li>
 </ol>
+
+<hr>

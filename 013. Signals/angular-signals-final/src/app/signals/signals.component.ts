@@ -1,12 +1,14 @@
 import { NgFor } from '@angular/common';
 import { Component, computed, signal, effect, input, output } from '@angular/core';
 import { interval, of } from 'rxjs';
+import { Child1Component } from './child1/child1/child1.component';
+import { Child2Component } from './child2/child2/child2.component';
 
 @Component({
   selector: 'app-signals',
   templateUrl: './signals.component.html',
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor, Child1Component, Child2Component],
 })
 export class SignalsComponent {
   actions = signal<string[]>([]);
