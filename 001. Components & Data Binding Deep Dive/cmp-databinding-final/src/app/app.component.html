@@ -24,8 +24,10 @@
   </div>
 </div>
 
-
 <div class="container">
+  <button (click)="onShowGameControlsClick()">Show Game Controls</button>
+</div>
+<div class="container" *ngIf="showGameControls">
   <app-game-control (gameStarted)="onGameStarted($event)"></app-game-control>
 
   <div *ngFor="let gameValue of gameValues">

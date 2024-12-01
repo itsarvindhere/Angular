@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, DestroyRef, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-game-control',
@@ -15,9 +15,14 @@ export class GameControlComponent implements OnInit {
   // Reference to the interval
   intervalRef;
 
-  constructor() { }
+  constructor(private destroyRef: DestroyRef) { }
 
   ngOnInit(): void {
+    const interval = setInterval(() => {
+      console.log("Hello World!");
+    }, 1000);
+
+    this.destroyRef.onDestroy(() => clearInterval(interval));
   }
 
   startGame() {

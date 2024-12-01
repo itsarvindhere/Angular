@@ -12,7 +12,11 @@ export class AppComponent {
 
     gameValues: Number[] = [];
 
+  showGameControls: boolean = false;
 
+  onShowGameControlsClick() {
+    this.showGameControls = !this.showGameControls;
+  }
 
   onServerAdded(serverData: {serverName: string, serverContent: string}) {
     this.serverElements.push({
