@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ServersService } from '../servers.service';
 
@@ -11,7 +11,7 @@ interface Server {
   providedIn: 'root'
 })
 
-export class ServerResolver implements Resolve<Server>{
+export class ServerResolver {
 
   constructor(private serversService: ServersService) { }
 
