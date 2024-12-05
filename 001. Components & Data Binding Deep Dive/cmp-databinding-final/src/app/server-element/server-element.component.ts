@@ -1,4 +1,4 @@
-import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, ContentChild, DoCheck, ElementRef, Input, OnChanges, OnDestroy, OnInit, QueryList, SimpleChanges, ViewChild, ViewChildren } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, afterRender, afterNextRender, AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, contentChild, ContentChild, DoCheck, effect, ElementRef, Input, OnChanges, OnDestroy, OnInit, QueryList, SimpleChanges, viewChild, ViewChild, viewChildren, ViewChildren} from '@angular/core';
 import { Element } from '../Element.model';
 
 @Component({
@@ -8,14 +8,14 @@ import { Element } from '../Element.model';
 })
 export class ServerElementComponent implements OnInit, OnChanges, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy{
 
-  @ViewChild('heading', {static: true})
-  heading: ElementRef
+  // @ViewChild('heading', {static: true})
+  heading = viewChild.required<ElementRef>('heading');
 
-  @ContentChild('projectedParagraph', {static: true})
-  projectedParagraph: ElementRef;
+  // @ContentChild('projectedParagraph', {static: true})
+  projectedParagraph = contentChild<ElementRef>('projectedParagraph');
 
-  @ViewChildren('para')
-  para: QueryList<ElementRef>;
+  // @ViewChildren('para')
+  para = viewChildren<ElementRef>('para');
 
   private _element: Element;
   // Get this value as an input from the parent component
@@ -35,7 +35,21 @@ export class ServerElementComponent implements OnInit, OnChanges, DoCheck, After
   }
 
   
-  constructor(private changeDetector: ChangeDetectorRef) { }
+  constructor(private changeDetector: ChangeDetectorRef) {
+    effect(() => {
+      console.log("Inside effect function. Heading Content is ", this.heading().nativeElement.textContent)
+      console.log("Inside effect function. Projected Paragraph Content is ", this.projectedParagraph().nativeElement.textContent)
+    });
+
+    afterRender(() => {
+      console.log("After render");
+    })
+
+    afterNextRender(() => {
+      console.log("After next render");
+    })
+
+   }
 
   ngOnChanges(): void {
       console.log("ngOnChanges called")
@@ -44,9 +58,8 @@ export class ServerElementComponent implements OnInit, OnChanges, DoCheck, After
   ngOnInit(): void {
     console.log("ngOnInit called")
     console.log("ngOnInit. Heading is ", this.heading)
-    console.log("ngOnInit. Heading content is ", this.heading.nativeElement.textContent)
-    console.log("ngOnInit. Projected Paragraph Content is ", this.projectedParagraph.nativeElement.textContent)
-    console.log("Elements with same reference variables 'para'", this.para?.forEach((element: ElementRef) => console.log(element)))
+    console.log("ngOnInit. Heading content is ", this.heading().nativeElement.textContent)
+    console.log("Elements with same reference variables 'para'", this.para()?.forEach((element: ElementRef) => console.log(element)))
   }
 
   ngDoCheck(): void {
@@ -55,27 +68,26 @@ export class ServerElementComponent implements OnInit, OnChanges, DoCheck, After
 
   ngAfterContentInit(): void {
     console.log("ngAfterContentInit called")
-    console.log("ngAfterContentInit. Heading is ", this.heading)
-    console.log("ngAfterContentInit. Heading content is ", this.heading.nativeElement.textContent)
-    console.log("ngAfterContentInit. Projected Paragraph Content is ", this.projectedParagraph.nativeElement.textContent)
+    console.log("ngAfterContentInit. Heading is ", this.heading())
+    console.log("ngAfterContentInit. Heading content is ", this.heading().nativeElement.textContent)
   }
 
   ngAfterContentChecked(): void {
     console.log("ngAfterContentChecked called")
-    console.log("ngAfterContentChecked. Heading is ", this.heading)
-    console.log("ngAfterContentChecked. Heading content is ", this.heading.nativeElement.textContent)
+    console.log("ngAfterContentChecked. Heading is ", this.heading())
+    console.log("ngAfterContentChecked. Heading content is ", this.heading().nativeElement.textContent)
   }
 
   ngAfterViewInit(): void {
     console.log("ngAfterViewInit called")
-    console.log("ngAfterViewInit. Heading is ", this.heading)
-    console.log("ngAfterViewInit. Heading content is ", this.heading.nativeElement.textContent)
-    console.log("Elements with same reference variables 'para'", this.para.forEach((element: ElementRef) => console.log(element)))
+    console.log("ngAfterViewInit. Heading is ", this.heading())
+    console.log("ngAfterViewInit. Heading content is ", this.heading().nativeElement.textContent)
+    console.log("Elements with same reference variables 'para'", this.para().forEach((element: ElementRef) => console.log(element)))
   }
 
   ngAfterViewChecked(): void {
     console.log("ngAfterViewChecked called")
-    console.log("ngAfterViewChecked. Heading is ", this.heading)
+    console.log("ngAfterViewChecked. Heading is ", this.heading())
   }
 
   ngOnDestroy(): void {

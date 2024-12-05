@@ -10,7 +10,7 @@ import { Element } from './Element.model';
 export class AppComponent {
   serverElements: Element[] = [new Element('server', 'TestServer', 'Content of Test Server 1')];
 
-    gameValues: Number[] = [];
+  gameValues: Number[] = [];
 
   showGameControls: boolean = false;
 
