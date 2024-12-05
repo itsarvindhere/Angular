@@ -27,9 +27,12 @@ export class SignalsComponent {
 
   
   constructor() {
-    effect(() =>  {
+    effect((onCleanup) =>  {
       console.log("Something changed!")
-      console.log("Counter value is", this.counter())
+      console.log("Counter value is", this.counter());
+      onCleanup(() => {
+        console.log("Some Cleanup code Here");
+      });
     });
   }
   
