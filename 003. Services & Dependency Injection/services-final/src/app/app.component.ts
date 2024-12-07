@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject} from '@angular/core';
 import { AccountsService } from './accounts.service';
 
 @Component({
@@ -8,8 +8,8 @@ import { AccountsService } from './accounts.service';
 })
 export class AppComponent implements OnInit {
   accounts = [];
-
-  constructor(private accountsService: AccountsService){}
+  accountsService: AccountsService = inject(AccountsService);
+  // constructor(private accountsService: AccountsService){}
 
   ngOnInit() {
     this.accounts = this.accountsService.getAccounts();
