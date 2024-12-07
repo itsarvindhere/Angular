@@ -9,7 +9,7 @@ export class DataService {
   private _submittedValue = signal<string>('');
 
   // Public readonly computed signal that can be read from outside
-  submittedValue = computed(() => this._submittedValue());
+  submittedValue = this._submittedValue.asReadonly();
 
   constructor() { 
   }
