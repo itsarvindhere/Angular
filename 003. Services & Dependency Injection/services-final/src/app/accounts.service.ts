@@ -1,5 +1,6 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { EventEmitter, Inject, Injectable } from '@angular/core';
 import { LoggingService } from './logging.service';
+import { LOGGING_SERVICE_TOKEN } from './tokens';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class AccountsService {
 
   statusUpdated = new EventEmitter<string>();
 
-  constructor(private loggingService: LoggingService) { }
+  constructor(@Inject(LOGGING_SERVICE_TOKEN) private loggingService: LoggingService) { }
 
   // Method to fetch the accounts list
   getAccounts() {

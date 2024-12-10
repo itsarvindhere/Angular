@@ -1,6 +1,7 @@
-import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Inject, OnInit, Output, inject } from '@angular/core';
 import { LoggingService } from '../logging.service';
 import { AccountsService } from '../accounts.service';
+import { LOGGING_SERVICE_TOKEN } from '../tokens';
 
 @Component({
   selector: 'app-new-account',
@@ -8,7 +9,7 @@ import { AccountsService } from '../accounts.service';
   styleUrls: ['./new-account.component.css']
 })
 export class NewAccountComponent implements OnInit {
-  constructor(private loggingService: LoggingService, private accountsService: AccountsService ){}
+  constructor(@Inject(LOGGING_SERVICE_TOKEN) private loggingService: LoggingService, private accountsService: AccountsService ){}
 
   ngOnInit(): void {
     this.accountsService.statusUpdated.subscribe(data => {
