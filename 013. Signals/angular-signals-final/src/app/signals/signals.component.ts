@@ -5,10 +5,9 @@ import { Child1Component } from './child1/child1/child1.component';
 import { Child2Component } from './child2/child2/child2.component';
 
 @Component({
-  selector: 'app-signals',
-  templateUrl: './signals.component.html',
-  standalone: true,
-  imports: [NgFor, Child1Component, Child2Component],
+    selector: 'app-signals',
+    templateUrl: './signals.component.html',
+    imports: [NgFor, Child1Component, Child2Component]
 })
 export class SignalsComponent {
   actions = signal<string[]>([]);

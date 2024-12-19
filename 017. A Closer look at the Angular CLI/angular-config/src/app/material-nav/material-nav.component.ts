@@ -10,18 +10,17 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-material-nav',
-  templateUrl: './material-nav.component.html',
-  styleUrl: './material-nav.component.css',
-  standalone: true,
-  imports: [
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatListModule,
-    MatIconModule,
-    AsyncPipe,
-  ]
+    selector: 'app-material-nav',
+    templateUrl: './material-nav.component.html',
+    styleUrl: './material-nav.component.css',
+    imports: [
+        MatToolbarModule,
+        MatButtonModule,
+        MatSidenavModule,
+        MatListModule,
+        MatIconModule,
+        AsyncPipe,
+    ]
 })
 export class MaterialNavComponent {
   private breakpointObserver = inject(BreakpointObserver);

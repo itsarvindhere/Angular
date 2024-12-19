@@ -109,11 +109,13 @@ const listItem = trigger('listItem', [
 ])
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  animations: [fadeInOut, listItem]
-  // animations: [fadeIn,fadeOut]
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css'],
+    animations: [fadeInOut, listItem]
+    // animations: [fadeIn,fadeOut]
+    ,
+    standalone: false
 })
 export class AppComponent {
 

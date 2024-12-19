@@ -2,10 +2,9 @@ import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-default',
-  templateUrl: './default.component.html',
-  standalone: true,
-  imports: [NgFor],
+    selector: 'app-default',
+    templateUrl: './default.component.html',
+    imports: [NgFor]
 })
 export class DefaultComponent {
   actions: string[] = [];

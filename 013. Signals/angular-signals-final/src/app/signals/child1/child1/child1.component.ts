@@ -2,11 +2,10 @@ import { Component } from '@angular/core';
 import { DataService } from '../../data.service';
 
 @Component({
-  selector: 'app-child1',
-  standalone: true,
-  imports: [],
-  templateUrl: './child1.component.html',
-  styleUrl: './child1.component.css'
+    selector: 'app-child1',
+    imports: [],
+    templateUrl: './child1.component.html',
+    styleUrl: './child1.component.css'
 })
 export class Child1Component {
 
