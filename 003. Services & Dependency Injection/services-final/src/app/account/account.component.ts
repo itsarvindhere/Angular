@@ -4,7 +4,8 @@ import { AccountsService } from '../accounts.service';
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
-  styleUrls: ['./account.component.css']
+  styleUrls: ['./account.component.css'],
+  standalone: false
 })
 export class AccountComponent {
   @Input() account: {name: string, status: string};

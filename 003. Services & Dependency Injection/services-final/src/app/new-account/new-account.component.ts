@@ -6,7 +6,8 @@ import { LOGGING_SERVICE_TOKEN } from '../tokens';
 @Component({
   selector: 'app-new-account',
   templateUrl: './new-account.component.html',
-  styleUrls: ['./new-account.component.css']
+  styleUrls: ['./new-account.component.css'],
+  standalone: false
 })
 export class NewAccountComponent implements OnInit {
   constructor(@Inject(LOGGING_SERVICE_TOKEN) private loggingService: LoggingService, private accountsService: AccountsService ){}
