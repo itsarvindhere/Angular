@@ -7,7 +7,8 @@ import { CanDeactivateComponent } from 'src/app/canDeactivateComponent';
 @Component({
   selector: 'app-edit-server',
   templateUrl: './edit-server.component.html',
-  styleUrls: ['./edit-server.component.css']
+  styleUrls: ['./edit-server.component.css'],
+  standalone: false
 })
 export class EditServerComponent implements OnInit, CanDeactivateComponent {
   server: {id: number, name: string, status: string};
