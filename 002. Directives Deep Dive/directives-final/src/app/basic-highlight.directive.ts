@@ -6,12 +6,13 @@ import { Directive, ElementRef, HostBinding, HostListener, Input, OnInit, Render
     '[style.backgroundColor]': 'backgroundColor',
     '(mouseenter)': 'onMouseHover()',
     '(mouseleave)': 'onMouseLeave()'
-  }
+  },
+  standalone: false
 })
 export class BasicHighlightDirective implements OnInit {
 
   @Input('appBasicHighlight') highlightColor: string = 'green';
-  backgroundColor: string;
+  backgroundColor !: string;
 
   constructor() {}
 

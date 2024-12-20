@@ -5,7 +5,8 @@ import { Element } from './Element.model';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  standalone: false
 })
 export class AppComponent {
   serverElements: Element[] = [new Element('server', 'TestServer', 'Content of Test Server 1')];
