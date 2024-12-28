@@ -1,12 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import {Subject, Subscription, interval} from 'rxjs';
-import { Observable } from 'rxjs-compat';
+import {Observable, Subject, Subscription} from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  standalone: false
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
