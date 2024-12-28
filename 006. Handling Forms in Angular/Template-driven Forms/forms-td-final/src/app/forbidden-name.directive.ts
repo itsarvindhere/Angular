@@ -3,7 +3,8 @@ import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator } from '@an
 
 @Directive({
   selector: '[forbiddenName]',
-  providers: [{provide: NG_VALIDATORS, useExisting: ForbiddenNameDirective, multi: true}]
+  providers: [{provide: NG_VALIDATORS, useExisting: ForbiddenNameDirective, multi: true}],
+  standalone: false
 })
 export class ForbiddenNameDirective implements Validator, OnInit{
 
