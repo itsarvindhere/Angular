@@ -3,9 +3,10 @@ import { Recipe } from '../../Recipe.model';
 import { RecipeService } from '../../recipe.service';
 
 @Component({
-  selector: 'app-recipe-item',
-  templateUrl: './recipe-item.component.html',
-  styleUrls: ['./recipe-item.component.css']
+    selector: 'app-recipe-item',
+    templateUrl: './recipe-item.component.html',
+    styleUrls: ['./recipe-item.component.css'],
+    standalone: false
 })
 export class RecipeItemComponent {
 
