@@ -39,10 +39,17 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
     LucideAngularModule.pick({Save, MoveLeft, PlusCircle, Trash2, Pencil, RotateCcw, FilePlus2})
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}, provideHttpClient(withInterceptorsFromDi())],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+function withInterceptorsFromDi(): any {
+  throw new Error('Function not implemented.');
+}
+
+function provideHttpClient(arg0: any) {
+  throw new Error('Function not implemented.');
+}
+
