@@ -7,7 +7,8 @@ import { LoggingService } from '../logging.service';
 @Component({
   selector: 'app-shopping-list',
   templateUrl: './shopping-list.component.html',
-  styleUrls: ['./shopping-list.component.css']
+  styleUrls: ['./shopping-list.component.css'],
+  standalone: false
 })
 export class ShoppingListComponent implements OnInit, OnDestroy{
 
