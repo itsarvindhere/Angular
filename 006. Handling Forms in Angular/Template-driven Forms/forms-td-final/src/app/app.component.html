@@ -6,6 +6,7 @@
           #userData="ngModelGroup" 
           id="user-data" 
           ngModelGroup="userData"
+          crossFieldValidator
         >
           <div class="form-group">
             <label for="username">Username</label>
@@ -33,6 +34,22 @@
                 Username cannot be {{username.errors?.['notAllowed']}}
               </span>
             </p>
+
+            <label for="name">Your Name</label>
+            <input 
+              type="text" 
+              id="name"
+              class="form-control"
+              name="name" 
+              ngModel
+              required
+              #name="ngModel"
+            >
+
+            <p class="text-danger" *ngIf="userData.hasError('nameSameAsUsername')">
+              Name cannot be same as the username!
+            </p>
+
           </div>
           <button class="btn btn-default" type="button" (click)="suggestUserName()">Suggest an Username</button>
           <div class="form-group">
