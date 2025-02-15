@@ -1,5 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
+import { afterNextRender, AfterViewInit, Component, DestroyRef, inject, ViewChild } from '@angular/core';
 import { FormGroup, NgForm, NgModelGroup } from '@angular/forms';
+import { debounceTime, map } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,7 @@ import { FormGroup, NgForm, NgModelGroup } from '@angular/forms';
   styleUrls: ['./app.component.css'],
   standalone: false
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
 
   @ViewChild('f')
   signupForm: NgForm;
@@ -29,6 +30,44 @@ export class AppComponent {
   }
 
   submitted = false;
+
+  destroyRef = inject(DestroyRef);
+
+  constructor() {
+    // afterNextRender(() => {
+    //     const formData = window.localStorage.getItem('form-data');
+    //     if (formData) {
+    //       setTimeout(() => this.signupForm?.setValue(JSON.parse(formData)));
+    //     }
+        
+    //     const valueChangesSubscription = this.signupForm.valueChanges
+    //         .pipe(debounceTime(500))
+    //         .subscribe({
+    //         next: (data) => {
+    //             window.localStorage.setItem('form-data', JSON.stringify(data));
+    //         }
+    //     })
+
+    //     this.destroyRef.onDestroy(() => valueChangesSubscription.unsubscribe());
+    // })
+  }
+
+  ngAfterViewInit(): void {
+    const formData = window.localStorage.getItem('form-data');
+    if (formData) {
+      setTimeout(() => this.signupForm?.setValue(JSON.parse(formData)));
+    }
+    
+    const valueChangesSubscription = this.signupForm.valueChanges
+        .pipe(debounceTime(500))
+        .subscribe({
+        next: (data) => {
+            window.localStorage.setItem('form-data', JSON.stringify(data));
+        }
+    })
+
+    this.destroyRef.onDestroy(() => valueChangesSubscription.unsubscribe());
+  }
 
   suggestUserName() {
     const suggestedName = 'Superuser';
