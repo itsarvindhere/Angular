@@ -19,11 +19,18 @@
               required
               forbiddenName="john"
               #username="ngModel"
+              validateUsername
             >
 
-            <!-- Errors -->
-            <p class="text-danger" *ngIf="username.invalid && username.touched">
+            
 
+            <!-- Errors -->
+            <p class="text-danger" *ngIf="username.dirty">
+
+              <span class="text-warning" *ngIf="username.pending">
+                Checking if username is unique or not...
+              </span>
+              
               <!-- Required Validation Fails -->
               <span *ngIf="username.errors?.['required']">
                 Please Enter a Username
@@ -32,6 +39,10 @@
               <!-- Forbidden Name Validation Fails -->
               <span *ngIf="username.errors?.['forbiddenName']">
                 Username cannot be {{username.errors?.['notAllowed']}}
+              </span>
+
+              <span *ngIf="username.errors?.['validateUsername']">
+                This username is already taken. Please enter a different username!
               </span>
             </p>
 
