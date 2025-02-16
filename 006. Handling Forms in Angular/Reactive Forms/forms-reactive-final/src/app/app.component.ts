@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { Component, inject, OnInit } from '@angular/core';
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { delay, map } from 'rxjs/operators';
+import { CustomValidators } from './custom-validators';
 
 @Component({
   selector: 'app-root',
@@ -11,21 +12,46 @@ import { delay, map } from 'rxjs/operators';
 })
 export class AppComponent implements OnInit {
   genders = ['male', 'female'];
-  forbiddenNames = ['admin', 'sudo']
   signupForm: FormGroup;
 
+  fb = inject(FormBuilder);
+
   ngOnInit() {
-    // Initialize the Form
+    // Initialize the Form (Without Form Builder)
     this.signupForm = new FormGroup({
 
       // Form Group inside a Form Group
       userData: new FormGroup({
-        username: new FormControl('', [Validators.required, this.forbiddenName]),
-      email: new FormControl('', [Validators.required, Validators.email], [this.forbiddenEmail])
+        username: new FormControl('', {
+          validators: [
+            Validators.required, 
+            CustomValidators.forbiddenNameValidator(["admin", "sudo"])]
+        }),
+        email: new FormControl('', {
+          validators: [Validators.required, Validators.email],
+          asyncValidators: [CustomValidators.forbiddenEmailValidator()],
+          updateOn: 'blur'
+        })
       }),
       gender: new FormControl('male'),
       hobbies: new FormArray([])
     });
+
+    // Initialize the Form (With Form Builder)
+    // this.signupForm = this.fb.group({
+    //   userData: this.fb.group({
+    //     username: ['', {
+    //       validators: [Validators.required, this.forbiddenName]
+    //     }],
+    //     email: ['', {
+    //       validators: [Validators.required, Validators.email],
+    //       asyncValidators: [this.forbiddenEmail],
+    //       updateOn: 'blur'
+    //     }]
+    //   }),
+    //   gender: [''],
+    //   hobbies: this.fb.array([])
+    // });
 
     this.signupForm.get('userData.email').valueChanges.subscribe(data => console.log(data));
 
@@ -72,33 +98,4 @@ export class AppComponent implements OnInit {
   deleteHobby(i: number) {
     (this.signupForm.get('hobbies') as FormArray).removeAt(i);
   }
-
-  // Forbidden Name Validator
-  forbiddenName = (control: FormControl): ValidationErrors => {
-
-    if (this.forbiddenNames.includes(control.value)){
-      return {"forbiddenName": true, "notAllowed": control.value}
-    }
-
-    return null
-  }
-
-  // Forbidden Email Validator
-  forbiddenEmail = (control: FormControl): Promise<any> | Observable<any> => {
-
-    // RXJS
-    return of(control.value).pipe(map(val => val === 'test@test.com' ? {'forbiddenEmail' : true} : null), delay(1500))
-
-    
-    // return new Observable(observer => {
-    //   // To mimic an async operation that waits for some time
-    //   setTimeout(() => {
-    //     if (control.value === 'test@test.com') {
-    //       observer.next({'forbiddenEmail': true})
-    //     }
-    //     observer.complete()
-    //   }, 1500)
-    // })
-  }
-
 }

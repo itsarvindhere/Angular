@@ -32,10 +32,17 @@
               class="form-control"
               formControlName="email"
             >
+
             <p
               class="text-danger"
-              *ngIf="signupForm.get('userData.email').invalid && signupForm.get('userData.email').touched"
+              *ngIf="signupForm.get('userData.email').dirty"
             >
+
+             <!-- If "forbiddenEmail" validation failed -->
+              <span class="text-warning" *ngIf="signupForm.get('userData.email').pending">
+                Checking if email is unique...
+              </span>
+
               <!-- If "required" validation failed -->
               <span *ngIf="signupForm.get('userData.email').errors?.['required']">
                 Please enter an email!
@@ -46,9 +53,8 @@
                 Enter a valid email!
               </span>
 
-              <!-- If "forbiddenEmail" validation failed -->
               <span *ngIf="signupForm.get('userData.email').errors?.['forbiddenEmail']">
-                Email is already taken. Pleae enter a different email!
+                Email is already taken. Please enter a different email!
               </span>
             </p>
           </div>
