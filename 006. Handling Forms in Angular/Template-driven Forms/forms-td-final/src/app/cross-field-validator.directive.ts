@@ -17,7 +17,7 @@ export class CrossFieldValidatorDirective implements Validator {
     const name = form.get('name');
     const username = form.get('username');
 
-    if(name && username && name.value && username.value && name.value == username.value) {
+    if(name && username && name.value && username.value && name.value === username.value) {
       return { "nameSameAsUsername": true }
     }
 
