@@ -22,6 +22,12 @@
             <span *ngIf="signupForm.get('userData.username').errors?.['forbiddenName']">
               Username {{signupForm.get('userData.username').errors?.['notAllowed']}} is not allowed!
             </span>
+            
+            {{signupForm.get('userData').errors | json}}
+            </p>
+
+            <p class="text-danger" *ngIf="signupForm.get('userData').errors?.['sameEmailAsUsername']">
+              Username and email cannot be the same!
             </p>
           </div>
           <div class="form-group">
@@ -91,7 +97,7 @@
           </div>
         </div>
         <hr>
-        <button class="btn btn-primary" type="submit">Submit</button>
+        <button [disabled]="signupForm.invalid" class="btn btn-primary" type="submit">Submit</button>
       </form>
     </div>
   </div>

@@ -32,6 +32,8 @@ export class AppComponent implements OnInit {
           asyncValidators: [CustomValidators.forbiddenEmailValidator()],
           updateOn: 'blur'
         })
+      }, {
+        validators: [CustomValidators.sameEmailAsUsernameValidator()]
       }),
       gender: new FormControl('male'),
       hobbies: new FormArray([])

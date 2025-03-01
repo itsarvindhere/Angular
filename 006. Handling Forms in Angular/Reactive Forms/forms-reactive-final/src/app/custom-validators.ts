@@ -1,4 +1,4 @@
-import { AbstractControl, AsyncValidatorFn, ValidationErrors, ValidatorFn } from "@angular/forms";
+import { AbstractControl, AsyncValidatorFn, FormGroup, ValidationErrors, ValidatorFn } from "@angular/forms";
 import { delay, map, Observable, of } from "rxjs";
 
 /**
@@ -31,5 +31,21 @@ export class CustomValidators {
                 delay(1500)
             )
         }
+    }
+
+    /**
+     * Same Email as Username Validator (Synchronous)
+     */
+    public static sameEmailAsUsernameValidator(): ValidatorFn {
+      return (form: FormGroup): ValidationErrors | null => {
+        const email = form.get('email');
+        const username = form.get('username');
+
+        if (email && username && email.value && username.value && email.value === username.value) {
+          return { "sameEmailAsUsername": true }
+        }
+
+        return null;
+      }
     }
 }
