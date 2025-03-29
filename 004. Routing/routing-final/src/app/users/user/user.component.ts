@@ -1,6 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Component, input, Input, OnDestroy, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-user',
@@ -9,10 +7,16 @@ import { Subscription } from 'rxjs';
   standalone: false
 })
 export class UserComponent implements OnInit, OnDestroy {
-  user: {id: number, name: string};
-  paramsSubscription: Subscription;
+  // user: {id: number, name: string};
+  // paramsSubscription: Subscription;
 
-  constructor(private route: ActivatedRoute) { }
+  // @Input({required: true}) id: number;
+  // @Input({required: true}) name: string;
+
+  id = input.required<number>();
+  name = input.required<string>();
+
+  constructor() { }
 
   ngOnInit() {
     // let id  = this.route.snapshot.params['id'];
@@ -37,24 +41,24 @@ export class UserComponent implements OnInit, OnDestroy {
     // })
 
     // Using "paramMap" observable
-    this.paramsSubscription = this.route.paramMap.subscribe( {
-      next: data => {
-        console.log("Subscription Returned data", data)
-        let id  = Number(data.get('id'));
-        let name = data.get('name');
+    // this.paramsSubscription = this.route.paramMap.subscribe( {
+    //   next: data => {
+    //     console.log("Subscription Returned data", data)
+    //     let id  = Number(data.get('id'));
+    //     let name = data.get('name');
 
-        this.user = {
-          id,
-          name
-        }
-      }
-    })
+    //     this.user = {
+    //       id,
+    //       name
+    //     }
+    //   }
+    // })
 
     
   }
 
   ngOnDestroy() {
-    this.paramsSubscription.unsubscribe();
+    // this.paramsSubscription.unsubscribe();
   }
 
 }
