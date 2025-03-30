@@ -19,10 +19,10 @@ const routes: Routes = [
       {path: ':id/:name', component: UserComponent, title: "User Details"}
     ], title: "Users"},
     {
-      path: 'servers', 
+      path: 'servers',
       component: ServersComponent,
       // canActivate: [AuthGuard],
-      canActivateChild: [AuthGuard], 
+      canActivateChild: [AuthGuard],
       children: [
       {path: ':id', component: ServerComponent, title: "Server Details", resolve: {server: ServerResolver}},
       {path: ':id/edit', component: EditServerComponent, canDeactivate: [CanDeactivateGuard], title: "Edit Server"}
@@ -31,7 +31,7 @@ const routes: Routes = [
   ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {useHash: true, bindToComponentInputs: true})],
+  imports: [RouterModule.forRoot(routes, {useHash: true, bindToComponentInputs: true, paramsInheritanceStrategy: "always"})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
