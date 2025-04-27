@@ -46,3 +46,17 @@
 </ol>
 
 <hr>
+
+<h2> Linked Signals </h2>
+<div style="text-align: center;">
+  <select [value]="selectedOption()" (change)="updateSelectedOption($event)">
+    <option *ngFor="let item of options()" [value]="item">{{ item }}</option>
+  </select>
+  <div>
+    <button (click)="addNewOption()">Add Option at the Beginning</button>
+    <button (click)="addNewOptionAtTheEnd()">Add Option at the End</button>
+  </div>
+  <div>Available Options : {{ options() }}</div>
+  <div>Selected Option: {{ selectedOption() }}</div>
+</div>
+

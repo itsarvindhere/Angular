@@ -6,7 +6,7 @@ import { SignalsComponent } from './signals/signals.component';
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    imports: [DefaultComponent, SignalsComponent]
+    imports: [SignalsComponent]
 })
 export class AppComponent {
 

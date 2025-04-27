@@ -1,5 +1,5 @@
 import { NgFor } from '@angular/common';
-import { Component, computed, signal, effect, input, output } from '@angular/core';
+import { Component, computed, signal, effect, input, output, linkedSignal } from '@angular/core';
 import { interval, of } from 'rxjs';
 import { Child1Component } from './child1/child1/child1.component';
 import { Child2Component } from './child2/child2/child2.component';
@@ -24,6 +24,17 @@ export class SignalsComponent {
 
   btnClicked = output<string>();
 
+  options = signal(['Option 1', 'Option 2', 'Option 3']);
+  // selectedOption = signal(this.options()[0]);
+  selectedOption = linkedSignal<string[], string>({
+    source: this.options,
+    computation: (newOptions, previous) => {
+      if (previous && newOptions.includes(previous?.value)) {
+        return previous?.value;
+      }
+      return newOptions[0];
+    }
+  });
   
   constructor() {
     const effectRef = effect((onCleanup) =>  {
@@ -52,6 +63,18 @@ export class SignalsComponent {
 
   onClick() {
     this.btnClicked.emit("Data sent from Child to Parent!");
+  }
+  
+  updateSelectedOption(event: any) {
+    this.selectedOption.set(event.target.value);
+  }
+
+  addNewOption() {
+    this.options.update(prev => ['New Option', ...prev]);
+  }
+
+  addNewOptionAtTheEnd() {
+    this.options.update(prev => [...prev, 'New Option']);
   }
 }
 function outputFromObservable<T>() {
