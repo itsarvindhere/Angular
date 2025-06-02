@@ -1,4 +1,4 @@
-import { AfterContentChecked, AfterContentInit, afterRender, afterNextRender, AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, contentChild, ContentChild, DoCheck, effect, ElementRef, Input, OnChanges, OnDestroy, OnInit, QueryList, SimpleChanges, viewChild, ViewChild, viewChildren, ViewChildren} from '@angular/core';
+import { AfterContentChecked, AfterContentInit, afterEveryRender, afterNextRender, AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, contentChild, DoCheck, effect, ElementRef, Input, OnChanges, OnDestroy, OnInit, viewChild, viewChildren} from '@angular/core';
 import { Element } from '../Element.model';
 
 @Component({
@@ -42,7 +42,7 @@ export class ServerElementComponent implements OnInit, OnChanges, DoCheck, After
       console.log("Inside effect function. Projected Paragraph Content is ", this.projectedParagraph().nativeElement.textContent)
     });
 
-    afterRender(() => {
+    afterEveryRender(() => {
       console.log("After render");
     })
 

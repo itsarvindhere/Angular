@@ -19,11 +19,11 @@ export class GameControlComponent implements OnInit {
   constructor(private destroyRef: DestroyRef) { }
 
   ngOnInit(): void {
-    const interval = setInterval(() => {
-      console.log("Hello World!");
-    }, 1000);
+    // const interval = setInterval(() => {
+    //   console.log("Hello World!");
+    // }, 1000);
 
-    this.destroyRef.onDestroy(() => clearInterval(interval));
+    // this.destroyRef.onDestroy(() => clearInterval(interval));
   }
 
   startGame() {
