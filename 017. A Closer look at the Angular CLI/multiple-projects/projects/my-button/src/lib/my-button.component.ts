@@ -1,15 +1,14 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'lib-my-button',
-  standalone: true,
-  imports: [],
-  template: `
+    selector: 'lib-my-button',
+    imports: [],
+    template: `
     <p>
       my-button works!
     </p>
   `,
-  styles: ``
+    styles: ``
 })
 export class MyButtonComponent {
 
