@@ -1,0 +1,49 @@
+<div class="w-full max-w-xs mx-auto my-8">
+  <h1 class="text-center font-extrabold text-2xl text-white mb-4">Signal Forms</h1>
+  <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="firstname">
+        First Name
+      </label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="firstname" type="text" placeholder="First Name" [formField]="loginForm.firstName">
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="lastname">
+        Last Name
+      </label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="lastname" type="text" placeholder="Last Name" [formField]="loginForm.lastName">
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="age">
+        Age
+      </label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="age" type="number" placeholder="age" [formField]="loginForm.age">
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+        Username
+      </label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username" [formField]="loginForm.username">
+    </div>
+    
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+        Email
+      </label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Email" [formField]="loginForm.email">
+    </div>
+    <div class="flex items-center justify-between">
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer" type="button" (click)="handleClick()">
+        Sign In
+      </button>
+    </div>
+    <p> First Name is {{ loginForm.firstName().value() }} </p>
+    <p> Last Name is {{ loginForm.lastName().value() }} </p>
+    <p> Age is {{ loginForm.age().value() }} </p>
+    <p> Username is {{ loginForm.username().value() }} </p>
+    <p> Email is {{ loginForm.email().value() }} </p>
+  </form>
+  
+  
+  
+</div>
