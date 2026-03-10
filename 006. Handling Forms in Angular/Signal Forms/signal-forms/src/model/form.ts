@@ -4,5 +4,6 @@ export interface FormData {
     age: number;
     username: string;
     email: string;
-    isAdmin: boolean;
+    password: string;
+    confirmPassword: string;
 }

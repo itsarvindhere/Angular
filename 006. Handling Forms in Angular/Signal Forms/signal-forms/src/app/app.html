@@ -1,17 +1,27 @@
 <div class="w-full max-w-xs mx-auto my-8">
   <h1 class="text-center font-extrabold text-2xl text-white mb-4">Signal Forms</h1>
-  <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+  <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" (submit)="onSubmit($event)">
     <div class="mb-4">
       <label class="block text-gray-700 text-sm font-bold mb-2" for="firstname">
         First Name
       </label>
       <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="firstname" type="text" placeholder="First Name" [formField]="loginForm.firstName">
+      @if(loginForm.firstName().touched() && loginForm.firstName().invalid()) {
+        @for(error of loginForm.firstName().errors(); track error.kind) {
+          <p class="text-red-500 text-xs italic">{{ error.message }}</p>
+        }
+      }
     </div>
     <div class="mb-4">
       <label class="block text-gray-700 text-sm font-bold mb-2" for="lastname">
         Last Name
       </label>
       <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="lastname" type="text" placeholder="Last Name" [formField]="loginForm.lastName">
+      @if(loginForm.lastName().touched() && loginForm.lastName().invalid()) {
+        @for(error of loginForm.lastName().errors(); track error.kind) {
+          <p class="text-red-500 text-xs italic">{{ error.message }}</p>
+        }
+      }
     </div>
     <div class="mb-4">
       <label class="block text-gray-700 text-sm font-bold mb-2" for="age">
@@ -24,6 +34,11 @@
         Username
       </label>
       <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username" [formField]="loginForm.username">
+       @if(loginForm.username().touched() && loginForm.username().invalid()) {
+        @for(error of loginForm.username().errors(); track error.kind) {
+          <p class="text-red-500 text-xs italic">{{ error.message }}</p>
+        }
+      }
     </div>
     
     <div class="mb-4">
@@ -31,9 +46,47 @@
         Email
       </label>
       <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Email" [formField]="loginForm.email">
+      @if(loginForm.email().touched() && loginForm.email().invalid()) {
+        @for(error of loginForm.email().errors(); track error.kind) {
+          <p class="text-red-500 text-xs italic">{{ error.message }}</p>
+        }
+      }
     </div>
+
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+        Password
+      </label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="Password" [formField]="loginForm.password">
+      @if(loginForm.password().touched() && loginForm.password().invalid()) {
+        @for(error of loginForm.password().errors(); track error.kind) {
+          <p class="text-red-500 text-xs italic">{{ error.message }}</p>
+        }
+      }
+    </div>
+
+    @if (!loginForm.confirmPassword().hidden()) {
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="confirm-password">
+          Confirm Password
+        </label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="confirm-password" type="password" placeholder="Confirm Password" [formField]="loginForm.confirmPassword">
+        @if(loginForm.confirmPassword().touched() && loginForm.confirmPassword().invalid()) {
+          @for(error of loginForm.confirmPassword().errors(); track error.kind) {
+            <p class="text-red-500 text-xs italic">{{ error.message }}</p>
+          }
+        }
+
+        @if (loginForm.confirmPassword().disabled()) {
+          @for(reason of loginForm.confirmPassword().disabledReasons(); track reason) {
+            <p class="text-gray-600 text-xs italic">{{ reason.message }}</p>
+          }
+        }
+
+      </div>
+    }
     <div class="flex items-center justify-between">
-      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer" type="button" (click)="handleClick()">
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer" type="submit">
         Sign In
       </button>
     </div>
