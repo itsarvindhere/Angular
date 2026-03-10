@@ -1,11 +1,11 @@
-In Angular, there are two different approaches to handle the user inputs through forms.
+In Angular, there are three different approaches to handle the user inputs through forms.
 
-1. Reactive Forms
-2. Template-Driven Forms
+    1. Reactive Forms
+    2. Template-Driven Forms
+    3. Signal Forms
 
-The basic functionality is the same in both. That is, both capture user input events from the view, validate the user input, create a form model and data model to update, and provide a way to track changes.
+The basic functionality is the same in all. That is, all of these capture user input events from the view, validate the user input, create a form model and data model to update, and provide a way to track changes.
 
-But, for certain use cases, the Reactive Forms are preferred, whereas for others, the Template-Driven Forms are preferred.
 
 ## TEMPLATE-DRIVEN FORMS
 
@@ -27,3 +27,7 @@ While initially the reactive forms look more complicated, they are more scalable
 If forms are a key part of your application, or you're already using reactive patterns for building your application, use reactive forms.
 
 ![Alt text](image.png)
+
+## SIGNAL FORMS
+
+With Angular 21, a new way to handle forms was introduced, called 'Signal Forms'. This approach leverages the signals to manage form state and validation in a more reactive and efficient manner. Signal Forms allow developers to create forms that automatically update and react to changes in the form state, making it easier to handle complex form interactions and validations.
