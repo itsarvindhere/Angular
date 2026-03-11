@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { FormData } from '../model/form';
-import { apply, disabled, email, form, FormField, hidden, minLength, readonly, required, schema, SchemaPath, SchemaPathTree, validate, validateHttp } from '@angular/forms/signals';
+import { apply, debounce, disabled, email, form, FormField, hidden, minLength, readonly, required, schema, SchemaPath, SchemaPathTree, validate, validateHttp } from '@angular/forms/signals';
 
 @Component({
   selector: 'app-root',
@@ -30,6 +30,7 @@ export class App {
     minLength(username, 5, { message: 'Username must be at least 5 characters' });
     this.notAllowedUsername(username)
     this.checkUsername(username);
+    debounce(username, 500);
   });
 
   // Passing the form model to the form function
