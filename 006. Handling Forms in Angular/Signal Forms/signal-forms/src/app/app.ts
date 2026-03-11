@@ -1,6 +1,26 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, Signal, signal } from '@angular/core';
 import { FormData } from '../model/form';
-import { apply, debounce, disabled, email, form, FormField, hidden, minLength, readonly, required, schema, SchemaPath, SchemaPathTree, validate, validateHttp } from '@angular/forms/signals';
+import { apply, createManagedMetadataKey, createMetadataKey, debounce, disabled, email, form, FormField, hidden, metadata, MetadataReducer, minLength, readonly, required, schema, SchemaPath, SchemaPathTree, validate, validateHttp } from '@angular/forms/signals';
+
+
+// export const HELP_TEXT = createMetadataKey<string, string[]>(MetadataReducer.list());
+
+// export const HELP_TEXT  = createManagedMetadataKey<Signal<string[]>, string>((inputSignal) => {
+//   return computed(() => {
+//     const input = inputSignal() || '';
+//     return ['Extra help text', input]
+//   });
+// });
+
+  export const HELP_TEXT  = createManagedMetadataKey<Signal<{ count: number; helpTexts: string[] }>, string, string[]>((inputSignal) => {
+    return computed(() => {
+      const helpTexts = inputSignal() || [];
+      return {
+        count: helpTexts?.length ?? 0,
+        helpTexts
+      }
+    });
+  }, MetadataReducer.list());
 
 @Component({
   selector: 'app-root',
@@ -9,6 +29,8 @@ import { apply, debounce, disabled, email, form, FormField, hidden, minLength, r
   styleUrl: './app.css'
 })
 export class App {
+
+
   // Define the form model as a signal
   formModel = signal<FormData>({
     firstName: '',
@@ -45,11 +67,17 @@ export class App {
     minLength(schemaPath.lastName, 3, { message: 'Last name must be at least 3 characters' });
     required(schemaPath.email, { message: 'Email is required' });
     email(schemaPath.email, { message: 'Email must be a valid email address' });
+    metadata(schemaPath.email, HELP_TEXT, () => 'Email should be unique.');
+    metadata(schemaPath.email, HELP_TEXT, () => 'We never share your email with anyone else.');
+    metadata(schemaPath.email, HELP_TEXT, () => 'Email should be valid.');
     this.confirmPassword(schemaPath);
     // disabled(schemaPath.confirmPassword, ({valueOf}) => valueOf(schemaPath.password) === '' ? 'Please enter a password first!' : false);
     hidden(schemaPath.confirmPassword, ({valueOf}) => valueOf(schemaPath.password) === '');
     readonly(schemaPath.email,  ({valueOf}) => valueOf(schemaPath.username) === 'admin');
   });
+
+  helpText = this.loginForm.email().metadata(HELP_TEXT);
+
 
   ngOnInit() {
     // This is how we can set the value of a form field
