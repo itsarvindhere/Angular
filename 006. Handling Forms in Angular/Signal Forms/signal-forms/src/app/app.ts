@@ -1,6 +1,6 @@
 import { Component, computed, resource, Signal, signal } from '@angular/core';
 import { FormData } from '../model/form';
-import { apply, createManagedMetadataKey, createMetadataKey, debounce, disabled, email, form, FormField, hidden, metadata, MetadataReducer, minLength, readonly, required, schema, SchemaPath, SchemaPathTree, validate, validateHttp } from '@angular/forms/signals';
+import { apply, createManagedMetadataKey, createMetadataKey, debounce, disabled, email, form, FormField, FormRoot, hidden, metadata, MetadataReducer, minLength, readonly, required, schema, SchemaPath, SchemaPathTree, submit, validate, validateHttp } from '@angular/forms/signals';
 
 
 // export const HELP_TEXT = createMetadataKey<string, string[]>(MetadataReducer.list());
@@ -24,7 +24,7 @@ import { apply, createManagedMetadataKey, createMetadataKey, debounce, disabled,
 
 @Component({
   selector: 'app-root',
-  imports: [FormField],
+  imports: [FormField, FormRoot],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -74,7 +74,12 @@ export class App {
     // disabled(schemaPath.confirmPassword, ({valueOf}) => valueOf(schemaPath.password) === '' ? 'Please enter a password first!' : false);
     hidden(schemaPath.confirmPassword, ({valueOf}) => valueOf(schemaPath.password) === '');
     readonly(schemaPath.email,  ({valueOf}) => valueOf(schemaPath.username) === 'admin');
+  }, {
+    submission: {
+      action: async () => this.onSubmit()
+    } 
   });
+  
 
   helpText = this.loginForm.email().metadata(HELP_TEXT);
 
@@ -84,8 +89,7 @@ export class App {
     this.loginForm.firstName().value.set('John');
   }
 
-  onSubmit(event: Event) {
-    event.preventDefault();
+  onSubmit() {
     // This is how we can get the value of the form
     console.log(this.loginForm().value());
   }

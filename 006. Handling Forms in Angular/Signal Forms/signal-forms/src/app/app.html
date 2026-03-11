@@ -1,6 +1,6 @@
 <div class="w-full max-w-xs mx-auto my-8">
   <h1 class="text-center font-extrabold text-2xl text-white mb-4">Signal Forms</h1>
-  <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" (submit)="onSubmit($event)">
+  <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" [formRoot]="loginForm">
     <div class="mb-4">
       <label class="block text-gray-700 text-sm font-bold mb-2" for="firstname">
         First Name
@@ -95,7 +95,7 @@
       </div>
     }
     <div class="flex items-center justify-between">
-      <button [disabled]="loginForm().invalid()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer" type="submit">
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer" type="submit">
         Sign In
       </button>
     </div>
