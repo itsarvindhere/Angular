@@ -1,4 +1,4 @@
-import { Component, computed, Signal, signal } from '@angular/core';
+import { Component, computed, resource, Signal, signal } from '@angular/core';
 import { FormData } from '../model/form';
 import { apply, createManagedMetadataKey, createMetadataKey, debounce, disabled, email, form, FormField, hidden, metadata, MetadataReducer, minLength, readonly, required, schema, SchemaPath, SchemaPathTree, validate, validateHttp } from '@angular/forms/signals';
 
@@ -104,7 +104,14 @@ export class App {
 
   checkUsername(schemaPath: SchemaPath<string>, options?: {message?: string}) {
     validateHttp(schemaPath, {
-      request: ({value}) => `api/check-username?username=${value}`,
+      // request: ({value}) => `api/check-username?username=${value}`,
+      request: ({value}) => {
+        return {
+          url: `api/check-username?username=${value}`,
+          method: 'GET'
+          // More options like headers can be added here
+        }
+      },
       onSuccess: (response: any) => {
         if (response.taken) {
           return {
