@@ -31,3 +31,31 @@ If forms are a key part of your application, or you're already using reactive pa
 ## SIGNAL FORMS
 
 With Angular 21, a new way to handle forms was introduced, called 'Signal Forms'. This approach leverages the signals to manage form state and validation in a more reactive and efficient manner. Signal Forms allow developers to create forms that automatically update and react to changes in the form state, making it easier to handle complex form interactions and validations.
+
+# WHICH APPROACH TO USE?
+
+As per Angular's official documentation -
+
+    Use Signal Forms if:
+
+    1. You're building new signal-based applications (Angular v21+)
+    2. You want type safety inferred from your model structure
+    3. You're comfortable working with experimental features
+    4. Schema-based validation appeals to you
+    5. Your team is familiar with signals
+
+    Use Reactive Forms if:
+
+    1. You need production-ready stability
+    2. You're building complex, dynamic forms
+    3. You prefer observable-based patterns
+    4. You need fine-grained control over form state
+    5. You're working on an existing reactive forms codebase
+
+    Use Template-driven Forms if:
+    
+    1. You're building simple forms (login, contact, search)
+    2. You're doing rapid prototyping
+    3. Your form logic is straightforward
+    4. You prefer keeping form logic in templates
+    5. You're working on an existing template-driven codebase
