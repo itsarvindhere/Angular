@@ -1,9 +1,10 @@
 export interface FormData {
     firstName: string;
     lastName: string;
-    age: number;
+    age: number | null;
     username: string;
     email: string;
     password: string;
     confirmPassword: string;
+    stepCount: number;
 }

@@ -1,6 +1,7 @@
 import { Component, computed, resource, Signal, signal } from '@angular/core';
 import { FormData } from '../model/form';
-import { apply, createManagedMetadataKey, createMetadataKey, debounce, disabled, email, form, FormField, FormRoot, hidden, metadata, MetadataReducer, minLength, readonly, required, schema, SchemaPath, SchemaPathTree, submit, validate, validateHttp } from '@angular/forms/signals';
+import { apply, createManagedMetadataKey, createMetadataKey, debounce, disabled, email, form, FormField, FormRoot, hidden, metadata, MetadataReducer, minLength, readonly, required, schema, SchemaPath, SchemaPathTree, submit, validate, validateHttp, min } from '@angular/forms/signals';
+import { Stepper } from "../components/stepper/stepper";
 
 
 // export const HELP_TEXT = createMetadataKey<string, string[]>(MetadataReducer.list());
@@ -24,7 +25,7 @@ import { apply, createManagedMetadataKey, createMetadataKey, debounce, disabled,
 
 @Component({
   selector: 'app-root',
-  imports: [FormField, FormRoot],
+  imports: [FormField, FormRoot, Stepper],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -35,11 +36,12 @@ export class App {
   formModel = signal<FormData>({
     firstName: '',
     lastName: '',
-    age: 0,
+    age: null,
     username: '',
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    stepCount: 0
   });
 
   firstNameSchema = schema<string>((firstName) => {
@@ -64,6 +66,7 @@ export class App {
       message: 'Last name is required',
       when: ({valueOf}) => valueOf(schemaPath.firstName).length > 0
     });
+    required(schemaPath.age, { message: 'Age is required' });
     minLength(schemaPath.lastName, 3, { message: 'Last name must be at least 3 characters' });
     required(schemaPath.email, { message: 'Email is required' });
     email(schemaPath.email, { message: 'Email must be a valid email address' });
@@ -74,6 +77,7 @@ export class App {
     // disabled(schemaPath.confirmPassword, ({valueOf}) => valueOf(schemaPath.password) === '' ? 'Please enter a password first!' : false);
     hidden(schemaPath.confirmPassword, ({valueOf}) => valueOf(schemaPath.password) === '');
     readonly(schemaPath.email,  ({valueOf}) => valueOf(schemaPath.username) === 'admin');
+    min(schemaPath.stepCount, 0, { message: 'Step count should not be a negative number'});
   }, {
     submission: {
       action: async () => this.onSubmit()

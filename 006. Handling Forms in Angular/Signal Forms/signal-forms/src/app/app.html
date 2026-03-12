@@ -28,6 +28,11 @@
         Age
       </label>
       <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="age" type="number" placeholder="age" [formField]="loginForm.age">
+      @if(loginForm.age().touched() && loginForm.age().invalid()) {
+        @for(error of loginForm.age().errors(); track error.kind) {
+          <p class="text-red-500 text-xs italic">{{ error.message }}</p>
+        }
+      }
     </div>
     <div class="mb-4">
       <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
@@ -99,13 +104,13 @@
         Sign In
       </button>
     </div>
+    <p> Custom Control - A Stepper Component </p>
+    <app-stepper [formField]="loginForm.stepCount"></app-stepper>
     <p> First Name is {{ loginForm.firstName().value() }} </p>
     <p> Last Name is {{ loginForm.lastName().value() }} </p>
     <p> Age is {{ loginForm.age().value() }} </p>
     <p> Username is {{ loginForm.username().value() }} </p>
     <p> Email is {{ loginForm.email().value() }} </p>
+    <p> Step Count is {{ loginForm.stepCount().value() }} </p>
   </form>
-  
-  
-  
 </div>
