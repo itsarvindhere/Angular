@@ -52,7 +52,7 @@ export class App {
     minLength(username, 5, { message: 'Username must be at least 5 characters' });
     this.notAllowedUsername(username)
     this.checkUsername(username);
-    debounce(username, 500);
+    debounce(username, 'blur');
   });
 
   // Passing the form model to the form function
@@ -111,7 +111,7 @@ export class App {
       // request: ({value}) => `api/check-username?username=${value}`,
       request: ({value}) => {
         return {
-          url: `api/check-username?username=${value}`,
+          url: `api/check-username?username=${value()}`,
           method: 'GET'
           // More options like headers can be added here
         }
