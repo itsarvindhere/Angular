@@ -88,8 +88,17 @@ export class App {
     });
   }, {
     submission: {
-      action: async () => this.onSubmit()
-    } 
+      action: async (form) => {
+        // Simulate an API call
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        console.log('Form submitted successfully with value', form().value());
+      },
+      onInvalid: (form) => {
+        console.log('Form is invalid. Please correct the errors and try again.');
+        const firstValidationError = form().errorSummary()[0];
+        firstValidationError.fieldTree().focusBoundControl();
+      }
+    }
   });
   
 
@@ -101,10 +110,24 @@ export class App {
     this.loginForm.name.firstName().value.set('John');
   }
 
-  onSubmit() {
-    // This is how we can get the value of the form
-    console.log(this.loginForm().value());
-  }
+  // If you do not use 'formRoot'
+  // onSubmit(event: Event) {
+  //   event.preventDefault();
+  //   // This is how we can get the value of the form
+  //   console.log(this.loginForm().value());
+  //   submit(this.loginForm, {
+  //     action: async () => {
+  //       // Simulate an API call
+  //       await new Promise(resolve => setTimeout(resolve, 1000));
+  //       alert('Form submitted successfully!');
+  //     },
+  //     onInvalid: (field) => {
+  //       console.log('Form is invalid. Please correct the errors and try again.');
+  //       const firstValidationError = this.loginForm().errorSummary()[0];
+  //       firstValidationError.fieldTree().focusBoundControl();
+  //     }
+  //   });
+  // }
 
   notAllowedUsername(schemaPath: SchemaPath<string>, options?: {message?: string}) {
     validate(schemaPath, (fieldContext) => {
