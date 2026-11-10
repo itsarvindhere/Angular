@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild, AfterViewInit, OnChanges, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild, OnChanges, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-inputform',
@@ -17,7 +17,7 @@ export class InputformComponent implements OnInit, OnChanges{
   // newContent = '';
 
   @ViewChild('serverContentInput')
-  serverContentInput;
+  serverContentInput !: ElementRef;
 
   ngOnChanges() {
     console.log("This will not run even once since there are no @Input properties")
@@ -28,11 +28,11 @@ export class InputformComponent implements OnInit, OnChanges{
   ngOnInit(): void {
   }
 
-  onAddServer(serverNameInput) {
+  onAddServer(serverNameInput: HTMLInputElement) {
     this.serverCreated.emit({serverName: serverNameInput.value, serverContent: this.serverContentInput.nativeElement.value})
   }
 
-  onAddBlueprint(serverNameInput) {
+  onAddBlueprint(serverNameInput: HTMLInputElement) {
     this.blueprintCreated.emit({blueprintName: serverNameInput.value, blueprintContent: this.serverContentInput.nativeElement.value})
   }
 }

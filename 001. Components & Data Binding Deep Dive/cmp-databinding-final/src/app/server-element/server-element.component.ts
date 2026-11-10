@@ -18,7 +18,7 @@ export class ServerElementComponent implements OnInit, OnChanges, DoCheck, After
   // @ViewChildren('para')
   para = viewChildren<ElementRef>('para');
 
-  private _element: Element;
+  private _element !: Element;
   // Get this value as an input from the parent component
   // Hence, we are using the @Input decorator here
   @Input('serverElement')
@@ -39,7 +39,7 @@ export class ServerElementComponent implements OnInit, OnChanges, DoCheck, After
   constructor(private changeDetector: ChangeDetectorRef) {
     effect(() => {
       console.log("Inside effect function. Heading Content is ", this.heading().nativeElement.textContent)
-      console.log("Inside effect function. Projected Paragraph Content is ", this.projectedParagraph().nativeElement.textContent)
+      console.log("Inside effect function. Projected Paragraph Content is ", this.projectedParagraph()?.nativeElement.textContent)
     });
 
     afterEveryRender(() => {
