@@ -1,14 +1,16 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, OnDestroy } from '@angular/core';
+import { OnDestroy, Service, inject } from '@angular/core';
 import { Recipe } from '../recipes/Recipe.model';
 import { RecipeService } from '../recipes/recipe.service';
 import { Subscription, map, tap } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Service()
 export class DataStorageService  implements OnDestroy {
+  private http = inject(HttpClient);
+  private recipeService = inject(RecipeService);
+  private authService = inject(AuthService);
+
 
   // Recipes
   recipes : Recipe[] = [];
@@ -18,8 +20,6 @@ export class DataStorageService  implements OnDestroy {
 
   // Subscriptions
   subscriptions: Subscription[] = []
-
-  constructor(private http: HttpClient, private recipeService: RecipeService, private authService: AuthService) { }
 
   // Store Recipes in the Database
   storeRecipes() {

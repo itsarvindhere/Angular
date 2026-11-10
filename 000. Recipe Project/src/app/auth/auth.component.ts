@@ -1,4 +1,4 @@
-import { Component, OnDestroy, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, OnDestroy, ViewContainerRef, inject, viewChild } from '@angular/core';
 import { NgForm, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AuthService } from './auth.service';
 import { Subscription } from 'rxjs';
@@ -12,9 +12,11 @@ import { AlertComponent } from '../shared/alert/alert.component';
     imports: [ReactiveFormsModule, FormsModule]
 })
 export class AuthComponent implements OnDestroy {
+  private authService = inject(AuthService);
+  private router = inject(Router);
 
-  @ViewChild('alertModal', {read: ViewContainerRef})
-  public alertComponentContainer !: ViewContainerRef;
+
+  public readonly alertComponentContainer = viewChild.required('alertModal', { read: ViewContainerRef });
   
 
   // Currently active mode
@@ -29,8 +31,6 @@ export class AuthComponent implements OnDestroy {
   // Subscription
   authSub !: Subscription;
   closeSub !: Subscription;
-
-  constructor(private authService : AuthService, private router: Router){}
 
   // Change Modes between "Log In" and "Sign Up"
   changeMode() {
@@ -78,10 +78,10 @@ export class AuthComponent implements OnDestroy {
     // const alertComponentFactory = this.cfr.resolveComponentFactory(AlertComponent)
 
     // Clear Anything that might've been rendered in the ng template
-    this.alertComponentContainer.clear();
+    this.alertComponentContainer().clear();
 
     // Render the "Alert Component" in the ng template
-    const alertCmpRef = this.alertComponentContainer.createComponent(AlertComponent);
+    const alertCmpRef = this.alertComponentContainer().createComponent(AlertComponent);
 
     // Pass the errorMessage to the Alert Component
     alertCmpRef.instance.message = errorMessage;
@@ -90,7 +90,7 @@ export class AuthComponent implements OnDestroy {
     this.closeSub = alertCmpRef.instance.close.subscribe({
       next: (data : any )=> {
         this.closeSub.unsubscribe();
-        this.alertComponentContainer.clear()
+        this.alertComponentContainer().clear()
       }
     });
   }

@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Ingredient } from 'src/app/shared/Ingredient.model';
+import { Component, OnInit, inject, viewChild } from '@angular/core';
 import { ShoppingListService } from '../shopping-list.service';
 import { NgForm, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { Ingredient } from '../../shared/Ingredient.model';
 
 @Component({
     selector: 'app-shopping-edit',
@@ -11,10 +11,11 @@ import { Subscription } from 'rxjs';
     imports: [ReactiveFormsModule, FormsModule]
 })
 export class ShoppingEditComponent implements OnInit {
+  private shoppingListService = inject(ShoppingListService);
+
 
   
-  @ViewChild('editForm')
-  editForm !: NgForm;
+  readonly editForm = viewChild.required<NgForm>('editForm');
 
   // Subscription for ingredientId for Edit Flow
   editSub !: Subscription;
@@ -34,19 +35,17 @@ export class ShoppingEditComponent implements OnInit {
       this.editFlow = true;
       this.editFlowId = id;
 
-      this.editForm.form.patchValue({
+      this.editForm().form.patchValue({
         name: ingredient.name,
         amount: ingredient.amount
       });
     }})
   }
 
-  constructor(private shoppingListService: ShoppingListService){}
-
   onAddClick() {
     
-      const name = this.editForm.value.name;
-      const amount = this.editForm.value.amount;
+      const name = this.editForm().value.name;
+      const amount = this.editForm().value.amount;
 
       // If it is an edit Flow, update the existing ingredient
       if (this.editFlow) {
@@ -68,6 +67,6 @@ export class ShoppingEditComponent implements OnInit {
     this.editFlow = false;
 
     // Reset the form
-    this.editForm.reset();
+    this.editForm().reset();
   }
 }

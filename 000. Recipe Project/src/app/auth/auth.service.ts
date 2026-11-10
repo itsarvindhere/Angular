@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Service, inject } from '@angular/core';
 import { BehaviorSubject, Observable, catchError, tap, throwError } from 'rxjs';
 import { User } from './user.model';
 import { Router } from '@angular/router';
@@ -14,18 +14,17 @@ interface AuthResponse {
   registered?: boolean
 }
 
-@Injectable({
-  providedIn: 'root'
-})
+@Service()
 export class AuthService {
+  private http = inject(HttpClient);
+  private router = inject(Router);
+
 
   // Token Expiration Timeout
   tokenExpirationTimeout : any;
 
   // User Subject
   user = new BehaviorSubject<User | null>(null);
-
-  constructor(private http: HttpClient, private router: Router) { }
 
   // Create a new User
   signup(email: string, password: string) : Observable<AuthResponse>

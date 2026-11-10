@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { AuthService } from './auth/auth.service';
 import { HeaderComponent } from './header/header.component';
 import { RouterOutlet } from '@angular/router';
@@ -10,8 +10,8 @@ import { RouterOutlet } from '@angular/router';
     imports: [HeaderComponent, RouterOutlet]
 })
 export class AppComponent implements OnInit {
+  private authService = inject(AuthService);
 
-  constructor(private authService: AuthService){}
 
   ngOnInit() {
     // Auto Login Functionality

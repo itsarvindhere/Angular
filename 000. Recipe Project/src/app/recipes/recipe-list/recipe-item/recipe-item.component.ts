@@ -1,6 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { Recipe } from '../../Recipe.model';
-import { RecipeService } from '../../recipe.service';
 import { RouterLinkActive, RouterLink } from '@angular/router';
 
 @Component({
@@ -10,9 +9,5 @@ import { RouterLinkActive, RouterLink } from '@angular/router';
     imports: [RouterLinkActive, RouterLink]
 })
 export class RecipeItemComponent {
-
-  @Input('recipe')
-  recipe !: Recipe;
-
-  constructor(private recipeService: RecipeService){}
+  readonly recipe = input.required<Recipe>();
 }

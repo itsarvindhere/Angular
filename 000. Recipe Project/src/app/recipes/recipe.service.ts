@@ -1,20 +1,18 @@
-import { Injectable } from '@angular/core';
+import { Service, inject } from '@angular/core';
 import { Recipe } from './Recipe.model';
 import { Ingredient } from '../shared/Ingredient.model';
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
 import { BehaviorSubject, Subject } from 'rxjs';
 
-@Injectable({
-  providedIn: "root"
-})
+@Service()
 export class RecipeService {
+  private shoppingListService = inject(ShoppingListService);
+
 
   private _recipes: Recipe[] = [];
 
   // Recipes Subject
   private recipes = new BehaviorSubject<Recipe[]>(this._recipes.slice());
-
-  constructor(private shoppingListService: ShoppingListService) {}
 
   // Override the Recipes list
   setRecipes(recipes: Recipe[]) {

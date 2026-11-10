@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Recipe } from '../Recipe.model';
 import { RecipeService } from '../recipe.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
@@ -10,10 +10,12 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
     imports: [RouterLink]
 })
 export class RecipeDetailComponent {
+  private recipeService = inject(RecipeService);
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+
 
   recipe !: Recipe;
-
-  constructor(private recipeService: RecipeService, private route: ActivatedRoute, private router: Router){}
 
   ngOnInit() {
     this.route.params.subscribe(params => {

@@ -1,10 +1,8 @@
-import {Injectable } from '@angular/core';
+import { Service } from '@angular/core';
 import { Ingredient } from '../shared/Ingredient.model';
 import { Subject } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Service()
 export class ShoppingListService {
 
   ingredients = new Subject<Ingredient[]>();

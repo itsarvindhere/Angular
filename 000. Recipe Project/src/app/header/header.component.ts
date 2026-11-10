@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { DataStorageService } from '../shared/data-storage.service';
 import { AuthService } from '../auth/auth.service';
 import { Subscription } from 'rxjs';
@@ -11,14 +11,15 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
     imports: [RouterLink, RouterLinkActive]
 })
 export class HeaderComponent implements OnInit, OnDestroy {
+  private dataStorageService = inject(DataStorageService);
+  private authService = inject(AuthService);
+
 
   // Flag to indicate if user is logged in
   isLoggedIn = false;
 
   // Subscription
   private userSub !: Subscription;
-
-  constructor(private dataStorageService: DataStorageService, private authService: AuthService){}
 
   ngOnInit(): void {
       this.userSub = this.authService.user.subscribe({

@@ -1,13 +1,14 @@
-import { Injectable } from '@angular/core';
+import { Service, inject } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Observable, switchMap } from 'rxjs';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 
-@Injectable()
+@Service({autoProvided: false})
 export class AuthInterceptor implements HttpInterceptor {
+  private authService = inject(AuthService);
+  private router = inject(Router);
 
-  constructor(private authService: AuthService, private router: Router) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 

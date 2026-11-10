@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { Recipe } from '../Recipe.model';
 import { RecipeService } from '../recipe.service';
 import { Subscription } from 'rxjs';
@@ -12,11 +12,11 @@ import { RecipeItemComponent } from './recipe-item/recipe-item.component';
     imports: [RouterLink, RecipeItemComponent]
 })
 export class RecipeListComponent implements OnInit, OnDestroy {
+  private recipeService = inject(RecipeService);
+
   recipes: Recipe[] = [];
 
   recipeSub !: Subscription;
-
-  constructor(private recipeService: RecipeService){}
 
   ngOnInit() {
     this.recipeSub = this.recipeService.getRecipes().subscribe(data => {

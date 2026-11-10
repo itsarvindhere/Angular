@@ -1,4 +1,4 @@
-import { Component, EventEmitter} from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'app-alert',

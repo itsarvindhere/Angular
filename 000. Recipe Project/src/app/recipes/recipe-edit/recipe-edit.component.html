@@ -68,7 +68,7 @@
             @if (recipeForm.get('imageURL')?.valid) {
               <div class="row">
                 <div class="col-xs-12">
-                  <img style="max-height: 200px;" [src]="recipeForm.get('imageURL')?.value" class="img-fluid img-thumbnail">
+                  <img style="max-height: 200px;" [src]="$safeNavigationMigration(recipeForm.get('imageURL')?.value)" class="img-fluid img-thumbnail">
                 </div>
               </div>
             }
@@ -154,7 +154,7 @@
                   }
                 </div>
                 <div class="mt-2">
-                  <button [disabled]="recipeForm.get('ingredients')?.invalid" (click)="addMoreIngredients()" type="button" class="btn btn-warning">
+                  <button [disabled]="$safeNavigationMigration(recipeForm.get('ingredients')?.invalid)" (click)="addMoreIngredients()" type="button" class="btn btn-warning">
                     <svg lucidePlusCircle></svg>
                   </button>
                 </div>

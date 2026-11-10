@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RecipeService } from '../recipe.service';
@@ -11,6 +11,10 @@ import { Recipe } from '../Recipe.model';
     imports: [ReactiveFormsModule]
 })
 export class RecipeEditComponent implements OnInit{
+  private route = inject(ActivatedRoute);
+  private recipeService = inject(RecipeService);
+  private router = inject(Router);
+
 
   recipeId !: string;
 
@@ -22,8 +26,6 @@ export class RecipeEditComponent implements OnInit{
 
   // Recipe details that we get from edit flow
   recipe !: Recipe;
-
-  constructor(private route: ActivatedRoute, private recipeService: RecipeService, private router: Router){}
 
   ngOnInit() {
     this.route.params.subscribe(params => {
