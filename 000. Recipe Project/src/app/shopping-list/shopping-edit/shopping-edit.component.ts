@@ -3,12 +3,13 @@ import { ShoppingListService } from '../shopping-list.service';
 import { NgForm, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Ingredient } from '../../shared/Ingredient.model';
+import { LucideFilePlus, LucideRotateCcw } from '@lucide/angular';
 
 @Component({
     selector: 'app-shopping-edit',
     templateUrl: './shopping-edit.component.html',
     styleUrls: ['./shopping-edit.component.css'],
-    imports: [ReactiveFormsModule, FormsModule]
+    imports: [ReactiveFormsModule, FormsModule, LucideFilePlus, LucideRotateCcw]
 })
 export class ShoppingEditComponent implements OnInit {
   private shoppingListService = inject(ShoppingListService);

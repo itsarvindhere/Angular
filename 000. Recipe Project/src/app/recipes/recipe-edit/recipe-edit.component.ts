@@ -3,12 +3,13 @@ import { FormArray, FormControl, FormGroup, Validators, ReactiveFormsModule } fr
 import { ActivatedRoute, Router } from '@angular/router';
 import { RecipeService } from '../recipe.service';
 import { Recipe } from '../Recipe.model';
+import { LucideMoveLeft, LucidePlus, LucideSave, LucideTrash } from '@lucide/angular';
 
 @Component({
     selector: 'app-recipe-edit',
     templateUrl: './recipe-edit.component.html',
     styleUrls: ['./recipe-edit.component.css'],
-    imports: [ReactiveFormsModule]
+    imports: [ReactiveFormsModule, LucideSave, LucideMoveLeft, LucideTrash, LucidePlus]
 })
 export class RecipeEditComponent implements OnInit{
   private route = inject(ActivatedRoute);

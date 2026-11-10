@@ -146,7 +146,7 @@
                         <div class="col-xs-2">
                           <!-- Delete Button -->
                           <button (click)="deleteIngredient(i)" type="button" class="btn btn-danger">
-                            <svg lucideTrash2></svg>
+                            <svg lucideTrash></svg>
                           </button>
                         </div>
                       </div>
@@ -155,7 +155,7 @@
                 </div>
                 <div class="mt-2">
                   <button [disabled]="$safeNavigationMigration(recipeForm.get('ingredients')?.invalid)" (click)="addMoreIngredients()" type="button" class="btn btn-warning">
-                    <svg lucidePlusCircle></svg>
+                    <svg lucidePlus></svg>
                   </button>
                 </div>
               </div>
