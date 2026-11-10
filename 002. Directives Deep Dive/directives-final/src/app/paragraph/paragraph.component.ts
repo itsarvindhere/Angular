@@ -6,7 +6,6 @@ import { LogDirective } from '../log.directive';
   standalone: true,
   templateUrl: './paragraph.component.html',
   styleUrl: './paragraph.component.css',
-  changeDetection: ChangeDetectionStrategy.Eager,
   hostDirectives: [{
     directive: LogDirective,
     inputs: ['text: paraText']

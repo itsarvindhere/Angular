@@ -45,7 +45,7 @@ import { LOGGING_SERVICE_TOKEN } from './tokens';
 
     {
       provide: 'CONTENT', 
-      useFactory: (value) => {
+      useFactory: (value: number) => {
         if(value < 0) return "I am negative"
         return "I am positive"
       },

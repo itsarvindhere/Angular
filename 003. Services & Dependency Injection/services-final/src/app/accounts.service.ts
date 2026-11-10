@@ -1,13 +1,14 @@
 import { EventEmitter, Inject, Injectable } from '@angular/core';
 import { LoggingService } from './logging.service';
 import { LOGGING_SERVICE_TOKEN } from './tokens';
+import { Account } from './account';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountsService {
 
-  accounts = [
+  accounts: Account[] = [
     {
       name: 'Master Account',
       status: 'active'

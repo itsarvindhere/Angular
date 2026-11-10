@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject, OnInit, Output, inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { LoggingService } from '../logging.service';
 import { AccountsService } from '../accounts.service';
 import { LOGGING_SERVICE_TOKEN } from '../tokens';

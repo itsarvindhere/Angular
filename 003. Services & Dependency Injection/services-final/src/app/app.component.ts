@@ -1,5 +1,6 @@
 import { Component, OnInit, inject} from '@angular/core';
 import { AccountsService } from './accounts.service';
+import { Account } from './account';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,7 @@ import { AccountsService } from './accounts.service';
   standalone: false
 })
 export class AppComponent implements OnInit {
-  accounts = [];
+  accounts: Account[] = [];
   accountsService: AccountsService = inject(AccountsService);
   // constructor(private accountsService: AccountsService){}
 

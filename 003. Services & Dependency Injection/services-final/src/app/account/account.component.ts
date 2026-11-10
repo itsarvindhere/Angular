@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 import { AccountsService } from '../accounts.service';
 
 @Component({
@@ -8,8 +8,8 @@ import { AccountsService } from '../accounts.service';
   standalone: false
 })
 export class AccountComponent {
-  @Input() account: {name: string, status: string};
-  @Input() id: number;
+  @Input() account !: {name: string, status: string};
+  @Input() id !: number;
 
   constructor(private accountsService: AccountsService, @Inject('GOOGLE') private API_URL: any, @Inject('FUNC') private func: any, @Inject('CONTENT') private content: string){
     console.log("API URL is " + API_URL.url)
