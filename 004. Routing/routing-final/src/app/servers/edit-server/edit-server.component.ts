@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { ServersService } from '../servers.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CanDeactivateComponent } from 'src/app/canDeactivateComponent';
+import { CanDeactivateComponent } from '../../canDeactivateComponent';
 
 @Component({
   selector: 'app-edit-server',
@@ -11,7 +11,7 @@ import { CanDeactivateComponent } from 'src/app/canDeactivateComponent';
   standalone: false
 })
 export class EditServerComponent implements OnInit, CanDeactivateComponent {
-  server: {id: number, name: string, status: string};
+  server: {id: number, name: string, status: string} | undefined;
   serverName = '';
   serverStatus = '';
 
@@ -26,8 +26,10 @@ export class EditServerComponent implements OnInit, CanDeactivateComponent {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.server = this.serversService.getServer(+params.id);
-      this.serverName = this.server.name;
-      this.serverStatus = this.server.status;
+      if (this.server) {
+        this.serverName = this.server.name;
+        this.serverStatus = this.server.status;
+      }
     });
     
     // Accessing Query Parameters using snapshot object
@@ -48,18 +50,22 @@ export class EditServerComponent implements OnInit, CanDeactivateComponent {
 
     // Accesing Fragment using "fragment" observable
     this.route.fragment.subscribe(fragment => {
-      this.fragment = fragment;
+      if (fragment) {
+        this.fragment = fragment;
+      }
     })
   }
 
   onUpdateServer() {
-    this.serversService.updateServer(this.server.id, {name: this.serverName, status: this.serverStatus});
+    if (this.server) {
+      this.serversService.updateServer(this.server.id, {name: this.serverName, status: this.serverStatus});
 
-    // Set changesSaved to True
-    this.changesSaved = true;
+      // Set changesSaved to True
+      this.changesSaved = true;
 
-    // Navigate back to the previous page
-    this.router.navigate(['../'], {relativeTo: this.route, queryParamsHandling: 'merge'});
+      // Navigate back to the previous page
+      this.router.navigate(['../'], {relativeTo: this.route, queryParamsHandling: 'merge'});
+    }
   }
 
 
@@ -70,7 +76,7 @@ export class EditServerComponent implements OnInit, CanDeactivateComponent {
     if (!this.allowEdit) return true
 
     // If any of the values are changes in the input fields but the changes are not saved
-    if ((this.serverName != this.server.name || this.serverStatus != this.server.status) && !this.changesSaved) {
+    if ((this.serverName != this.server?.name || this.serverStatus != this.server.status) && !this.changesSaved) {
       if(confirm("Are you sure you want to leave?"))  {
         return true;
       } else{

@@ -12,7 +12,7 @@ export class AuthService {
   constructor() { }
 
   isAuthenticated() {
-    const promise = new Promise((resolve, reject) => {
+    const promise = new Promise<boolean>((resolve, reject) => {
       setTimeout(() => {
         resolve(this.loggedIn);
       }, 800)

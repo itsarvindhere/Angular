@@ -15,7 +15,7 @@ export class ServerResolver {
 
   constructor(private serversService: ServersService) { }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Server | Observable<Server> | Promise<Server> {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Server | Observable<Server> | Promise<Server> | undefined {
     return this.serversService.getServer(+route.params.id);
   }
 }

@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
   standalone: false
 })
 export class ServerComponent implements OnInit {
-  server: {id: number, name: string, status: string};
+  server !: {id: number, name: string, status: string};
 
   constructor(private serversService: ServersService, private route: ActivatedRoute) { }
 
