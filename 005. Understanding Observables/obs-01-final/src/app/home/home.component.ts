@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import {Observable, Subject, Subscription} from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 
@@ -6,6 +6,7 @@ import { filter, map } from 'rxjs/operators';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class HomeComponent implements OnInit, OnDestroy {
@@ -14,18 +15,18 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   randomNumObs = new Subject<number>();
 
-  sub : Subscription;
-  customSub: Subscription;
+  sub !: Subscription;
+  customSub !: Subscription;
 
-  randomNumSub1: Subscription;
-  randomNumSub2: Subscription;
+  randomNumSub1 !: Subscription;
+  randomNumSub2 !: Subscription;
 
   ngOnInit() {
     // this.sub = interval(1000).subscribe({
     //   next: count => {console.log(count)}
     // })
 
-    const customIntervalObs = new Observable(observer => {
+    const customIntervalObs = new Observable<number>(observer => {
       let data = 0;
       setInterval(() => {
         if (data > 3) {

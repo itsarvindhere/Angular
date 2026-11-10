@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, signal, inject, Injector, Signal } from '@angular/core';
+import { Component, OnInit, OnDestroy, signal, inject, Injector, Signal, ChangeDetectionStrategy } from '@angular/core';
 import { UserService } from './user.service';
 import { interval, Observable, Subscription } from 'rxjs';
 import {toObservable, toSignal} from '@angular/core/rxjs-interop'
@@ -7,17 +7,18 @@ import {toObservable, toSignal} from '@angular/core/rxjs-interop'
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class AppComponent implements OnInit, OnDestroy {
   count = signal(0);
   // count$ = toObservable(this.count);
-  count$: Observable<number>;
+  count$ !: Observable<number>;
 
   private injector = inject(Injector);
 
   interval$ = interval(1000);
-  intervalSignal: Signal<number>;
+  intervalSignal !: Signal<number>;
 
   constructor(private userService: UserService) {
     // this.count$ = toObservable(this.count);
@@ -25,7 +26,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   userActivated = false;
-  activatedSub: Subscription;
+  activatedSub !: Subscription;
 
   ngOnInit() {
 
