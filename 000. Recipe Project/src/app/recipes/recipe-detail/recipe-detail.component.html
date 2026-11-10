@@ -1,50 +1,45 @@
-<ng-container *ngIf="!recipe; else recipeDetails">
-    Recipe does not exist in the database!
-</ng-container>
-
-
-<ng-template #recipeDetails>
-<div class="row">
+@if (!recipe) {
+  Recipe does not exist in the database!
+} @else {
+  <div class="row">
     <div class="col-xs-12">
-        <img style="max-height: 300px;" [src]="recipe.imagePath" alt="" class="img-responsive">
+      <img style="max-height: 300px;" [src]="recipe.imagePath" alt="" class="img-responsive">
     </div>
-</div>
-
-<div class="row">
+  </div>
+  <div class="row">
     <div class="col-xs-12">
-        <h1>{{recipe.name}}</h1>
+      <h1>{{recipe.name}}</h1>
     </div>
-</div>
-
-<div class="row">
+  </div>
+  <div class="row">
     <div class="col-xs-12">
-        <div class="btn-group">
-            <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" > Manage Recipe</button>
-
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" (click)="addToShoppingList()">Add to Shopping List</a></li>
-                <li><a routerLink="edit" class="dropdown-item" >Edit Recipe</a></li>
-                <hr>
-                <li><a (click)="deleteRecipe(recipe.id)" class="dropdown-item" >Delete Recipe</a></li>
-              </ul>
+      <div class="btn-group">
+        <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" > Manage Recipe</button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" (click)="addToShoppingList()">Add to Shopping List</a></li>
+          <li><a routerLink="edit" class="dropdown-item" >Edit Recipe</a></li>
+          <hr>
+            <li><a (click)="deleteRecipe(recipe.id)" class="dropdown-item" >Delete Recipe</a></li>
+          </ul>
         </div>
+      </div>
     </div>
-</div>
-
-<div class="row">
-    <div class="col-xs-12">
+    <div class="row">
+      <div class="col-xs-12">
         {{recipe.description}}
+      </div>
     </div>
-</div>
-
-
-<div class="row">
-    <div class="col-xs-12">
+    <div class="row">
+      <div class="col-xs-12">
         <ul class="list-group">
-            <li class="list-group-item" *ngFor="let ingredient of recipe.ingredients">
-                {{ingredient.name}} - {{ingredient.amount}}
+          @for (ingredient of recipe.ingredients; track ingredient) {
+            <li class="list-group-item">
+              {{ingredient.name}} - {{ingredient.amount}}
             </li>
+          }
         </ul>
+      </div>
     </div>
-</div>
-</ng-template>
+  }
+
+

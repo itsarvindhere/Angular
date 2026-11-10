@@ -1,14 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Ingredient } from 'src/app/shared/Ingredient.model';
 import { ShoppingListService } from '../shopping-list.service';
-import { NgForm } from '@angular/forms';
+import { NgForm, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-shopping-edit',
     templateUrl: './shopping-edit.component.html',
     styleUrls: ['./shopping-edit.component.css'],
-    standalone: false
+    imports: [ReactiveFormsModule, FormsModule]
 })
 export class ShoppingEditComponent implements OnInit {
 

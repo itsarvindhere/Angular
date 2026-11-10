@@ -1,25 +1,27 @@
 <div class="row">
-    <div class="col-xs-10">
-        <app-shopping-edit></app-shopping-edit>
-        <hr>
-        <ul class="list-group" *ngIf="ingredients.length > 0; else noIngredients">
-            <a class="list-group-item d-flex justify-content-between" style="cursor: pointer;" *ngFor="let ingredient of ingredients; let i = index;"
-            >
-                {{ingredient.name}} ({{ingredient.amount}})
-
-                <div class="d-flex gap-2">
-                    <button class="btn btn-warning" (click)="editIngredient(i)">
-                        <lucide-icon name="pencil"></lucide-icon>
-                    </button>
-                    <button class="btn btn-danger" (click)="deleteIngredient(i)">
-                        <lucide-icon name="trash-2"></lucide-icon>
-                    </button>
-                </div>
+  <div class="col-xs-10">
+    <app-shopping-edit></app-shopping-edit>
+    <hr>
+      @if (ingredients.length > 0) {
+        <ul class="list-group">
+          @for (ingredient of ingredients; track ingredient; let i = $index) {
+            <a class="list-group-item d-flex justify-content-between" style="cursor: pointer;"
+              >
+              {{ingredient.name}} ({{ingredient.amount}})
+              <div class="d-flex gap-2">
+                <button class="btn btn-warning" (click)="editIngredient(i)">
+                  <svg lucidePencil></svg>
+                </button>
+                <button class="btn btn-danger" (click)="deleteIngredient(i)">
+                  <svg lucideTrash2></svg>
+                </button>
+              </div>
             </a>
+          }
         </ul>
+      } @else {
+        <p>Your Shopping List is Empty!</p>
+      }
 
-        <ng-template #noIngredients>
-            <p>Your Shopping List is Empty!</p>
-        </ng-template>
     </div>
-</div>
+  </div>

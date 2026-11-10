@@ -2,12 +2,14 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Recipe } from '../Recipe.model';
 import { RecipeService } from '../recipe.service';
 import { Subscription } from 'rxjs';
+import { RouterLink } from '@angular/router';
+import { RecipeItemComponent } from './recipe-item/recipe-item.component';
 
 @Component({
     selector: 'app-recipe-list',
     templateUrl: './recipe-list.component.html',
     styleUrls: ['./recipe-list.component.css'],
-    standalone: false
+    imports: [RouterLink, RecipeItemComponent]
 })
 export class RecipeListComponent implements OnInit, OnDestroy {
   recipes: Recipe[] = [];

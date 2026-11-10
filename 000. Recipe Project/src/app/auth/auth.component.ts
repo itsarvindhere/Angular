@@ -1,5 +1,5 @@
 import { Component, OnDestroy, ViewChild, ViewContainerRef } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AuthService } from './auth.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
@@ -9,7 +9,7 @@ import { AlertComponent } from '../shared/alert/alert.component';
     selector: 'app-auth',
     templateUrl: './auth.component.html',
     styleUrls: ['./auth.component.css'],
-    standalone: false
+    imports: [ReactiveFormsModule, FormsModule]
 })
 export class AuthComponent implements OnDestroy {
 

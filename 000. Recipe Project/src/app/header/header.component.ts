@@ -2,12 +2,13 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DataStorageService } from '../shared/data-storage.service';
 import { AuthService } from '../auth/auth.service';
 import { Subscription } from 'rxjs';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.css'],
-    standalone: false
+    imports: [RouterLink, RouterLinkActive]
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
