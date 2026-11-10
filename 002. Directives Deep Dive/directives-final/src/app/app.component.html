@@ -4,36 +4,42 @@
       <button
         class="btn btn-primary"
         (click)="onlyOdd = !onlyOdd"
-      >
+        >
         Only show odd numbers
       </button>
       <br><br>
       <ul class="list-group">
-        <div *ngIf="onlyOdd">
-          <li
-          class="list-group-item"
-          *ngFor="let number of oddNumbers"
-          [ngStyle]="{backgroundColor: number % 2 !== 0  ? 'yellow': 'transparent'}"
-          [ngClass]="{odd: number % 2 !== 0}"
-          >
-          {{number}}
-          </li>
-        </div>
+        @if (onlyOdd) {
+          <div>
+            @for (number of oddNumbers; track number) {
+              <li
+                class="list-group-item"
+                [ngStyle]="{backgroundColor: number % 2 !== 0  ? 'yellow': 'transparent'}"
+                [ngClass]="{odd: number % 2 !== 0}"
+                >
+                {{number}}
+              </li>
+            }
+          </div>
+        }
 
-        <div *ngIf="!onlyOdd">
-          <li
-          class="list-group-item"
-          [ngStyle]="{backgroundColor: number % 2 !== 0  ? 'yellow': 'transparent'}"
-          *ngFor="let number of evenNumbers"
-          >
-          {{number}}
-          </li>
-        </div>
-        
+        @if (!onlyOdd) {
+          <div>
+            @for (number of evenNumbers; track number) {
+              <li
+                class="list-group-item"
+                [ngStyle]="{backgroundColor: number % 2 !== 0  ? 'yellow': 'transparent'}"
+                >
+                {{number}}
+              </li>
+            }
+          </div>
+        }
+
       </ul>
-      <ng-template [ngIf]="onlyOdd">
+      @if (onlyOdd) {
         <p>Only odd</p>
-      </ng-template>
+      }
     </div>
   </div>
   <p appBasicHighlight [appBasicHighlight]="'yellow'" > Highlight with Yellow Color when Hover </p>
@@ -57,33 +63,46 @@
   <p *ngIf="day == 6"> Day is Saturday </p> -->
 
   <!-- Using ngSwitch -->
-  <ng-container [ngSwitch]="day">
-
+  @switch (day) {
     <!-- Miltiple ngSwitchCase with same condition are allowed -->
-    <p *ngSwitchCase="0"> Day is Sunday 1</p>
-    <p *ngSwitchCase="0"> Day is Sunday 2</p>
-    <p *ngSwitchCase="0"> Day is Sunday 3</p>
-
-
-    <p *ngSwitchCase="1"> Day is Monday </p>
-    <p *ngSwitchCase="2"> Day is Tuesday </p>
-    <p *ngSwitchCase="3"> Day is Wednesday </p>
-    <p *ngSwitchCase="4"> Day is Thursday </p>
-    <p *ngSwitchCase="5"> Day is Friday </p>
-    <p *ngSwitchCase="6"> Day is Saturday </p>
-    <!-- Multiple ngSwitchDefault are allowed -->
-    <p *ngSwitchDefault>This is the default value 1</p>
-    <p *ngSwitchDefault>This is the default value 2</p>
-    <p *ngSwitchDefault>This is the default value 3</p>
-
-  </ng-container>
+    @case (0) {
+      <p> Day is Sunday 1</p>
+    }
+    @case (0) {
+      <p> Day is Sunday 2</p>
+    }
+    @case (0) {
+      <p> Day is Sunday 3</p>
+    }
+    @case (1) {
+      <p> Day is Monday </p>
+    }
+    @case (2) {
+      <p> Day is Tuesday </p>
+    }
+    @case (3) {
+      <p> Day is Wednesday </p>
+    }
+    @case (4) {
+      <p> Day is Thursday </p>
+    }
+    @case (5) {
+      <p> Day is Friday </p>
+    }
+    @case (6) {
+      <p> Day is Saturday </p>
+    }
+    @default {
+      <p>This is the default value 1</p>
+    }
+  }
   <hr>
-  <app-paragraph paraText="Text for Para 1" content="Content for First Paragraph"></app-paragraph>
-  <app-paragraph paraText="Text for Para 2" content="Content for Second Paragraph"></app-paragraph>
-  <app-paragraph paraText="Text for Para 3" content="Content for Third Paragraph"></app-paragraph>
-  <app-paragraph paraText="Text for Para 4"content="Content for Fourth Paragraph"></app-paragraph>
-  <app-paragraph paraText="Text for Para 5"content="Content for Fifth Paragraph"></app-paragraph>
-  <app-paragraph paraText="Text for Para 6"content="Content for Sixth Paragraph"></app-paragraph>
+    <app-paragraph paraText="Text for Para 1" content="Content for First Paragraph"></app-paragraph>
+    <app-paragraph paraText="Text for Para 2" content="Content for Second Paragraph"></app-paragraph>
+    <app-paragraph paraText="Text for Para 3" content="Content for Third Paragraph"></app-paragraph>
+    <app-paragraph paraText="Text for Para 4"content="Content for Fourth Paragraph"></app-paragraph>
+    <app-paragraph paraText="Text for Para 5"content="Content for Fifth Paragraph"></app-paragraph>
+    <app-paragraph paraText="Text for Para 6"content="Content for Sixth Paragraph"></app-paragraph>
 
-</div>
+  </div>
 

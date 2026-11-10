@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, ChangeDetectionStrategy } from '@angular/core';
 import { LogDirective } from '../log.directive';
 
 @Component({
@@ -6,6 +6,7 @@ import { LogDirective } from '../log.directive';
   standalone: true,
   templateUrl: './paragraph.component.html',
   styleUrl: './paragraph.component.css',
+  changeDetection: ChangeDetectionStrategy.Eager,
   hostDirectives: [{
     directive: LogDirective,
     inputs: ['text: paraText']
