@@ -96,7 +96,9 @@ export class App {
       onInvalid: (form) => {
         console.log('Form is invalid. Please correct the errors and try again.');
         const firstValidationError = form().errorSummary()[0];
-        firstValidationError.fieldTree().focusBoundControl();
+        firstValidationError.fieldTree().focusBoundControl({
+          preventScroll: true // Defaults to false, set it to true if you want to prevent the browser from scrolling to the focused control
+        });
       }
     }
   });

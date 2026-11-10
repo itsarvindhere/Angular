@@ -1,0 +1,14 @@
+
+<p> Click any id below to fetch that user's data from the API </p>
+
+<div style="display: flex; gap: 4px; justify-content: center;">
+    @for (id of [1, 2, 3, 4, 5]; track id) {
+        <button (click)="userId.set(id)">{{id}}</button>
+    }
+</div>
+
+@if (usersHttpResource.isLoading()) {
+    <p>Loading...</p>
+} @else {
+    <p style="text-align: center;"> User data is {{ userData() | json }}</p>
+}
