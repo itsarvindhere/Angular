@@ -1,0 +1,59 @@
+/* State-based fade animation */
+
+.fade-element {
+  opacity: 1;
+  transition: opacity 1s ease-in;
+}
+
+.fade-element.close {
+  opacity: 0;
+  transition: opacity 1s ease-out;
+}
+
+/* List item enter animation */
+
+@keyframes listItemEnter {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: translateY(-50px);
+  }
+
+  90% {
+    opacity: 1;
+    transform: translateY(50px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.list-item-enter {
+  animation: listItemEnter 4s ease-in;
+}
+
+/* List item leave animations */
+
+.list-item-leave {
+  animation:
+    changeColor 0.5s ease-in forwards,
+    slideOut 1s ease-out forwards;
+}
+
+@keyframes changeColor {
+  to {
+    color: red;
+  }
+}
+
+@keyframes slideOut {
+  to {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+}
