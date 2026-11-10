@@ -2,7 +2,7 @@ import { Service } from '@angular/core';
 import { PreloadingStrategy, Route } from '@angular/router';
 import { Observable, of } from 'rxjs';
 
-@Service
+@Service()
 export class PreloadSpecificModulesService implements PreloadingStrategy {
 
   constructor() { }
