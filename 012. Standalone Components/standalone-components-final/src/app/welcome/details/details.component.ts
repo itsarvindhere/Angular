@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { AnalyticsService } from 'src/app/shared/analytics.service';
-import { HighlightDirective } from 'src/app/shared/highlight.directive';
+import { HighlightDirective } from '../../shared/highlight.directive';
+import { AnalyticsService } from '../../shared/analytics.service';
 
 @Component({
     selector: 'app-details',
