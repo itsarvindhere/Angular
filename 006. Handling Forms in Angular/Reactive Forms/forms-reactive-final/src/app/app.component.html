@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
       <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-      <div formGroupName="userData">
+        <div formGroupName="userData">
           <div class="form-group">
             <label for="username">Username</label>
             <input
@@ -10,95 +10,109 @@
               id="username"
               class="form-control"
               formControlName="username"
-            >
-            <p
-              class="text-danger"
-              *ngIf="signupForm.get('userData.username').invalid && signupForm.get('userData.username').touched"
-            >
-            <!-- REQUIRED VALIDATION FAILS -->
-            <span *ngIf="signupForm.get('userData.username').errors?.['required']"> Username cannot be empty!</span>
-            
-            <!-- FORBIDDEN NAME VALIDATION FAILS -->
-            <span *ngIf="signupForm.get('userData.username').errors?.['forbiddenName']">
-              Username {{signupForm.get('userData.username').errors?.['notAllowed']}} is not allowed!
-            </span>
-            
-            {{signupForm.get('userData').errors | json}}
-            </p>
+              >
+              @if (signupForm.get('userData.username')?.invalid && signupForm.get('userData.username')?.touched) {
+                <p
+                  class="text-danger"
+                  >
+                  <!-- REQUIRED VALIDATION FAILS -->
+                  @if (signupForm.get('userData.username')?.errors?.['required']) {
+                    <span> Username cannot be empty!</span>
+                  }
+                  <!-- FORBIDDEN NAME VALIDATION FAILS -->
+                  @if (signupForm.get('userData.username')?.errors?.['forbiddenName']) {
+                    <span>
+                      Username {{signupForm.get('userData.username')?.errors?.['notAllowed']}} is not allowed!
+                    </span>
+                  }
+                  {{signupForm.get('userData')?.errors | json}}
+                </p>
+              }
 
-            <p class="text-danger" *ngIf="signupForm.get('userData').errors?.['sameEmailAsUsername']">
-              Username and email cannot be the same!
-            </p>
-          </div>
-          <div class="form-group">
-            <label for="email">email</label>
-            <input
-              type="text"
-              id="email"
-              class="form-control"
-              formControlName="email"
-            >
-
-            <p
-              class="text-danger"
-              *ngIf="signupForm.get('userData.email').dirty"
-            >
-
-             <!-- If "forbiddenEmail" validation failed -->
-              <span class="text-warning" *ngIf="signupForm.get('userData.email').pending">
-                Checking if email is unique...
-              </span>
-
-              <!-- If "required" validation failed -->
-              <span *ngIf="signupForm.get('userData.email').errors?.['required']">
-                Please enter an email!
-              </span>
-
-              <!-- If "email" validation failed -->
-              <span *ngIf="signupForm.get('userData.email').errors?.['email']">
-                Enter a valid email!
-              </span>
-
-              <span *ngIf="signupForm.get('userData.email').errors?.['forbiddenEmail']">
-                Email is already taken. Please enter a different email!
-              </span>
-            </p>
-          </div>
-      </div>
-        <div class="radio" *ngFor="let gender of genders">
-          <label>
-            <input
-              type="radio"
-              [value]="gender"
-              formControlName="gender"
-            >
-            {{ gender }}
-          </label>
-        </div>
-        <div formArrayName="hobbies">
-          <h3>Your Hobbies</h3>
-          <button 
-            type="button" 
-            class="btn btn-default"
-            (click)="handleAddHobbyClick()"
-          >
-            Add Hobby
-          </button>
-          <div class="form-group">
-            <div *ngFor="let hobbyControl of getHobbiesControls();let i = index" style="display: flex; gap: 16px; margin-top: 16px;">
-              <input 
-              type="text"
-              class="form-control"
-              [formControlName]="i"
-            >
-            <button class="btn btn-danger" (click)="deleteHobby(i)">Delete Hobby</button>
+              @if (signupForm.get('userData')?.errors?.['sameEmailAsUsername']) {
+                <p class="text-danger">
+                  Username and email cannot be the same!
+                </p>
+              }
             </div>
-            
+            <div class="form-group">
+              <label for="email">email</label>
+              <input
+                type="text"
+                id="email"
+                class="form-control"
+                formControlName="email"
+                >
+
+                @if (signupForm.get('userData.email')?.dirty) {
+                  <p
+                    class="text-danger"
+                    >
+                    <!-- If "forbiddenEmail" validation failed -->
+                    @if (signupForm.get('userData.email')?.pending) {
+                      <span class="text-warning">
+                        Checking if email is unique...
+                      </span>
+                    }
+                    <!-- If "required" validation failed -->
+                    @if (signupForm.get('userData.email')?.errors?.['required']) {
+                      <span>
+                        Please enter an email!
+                      </span>
+                    }
+                    <!-- If "email" validation failed -->
+                    @if (signupForm.get('userData.email')?.errors?.['email']) {
+                      <span>
+                        Enter a valid email!
+                      </span>
+                    }
+                    @if (signupForm.get('userData.email')?.errors?.['forbiddenEmail']) {
+                      <span>
+                        Email is already taken. Please enter a different email!
+                      </span>
+                    }
+                  </p>
+                }
+              </div>
+            </div>
+            @for (gender of genders; track gender) {
+              <div class="radio">
+                <label>
+                  <input
+                    type="radio"
+                    [value]="gender"
+                    formControlName="gender"
+                    >
+                    {{ gender }}
+                  </label>
+                </div>
+              }
+              <div formArrayName="hobbies">
+                <h3>Your Hobbies</h3>
+                <button
+                  type="button"
+                  class="btn btn-default"
+                  (click)="handleAddHobbyClick()"
+                  >
+                  Add Hobby
+                </button>
+                <div class="form-group">
+                  @for (hobbyControl of getHobbiesControls(); track hobbyControl; let i = $index) {
+                    <div style="display: flex; gap: 16px; margin-top: 16px;">
+                      <input
+                        type="text"
+                        class="form-control"
+                        [formControlName]="i"
+                        >
+                        <button class="btn btn-danger" (click)="deleteHobby(i)">Delete Hobby</button>
+                      </div>
+                    }
+
+                  </div>
+                </div>
+                <hr>
+                  <button [disabled]="signupForm.invalid" class="btn btn-primary" type="submit">Submit</button>
+                </form>
+              </div>
+            </div>
           </div>
-        </div>
-        <hr>
-        <button [disabled]="signupForm.invalid" class="btn btn-primary" type="submit">Submit</button>
-      </form>
-    </div>
-  </div>
-</div>

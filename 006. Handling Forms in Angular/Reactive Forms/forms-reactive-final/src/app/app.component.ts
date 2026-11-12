@@ -12,7 +12,7 @@ import { CustomValidators } from './custom-validators';
 })
 export class AppComponent implements OnInit {
   genders = ['male', 'female'];
-  signupForm: FormGroup;
+  signupForm !: FormGroup;
 
   fb = inject(FormBuilder);
 
@@ -55,7 +55,7 @@ export class AppComponent implements OnInit {
     //   hobbies: this.fb.array([])
     // });
 
-    this.signupForm.get('userData.email').valueChanges.subscribe(data => console.log(data));
+    this.signupForm.get('userData.email')?.valueChanges.subscribe(data => console.log(data));
 
     // this.signupForm.setValue({
     //   userData: {

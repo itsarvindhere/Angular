@@ -37,7 +37,7 @@ export class CustomValidators {
      * Same Email as Username Validator (Synchronous)
      */
     public static sameEmailAsUsernameValidator(): ValidatorFn {
-      return (form: FormGroup): ValidationErrors | null => {
+      return (form: AbstractControl): ValidationErrors | null => {
         const email = form.get('email');
         const username = form.get('username');
 
