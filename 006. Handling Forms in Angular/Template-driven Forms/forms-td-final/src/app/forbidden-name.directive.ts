@@ -10,7 +10,7 @@ export class ForbiddenNameDirective implements Validator, OnInit{
 
   
   @Input('forbiddenName')
-  invalidName: string;
+  invalidName !: string;
 
   constructor() { }
 
@@ -19,7 +19,7 @@ export class ForbiddenNameDirective implements Validator, OnInit{
     if (!this.invalidName) this.invalidName = "admin";
   }
 
-  validate(control: AbstractControl<any, any>): ValidationErrors {
+  validate(control: AbstractControl<any, any>): ValidationErrors | null {
 
     if (control.value === this.invalidName) {
       return {"forbiddenName": true, "notAllowed": this.invalidName}

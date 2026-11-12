@@ -1,5 +1,5 @@
-import { afterNextRender, AfterViewInit, Component, DestroyRef, inject, ViewChild } from '@angular/core';
-import { FormGroup, NgForm, NgModelGroup } from '@angular/forms';
+import { AfterViewInit, Component, DestroyRef, inject, ViewChild } from '@angular/core';
+import { NgForm, NgModelGroup } from '@angular/forms';
 import { debounceTime, map } from 'rxjs';
 
 @Component({
@@ -11,10 +11,10 @@ import { debounceTime, map } from 'rxjs';
 export class AppComponent implements AfterViewInit {
 
   @ViewChild('f')
-  signupForm: NgForm;
+  signupForm !: NgForm;
 
   @ViewChild('userData')
-  userDataGroup : NgModelGroup;
+  userDataGroup !: NgModelGroup;
   
   defaultQuestion = "pet";
   answer = '';
@@ -59,14 +59,14 @@ export class AppComponent implements AfterViewInit {
     }
     
     const valueChangesSubscription = this.signupForm.valueChanges
-        .pipe(debounceTime(500))
+        ?.pipe(debounceTime(500))
         .subscribe({
         next: (data) => {
             window.localStorage.setItem('form-data', JSON.stringify(data));
         }
     })
 
-    this.destroyRef.onDestroy(() => valueChangesSubscription.unsubscribe());
+    this.destroyRef.onDestroy(() => valueChangesSubscription?.unsubscribe());
   }
 
   suggestUserName() {

@@ -2,148 +2,165 @@
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
       <form #f="ngForm" (ngSubmit)="onSubmit()">
-        <div 
-          #userData="ngModelGroup" 
-          id="user-data" 
+        <div
+          #userData="ngModelGroup"
+          id="user-data"
           ngModelGroup="userData"
           crossFieldValidator
-        >
+          >
           <div class="form-group">
             <label for="username">Username</label>
-            <input 
-              type="text" 
+            <input
+              type="text"
               id="username"
               class="form-control"
-              name="username" 
+              name="username"
               ngModel
               required
               forbiddenName="john"
               #username="ngModel"
               validateUsername
-            >
+              >
 
-            
 
-            <!-- Errors -->
-            <p class="text-danger" *ngIf="username.dirty">
 
-              <span class="text-warning" *ngIf="username.pending">
-                Checking if username is unique or not...
-              </span>
-              
-              <!-- Required Validation Fails -->
-              <span *ngIf="username.errors?.['required']">
-                Please Enter a Username
-              </span>
+              <!-- Errors -->
+              @if (username.dirty) {
+                <p class="text-danger">
+                  @if (username.pending) {
+                    <span class="text-warning">
+                      Checking if username is unique or not...
+                    </span>
+                  }
+                  <!-- Required Validation Fails -->
+                  @if (username.errors?.['required']) {
+                    <span>
+                      Please Enter a Username
+                    </span>
+                  }
+                  <!-- Forbidden Name Validation Fails -->
+                  @if (username.errors?.['forbiddenName']) {
+                    <span>
+                      Username cannot be {{username.errors?.['notAllowed']}}
+                    </span>
+                  }
+                  @if (username.errors?.['validateUsername']) {
+                    <span>
+                      This username is already taken. Please enter a different username!
+                    </span>
+                  }
+                </p>
+              }
 
-              <!-- Forbidden Name Validation Fails -->
-              <span *ngIf="username.errors?.['forbiddenName']">
-                Username cannot be {{username.errors?.['notAllowed']}}
-              </span>
-
-              <span *ngIf="username.errors?.['validateUsername']">
-                This username is already taken. Please enter a different username!
-              </span>
-            </p>
-
-            <label for="name">Your Name</label>
-            <input 
-              type="text" 
-              id="name"
-              class="form-control"
-              name="name" 
-              ngModel
-              required
-              #name="ngModel"
-            >
-
-            <p class="text-danger" *ngIf="userData.hasError('nameSameAsUsername')">
-              Name cannot be same as the username!
-            </p>
-
-          </div>
-          <button class="btn btn-default" type="button" (click)="suggestUserName()">Suggest an Username</button>
-          <div class="form-group">
-            <label for="email">Mail</label>
-            <input 
-              type="email" 
-              id="email" 
-              class="form-control"
-              name="email"
-              ngModel
-              required
-              email
-              #email="ngModel"
-            >
-            <p *ngIf="email.invalid && email.touched" class="text-danger">
-              <!-- If "required" validation fails -->
-              <span *ngIf="email.errors?.['required']">
-                Please enter an email!
-              </span>
-
-              <!-- If "email" validation fails -->
-              <span *ngIf="email.errors?.['email']">
-                Please enter a valid email!
-              </span>
-            </p>
-          </div>
-
-          <div class="form-group">
-            <label for="gender">Gender</label>
-            <div id="gender" class="radio" *ngFor="let gender of genders">
-              <label>
-                <input
-                  type="radio"
-                  name="gender"
-                  ngModel
-                  [value]="gender"
+              <label for="name">Your Name</label>
+              <input
+                type="text"
+                id="name"
+                class="form-control"
+                name="name"
+                ngModel
+                required
+                #name="ngModel"
                 >
-                {{gender}}
-              </label>
+
+                @if (userData.hasError('nameSameAsUsername')) {
+                  <p class="text-danger">
+                    Name cannot be same as the username!
+                  </p>
+                }
+
+              </div>
+              <button class="btn btn-default" type="button" (click)="suggestUserName()">Suggest an Username</button>
+              <div class="form-group">
+                <label for="email">Mail</label>
+                <input
+                  type="email"
+                  id="email"
+                  class="form-control"
+                  name="email"
+                  ngModel
+                  required
+                  email
+                  #email="ngModel"
+                  >
+                  @if (email.invalid && email.touched) {
+                    <p class="text-danger">
+                      <!-- If "required" validation fails -->
+                      @if (email.errors?.['required']) {
+                        <span>
+                          Please enter an email!
+                        </span>
+                      }
+                      <!-- If "email" validation fails -->
+                      @if (email.errors?.['email']) {
+                        <span>
+                          Please enter a valid email!
+                        </span>
+                      }
+                    </p>
+                  }
+                </div>
+
+                <div class="form-group">
+                  <label for="gender">Gender</label>
+                  @for (gender of genders; track gender) {
+                    <div id="gender" class="radio">
+                      <label>
+                        <input
+                          type="radio"
+                          name="gender"
+                          ngModel
+                          [value]="gender"
+                          >
+                          {{gender}}
+                        </label>
+                      </div>
+                    }
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="secret">Secret Questions</label>
+                  <select
+                    id="secret"
+                    class="form-control"
+                    name="secret"
+                    [ngModel]="defaultQuestion"
+                    required
+                    >
+                    <option value="pet">Your first Pet?</option>
+                    <option value="teacher">Your first teacher?</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <textarea
+                    name="questionAnswer"
+                    class="form-control"
+                    rows="3"
+                    [(ngModel)]="answer"
+                  ></textarea>
+                </div>
+                <p>Your reply: {{answer}}</p>
+                <button
+                  class="btn btn-primary"
+                  type="submit"
+                  [disabled]="f.invalid"
+                  >
+                  Submit
+                </button>
+              </form>
             </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label for="secret">Secret Questions</label>
-          <select 
-            id="secret" 
-            class="form-control"
-            name="secret"
-            [ngModel]="defaultQuestion"
-            required
-          >
-            <option value="pet">Your first Pet?</option>
-            <option value="teacher">Your first teacher?</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <textarea 
-            name="questionAnswer" 
-            class="form-control"
-            rows="3"
-            [(ngModel)]="answer"
-          ></textarea>
-        </div>
-        <p>Your reply: {{answer}}</p>
-      <button 
-        class="btn btn-primary" 
-        type="submit"
-        [disabled]="f.invalid"
-      >
-        Submit
-      </button>
-      </form>
-    </div>
-  </div>
-  <hr>
-  <div class="row" *ngIf="submitted">
-    <div class="col-xs-12">
-      <h3>Your Data</h3>
-      <p>Username: {{user.username}}</p>
-      <p>Mail: {{user.email}}</p>
-      <p>Gender: {{user.gender}}</p>
-      <p>Secret Question: {{user.secretQuestion}}</p>
-      <p>Answer: {{user.answer}}</p>
-    </div>
-  </div>
-</div>
+          <hr>
+            @if (submitted) {
+              <div class="row">
+                <div class="col-xs-12">
+                  <h3>Your Data</h3>
+                  <p>Username: {{user.username}}</p>
+                  <p>Mail: {{user.email}}</p>
+                  <p>Gender: {{user.gender}}</p>
+                  <p>Secret Question: {{user.secretQuestion}}</p>
+                  <p>Answer: {{user.answer}}</p>
+                </div>
+              </div>
+            }
+          </div>
