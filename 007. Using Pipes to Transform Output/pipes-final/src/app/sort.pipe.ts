@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SortPipe implements PipeTransform {
 
-  transform(value: any[], order): unknown {
+  transform(value: any[], order: string): unknown {
     value.sort((a,b) => {
       if (!order || order == "ASC") {
         return a.name.localeCompare(b.name)

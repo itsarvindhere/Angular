@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   appStatus = '';
   
   // To mock an http call that returns us some data after 2s
-  statusObs = new Observable(observer => {
+  statusObs = new Observable<string>(observer => {
     setTimeout(() => {
       observer.next('stable');
       observer.complete();
