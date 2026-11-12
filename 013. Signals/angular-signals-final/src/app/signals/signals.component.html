@@ -69,3 +69,16 @@
 <div style="text-align: center;">
   <app-resource />
 </div>
+
+<hr>
+<h2> Two-way Binding with model() </h2>
+<div style="text-align: center;">
+  <app-counter [(value)]="count" />
+  <p>Parent sees: {{ count() }}</p>
+</div>
+
+<hr>
+<h2> Signal Queries </h2>
+<div style="text-align: center;">
+  <app-queries />
+</div>

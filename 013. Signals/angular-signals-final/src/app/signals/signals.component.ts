@@ -4,11 +4,13 @@ import { interval, of } from 'rxjs';
 import { Child1Component } from './child1/child1/child1.component';
 import { Child2Component } from './child2/child2/child2.component';
 import { ResourceComponent } from "./resource/resource.component";
+import { CounterComponent } from './counter/counter.component';
+import { QueriesComponent } from './queries/queries.component';
 
 @Component({
     selector: 'app-signals',
     templateUrl: './signals.component.html',
-    imports: [Child1Component, Child2Component, ResourceComponent]
+    imports: [Child1Component, Child2Component, ResourceComponent, CounterComponent, QueriesComponent]
 })
 export class SignalsComponent {
   actions = signal<string[]>([]);
@@ -24,6 +26,9 @@ export class SignalsComponent {
   derived = computed(() => this.test() + ". Added at the end");
 
   btnClicked = output<string>();
+
+  // Used with the two-way binding [(value)] of the counter component
+  count = signal(5);
 
   options = signal(['Option 1', 'Option 2', 'Option 3']);
   // selectedOption = signal(this.options()[0]);
@@ -78,7 +83,3 @@ export class SignalsComponent {
     this.options.update(prev => [...prev, 'New Option']);
   }
 }
-function outputFromObservable<T>() {
-  throw new Error('Function not implemented.');
-}
-
