@@ -11,11 +11,11 @@ import { Subscription } from 'rxjs';
   standalone: false
 })
 export class AppComponent implements OnInit, OnDestroy {
-  loadedPosts = [];
+  loadedPosts: Post[] = [];
   isFetching = false;
   error = '';
 
-  private errorSub: Subscription;
+  private errorSub !: Subscription;
 
   constructor(private postsService: PostsService) {}
 

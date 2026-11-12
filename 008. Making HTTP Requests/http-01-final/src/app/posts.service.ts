@@ -2,7 +2,7 @@ import { HttpClient, HttpEventType, HttpHeaders, HttpParams } from '@angular/com
 import { Injectable } from '@angular/core';
 import {Subject, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { Post } from 'src/types';
+import { Post } from '../types';
 
 @Injectable({
   providedIn: 'root'
