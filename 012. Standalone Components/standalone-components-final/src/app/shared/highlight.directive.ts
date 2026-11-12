@@ -1,8 +1,7 @@
 import { Directive, ElementRef } from '@angular/core';
 
 @Directive({
-  selector: '[appHighlight]',
-  standalone: true
+  selector: '[appHighlight]'
 })
 export class HighlightDirective {
   constructor(private element: ElementRef) {
