@@ -29,7 +29,7 @@ describe('ErrorMessageComponent', () => {
 
     it('should render a custom error message', () => {
 
-        component.message = "Email is already taken!";
+        fixture.componentRef.setInput("message", "Email is already taken!");
 
         fixture.detectChanges();
 

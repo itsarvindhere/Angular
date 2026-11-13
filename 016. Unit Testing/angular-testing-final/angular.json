@@ -70,6 +70,9 @@
           "options": {
             "buildTarget": "angular-testing:build"
           }
+        },
+        "test": {
+          "builder": "@angular/build:unit-test"
         }
       }
     }

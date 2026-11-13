@@ -4,11 +4,10 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
 @Component({
-    standalone: true,
     template: ` <h2 highlight="yellow">Something Yellow</h2>
       <h2 highlight>The Default (Gray)</h2>
       <h2>No Highlight</h2>
-      <input #box [highlight]="box.value" value="cyan" />`,
+      <input #box [highlight]="box.value" value="cyan" (input)="0" />`,
     imports: [HighlightDirective],
   })
   class TestComponent {}
@@ -71,6 +70,6 @@ describe("HighlightDirective", () => {
     it('h2 element that does not use the directive should not have a customProperty', () => {
         const h2 = fixture.debugElement.query(By.css("h2:not([highlight])"));
 
-        expect(h2.properties['customProperty']).toBeUndefined;
+        expect(h2.properties['customProperty']).toBeUndefined();
     });
 });
