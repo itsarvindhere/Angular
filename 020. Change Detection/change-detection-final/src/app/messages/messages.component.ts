@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { MessagesListComponent } from './messages-list/messages-list.component';
 import { NewMessageComponent } from './new-message/new-message.component';
