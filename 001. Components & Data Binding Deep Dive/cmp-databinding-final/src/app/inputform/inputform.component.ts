@@ -3,8 +3,7 @@ import { Component, OnInit, Output, EventEmitter, ViewChild, OnChanges, ElementR
 @Component({
   selector: 'app-inputform',
   templateUrl: './inputform.component.html',
-  styleUrls: ['./inputform.component.css'],
-  standalone: false
+  styleUrls: ['./inputform.component.css']
 })
 export class InputformComponent implements OnInit, OnChanges{
 

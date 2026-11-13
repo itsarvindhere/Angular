@@ -3,8 +3,7 @@ import { Component, DestroyRef, EventEmitter, OnInit, Output } from '@angular/co
 @Component({
   selector: 'app-game-control',
   templateUrl: './game-control.component.html',
-  styleUrls: ['./game-control.component.css'],
-  standalone: false
+  styleUrls: ['./game-control.component.css']
 })
 export class GameControlComponent {
 
