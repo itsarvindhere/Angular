@@ -1,9 +1,6 @@
 import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
 
-@Directive({
-  selector: '[ngNotIf]',
-  standalone: false
-})
+@Directive({ selector: '[ngNotIf]' })
 export class NgNotIfDirective {
 
   // Get the condition as an input

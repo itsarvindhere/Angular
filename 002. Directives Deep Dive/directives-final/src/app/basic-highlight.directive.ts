@@ -1,13 +1,12 @@
 import { Directive, ElementRef, HostBinding, HostListener, Input, OnInit, Renderer2 } from '@angular/core';
 
 @Directive({
-  selector: '[appBasicHighlight]',
-  host: {
-    '[style.backgroundColor]': 'backgroundColor',
-    '(mouseenter)': 'onMouseHover()',
-    '(mouseleave)': 'onMouseLeave()'
-  },
-  standalone: false
+    selector: '[appBasicHighlight]',
+    host: {
+        '[style.backgroundColor]': 'backgroundColor',
+        '(mouseenter)': 'onMouseHover()',
+        '(mouseleave)': 'onMouseLeave()'
+    }
 })
 export class BasicHighlightDirective implements OnInit {
 
