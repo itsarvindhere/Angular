@@ -1,3 +1,5 @@
+> **Status: Updated for Angular 22.** Signal Forms are stable in Angular 22, so they are the newest option for forms (see the Signal Forms notes). Reactive Forms and Template-driven Forms remain fully supported and are not deprecated. Between these two, Angular's own guidance favors Reactive Forms for larger or more complex forms, as discussed below.
+
 In Angular, there are three different approaches to handle the user inputs through forms.
 
     1. Reactive Forms
