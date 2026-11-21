@@ -1,9 +1,13 @@
 section {
-  background-color: #212020;
-  padding: 0.5rem;
-  border-radius: 4px;
+  background-color: var(--card);
+  border: 1px solid var(--hairline);
+  padding: 12px 16px;
+  border-radius: 8px;
 }
 
 section h2 {
-  font-size: 1.25rem;
+  margin: 0 0 8px;
+  padding: 0;
+  border: 0;
+  font-size: 18px;
 }

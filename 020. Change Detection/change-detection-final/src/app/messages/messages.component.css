@@ -1,8 +1,8 @@
 :host {
   display: block;
-  max-width: 25rem;
-  margin: 3rem auto;
-  padding: 1rem;
-  background-color: #2d2627;
-  border: 2px solid #fc4964;
+  margin: 24px 0;
+  padding: 16px;
+  background-color: var(--card);
+  border: 1px solid var(--hairline);
+  border-radius: 12px;
 }

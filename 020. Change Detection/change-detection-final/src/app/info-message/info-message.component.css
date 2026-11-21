@@ -1,7 +1,12 @@
 :host {
   display: block;
-  padding: 1rem;
-  margin: 0.5rem;
-  background-color: #2d262a;
-  border: 2px solid #fa21aa;
+  margin-top: 16px;
+  padding: 12px;
+  background-color: var(--page);
+  border: 1px solid var(--hairline);
+  border-radius: 8px;
+}
+
+p {
+  margin: 0;
 }

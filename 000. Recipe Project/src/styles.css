@@ -13,3 +13,400 @@ button:disabled {
     cursor: not-allowed;
     pointer-events: all !important;
   }
+/* ---------------------------------------------------------------
+   Theme layer over Bootstrap (works with Bootstrap 3 and 5).
+   Only recolours and softens Bootstrap classes, so layouts and templates stay as they are.
+   Direction: a printed worksheet with the code editor open beside it. Calm, exact, a little warm.
+   Design process: unslop by Damir Sokolovsky (@heydamir), CC BY 4.0.
+   --------------------------------------------------------------- */
+
+:root {
+  --page: #f7f4ee;
+  --card: #fdfbf7;
+  --raised: #efe9df;
+  --text: #1f1b16;
+  --text-2: #5e554a;
+  --text-3: #7b7266;
+  --hairline: rgb(31 27 22 / 10%);
+  --hairline-strong: rgb(31 27 22 / 18%);
+  --accent: #c8002c;
+  --positive: #1f7a4a;
+  --negative: #b42318;
+  --caution: #e8b04b;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --page: #161513;
+    --card: #1c1a18;
+    --raised: #262421;
+    --text: #efe9de;
+    --text-2: #aaa398;
+    --text-3: #8a847a;
+    --hairline: rgb(239 233 222 / 8%);
+    --hairline-strong: rgb(239 233 222 / 16%);
+    --accent: #ff6b82;
+    --positive: #3d9b6a;
+    --negative: #d4594d;
+    --caution: #d9a441;
+  }
+}
+
+body {
+  background: var(--page);
+  color: var(--text);
+  font: 400 16px/24px var(--sans);
+  font-variant-numeric: tabular-nums;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: inherit;
+  font-weight: 500;
+  color: var(--text);
+}
+
+a {
+  color: var(--accent);
+  text-underline-offset: 4px;
+}
+
+a:hover,
+a:focus {
+  color: var(--accent);
+}
+
+hr {
+  border-top: 1px solid var(--hairline);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--page);
+}
+
+/* Buttons */
+.btn {
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  border-radius: 8px;
+  box-shadow: none;
+  text-shadow: none;
+  background-image: none;
+  transition:
+    background-color 150ms var(--ease),
+    border-color 150ms var(--ease),
+    transform 120ms var(--ease);
+}
+
+.btn:active {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+.btn:focus,
+.btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  box-shadow: none;
+}
+
+.btn.btn-primary,
+.btn.btn-primary:focus {
+  color: var(--page);
+  background-color: var(--text);
+  border-color: var(--text);
+}
+
+.btn.btn-primary:hover,
+.btn.btn-primary:active,
+.btn.btn-primary.active,
+.btn.btn-primary:active:focus {
+  color: var(--page);
+  background-color: var(--text-2);
+  border-color: var(--text-2);
+}
+
+.btn.btn-default,
+.btn.btn-secondary,
+.btn.btn-light,
+.btn.btn-outline-light {
+  color: var(--text);
+  background-color: var(--card);
+  border-color: var(--hairline-strong);
+}
+
+.btn.btn-default:hover,
+.btn.btn-default:active,
+.btn.btn-secondary:hover,
+.btn.btn-light:hover,
+.btn.btn-outline-light:hover {
+  color: var(--text);
+  background-color: var(--raised);
+  border-color: var(--hairline-strong);
+}
+
+.btn.btn-success {
+  color: #fff;
+  background-color: var(--positive);
+  border-color: var(--positive);
+}
+
+.btn.btn-danger {
+  color: #fff;
+  background-color: var(--negative);
+  border-color: var(--negative);
+}
+
+.btn.btn-warning {
+  color: #1f1b16;
+  background-color: var(--caution);
+  border-color: var(--caution);
+}
+
+.btn.btn-success:hover,
+.btn.btn-danger:hover,
+.btn.btn-warning:hover,
+.btn.btn-success:active,
+.btn.btn-danger:active,
+.btn.btn-warning:active {
+  filter: brightness(0.92);
+}
+
+.btn:disabled,
+.btn.disabled {
+  opacity: 0.45;
+}
+
+/* Form fields */
+.form-control,
+.form-select {
+  height: auto;
+  padding: 8px 12px;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--text);
+  background-color: var(--card);
+  border: 1px solid var(--hairline-strong);
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+.form-control:focus,
+.form-select:focus {
+  color: var(--text);
+  background-color: var(--card);
+  border-color: var(--accent);
+  box-shadow: none;
+}
+
+.form-control::placeholder {
+  color: var(--text-3);
+}
+
+label,
+.form-label,
+.control-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-2);
+}
+
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched {
+  border-color: var(--negative);
+}
+
+.text-danger,
+.help-block {
+  color: var(--negative);
+}
+
+/* Lists */
+.list-group-item {
+  color: var(--text);
+  background-color: var(--card);
+  border-color: var(--hairline);
+}
+
+a.list-group-item,
+button.list-group-item,
+.list-group-item-action {
+  color: var(--text);
+}
+
+a.list-group-item:hover,
+a.list-group-item:focus,
+button.list-group-item:hover,
+.list-group-item-action:hover {
+  color: var(--text);
+  background-color: var(--raised);
+}
+
+.list-group-item.active,
+.list-group-item.active:hover,
+.list-group-item.active:focus {
+  color: var(--text);
+  background-color: var(--raised);
+  border-color: var(--hairline-strong);
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+/* Panels and cards */
+.panel,
+.well,
+.card {
+  color: var(--text);
+  background-color: var(--card);
+  border: 1px solid var(--hairline);
+  border-radius: 12px;
+  box-shadow: none;
+}
+
+.panel-default > .panel-heading,
+.card-header {
+  color: var(--text);
+  background-color: var(--raised);
+  border-color: var(--hairline);
+  border-radius: 11px 11px 0 0;
+}
+
+/* Navigation */
+.navbar,
+.navbar-default,
+.navbar-inverse {
+  background: var(--card);
+  border: 0;
+  border-bottom: 1px solid var(--hairline);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.navbar-brand,
+.navbar-default .navbar-brand,
+.navbar-inverse .navbar-brand,
+.navbar-default .navbar-nav > li > a,
+.navbar-inverse .navbar-nav > li > a,
+.navbar .nav-link,
+.navbar .navbar-brand {
+  color: var(--text-2);
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:hover,
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  color: var(--text);
+  background-color: transparent;
+}
+
+.nav-tabs {
+  border-bottom: 1px solid var(--hairline);
+}
+
+.nav-tabs > li > a,
+.nav-tabs .nav-link {
+  color: var(--text-2);
+  border-radius: 8px 8px 0 0;
+}
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs .nav-link.active {
+  color: var(--text);
+  background-color: var(--card);
+  border-color: var(--hairline) var(--hairline) transparent;
+}
+
+.dropdown-menu {
+  color: var(--text);
+  background-color: var(--card);
+  border: 1px solid var(--hairline);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 8%);
+}
+
+.dropdown-menu > li > a,
+.dropdown-item {
+  color: var(--text);
+}
+
+.dropdown-menu > li > a:hover,
+.dropdown-item:hover {
+  color: var(--text);
+  background-color: var(--raised);
+}
+
+/* Small things */
+.badge {
+  color: var(--text-2);
+  background-color: var(--raised);
+  font-weight: 500;
+}
+
+.alert {
+  border-radius: 8px;
+  border: 1px solid var(--hairline-strong);
+}
+
+.alert-danger {
+  color: var(--negative);
+  background-color: color-mix(in srgb, var(--negative) 10%, var(--card));
+  border-color: color-mix(in srgb, var(--negative) 35%, transparent);
+}
+
+.alert-success {
+  color: var(--positive);
+  background-color: color-mix(in srgb, var(--positive) 10%, var(--card));
+  border-color: color-mix(in srgb, var(--positive) 35%, transparent);
+}
+
+.table > thead > tr > th,
+.table > tbody > tr > td,
+.table th,
+.table td {
+  border-color: var(--hairline);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: none;
+  }
+}
+
+/* Bootstrap 5.3 (000): index.html forces data-bs-theme=dark, so map its tokens to this theme
+   and let the OS light/dark setting decide instead. */
+:root,
+[data-bs-theme='dark'] {
+  --bs-body-bg: var(--page);
+  --bs-body-color: var(--text);
+  --bs-emphasis-color: var(--text);
+  --bs-secondary-color: var(--text-2);
+  --bs-secondary-bg: var(--card);
+  --bs-tertiary-bg: var(--raised);
+  --bs-border-color: var(--hairline);
+  --bs-link-color: var(--accent);
+  --bs-link-hover-color: var(--accent);
+}
+
+.navbar {
+  border-bottom: 1px solid var(--hairline);
+}
+
+.bg-body-secondary {
+  background-color: var(--card) !important;
+}

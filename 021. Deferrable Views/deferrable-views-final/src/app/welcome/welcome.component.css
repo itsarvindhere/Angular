@@ -1,36 +1,35 @@
 section {
-  max-width: 35rem;
-  margin: 6rem auto;
-  padding: 2rem;
-  text-align: center;
-  border: 2px solid #a55ae3;
-  border-radius: 4px;
-  background: linear-gradient(#23053f, #5e2775);
-  box-shadow: 0 0 16px 2px #f44fa2;
+  margin: 48px 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--hairline);
 }
 
 section header {
   display: flex;
-  gap: 1rem;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  gap: 16px;
+}
+
+/* The photos are the one rich thing on the page */
+section img {
+  display: block;
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 12px;
 }
 
 section h2 {
-  margin: 1rem;
-  font-size: 1.5rem;
-  color: #d6d1dd;
-}
-
-section img {
-  width: 8rem;
-  height: 8rem;
-  border-radius: 50%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 24px;
+  line-height: 32px;
+  color: var(--text);
 }
 
 section p {
-  font-size: 1.15rem;
-  line-height: 1.5;
-  color: #c3b1dc;
+  max-width: 60ch;
+  margin: 16px 0 0;
+  color: var(--text-2);
 }
