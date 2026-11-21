@@ -1,0 +1,31 @@
+<h1>Route resources demo</h1>
+
+<nav aria-label="Pages">
+  <span class="group">
+    <strong>Route resources</strong>
+    <a routerLink="/user/1">User 1</a>
+    <a routerLink="/user/2">User 2</a>
+    <a routerLink="/user/3">User 3</a>
+    <a routerLink="/user/99">Unknown user</a>
+  </span>
+  <span class="group">
+    <strong>Resolvers</strong>
+    <a routerLink="/resolver/1">User 1</a>
+    <a routerLink="/resolver/2">User 2</a>
+  </span>
+  <span class="group">
+    <strong>Error boundary</strong>
+    <a routerLink="/broken">Broken page</a>
+  </span>
+</nav>
+
+<p class="stats">
+  Last navigation: {{ lastNavigation() }}<br />
+  Requests so far: user {{ api.calls().user }}, activity {{ api.calls().activity }}, feed {{ api.calls().feed }}
+</p>
+
+@if (navigationError()) {
+  <p class="notice">{{ navigationError() }}</p>
+}
+
+<router-outlet />
