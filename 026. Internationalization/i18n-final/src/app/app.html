@@ -1,0 +1,69 @@
+<h1 i18n="@@pageHeading">Internationalization demo</h1>
+
+<nav aria-label="Language">
+  <a href="/en-US/">English</a>
+  <a href="/fr/">Français</a>
+  <a href="/es/">Español</a>
+  <span class="current">LOCALE_ID: {{ locale }}</span>
+</nav>
+
+<h2 i18n>1. Marking text</h2>
+<p i18n>This sentence is marked with the i18n attribute.</p>
+<p>
+  <ng-container i18n>This text is marked on an ng-container, so no extra element is added.</ng-container>
+</p>
+<p>
+  <input
+    type="text"
+    i18n-placeholder
+    placeholder="Search recipes"
+    i18n-title
+    title="Type a recipe name"
+  />
+</p>
+
+<h2 i18n>2. Meaning, description and custom ids</h2>
+<p>
+  <button i18n="verb|Reserves a table at a restaurant@@bookVerb">Book</button>
+  <span i18n="noun|A printed cookbook@@bookNoun">Book</span>
+</p>
+<p i18n="An explanation for the translator, it does not change the id@@sameTextNote">
+  Same English word, different meaning, so two translations.
+</p>
+
+<h2 i18n>3. Text in code</h2>
+<p>{{ greeting }}</p>
+
+<h2 i18n>4. Plural and select (ICU)</h2>
+<p>
+  <button (click)="changeMinutes(-1)" aria-label="-1">−</button>
+  <button (click)="changeMinutes(1)" aria-label="+1">+</button>
+</p>
+<p i18n>
+  Updated
+  {minutes(), plural,
+    =0 {just now}
+    =1 {one minute ago}
+    other {{{ minutes() }} minutes ago}}
+</p>
+<p>
+  <button (click)="gender.set('male')" i18n>Male</button>
+  <button (click)="gender.set('female')" i18n>Female</button>
+  <button (click)="gender.set('other')" i18n>Other</button>
+</p>
+<p i18n>
+  The author is
+  {gender(), select,
+    male {male}
+    female {female}
+    other {not specified}}
+</p>
+
+<h2 i18n>5. Dates and numbers</h2>
+<p>{{ today | date: 'fullDate' }}</p>
+<p>{{ price | currency: 'EUR' }}</p>
+<p>{{ price | number: '1.2-2' }}</p>
+<p>
+  <ng-container i18n>The same number, forced to German format:</ng-container>
+  {{ price | number: '1.2-2' : 'de' }}
+</p>

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" target-language="fr" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="pageHeading" datatype="html">
+        <source>Internationalization demo</source>
+        <target>Démo d'internationalisation</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.html</context>
+          <context context-type="linenumber">1,3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7233086543513451999" datatype="html">
+        <source>1. Marking text</source>
+        <target>1. Marquer le texte</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.html</context>
+          <context context-type="linenumber">10,11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3441957995749447665" datatype="html">
+        <source>This sentence is marked with the i18n attribute.</source>
+        <target>Cette phrase est marquée avec l'attribut i18n.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.html</context>
+          <context context-type="linenumber">11,13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="420458925650958095" datatype="html">
+        <source>This text is marked on an ng-container, so no extra element is added.</source>
+        <target>Ce texte est marqué sur un ng-container, donc aucun élément supplémentaire n'est ajouté.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7856325179362870129" datatype="html">
+        <source>Search recipes</source>
+        <target>Rechercher des recettes</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.html</context>
+          <context context-type="linenumber">19,20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7975332437702716149" datatype="html">
+        <source>Type a recipe name</source>
+        <target>Saisissez le nom d'une recette</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.html</context>
+          <context context-type="linenumber">21,23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6598759937087311475" datatype="html">
+        <source>2. Meaning, description and custom ids</source>
+        <target>2. Sens, description et identifiants personnalisés</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.html</context>
+          <context context-type="linenumber">25,27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bookVerb" datatype="html">
+        <source>Book</source>
+        <target>Réserver</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.html</context>
+          <context context-type="linenumber">27,28</context>
+        </context-group>
+        <note priority="1" from="description">Reserves a table at a restaurant</note>
+        <note priority="1" from="meaning">verb</note>
+      </trans-unit>
+      <trans-unit id="bookNoun" datatype="html">
+        <source>Book</source>
+        <target>Livre</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.html</context>
+          <context context-type="linenumber">28,30</context>
+        </context-group>
+        <note priority="1" from="description">A printed cookbook</note>
+        <note priority="1" from="meaning">noun</note>
+      </trans-unit>
+      <trans-unit id="sameTextNote" datatype="html">
+        <source> Same English word, different meaning, so two translations.
+</source>
+        <target>Le même mot anglais, un sens différent, donc deux traductions.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.html</context>
+          <context context-type="linenumber">31,37</context>
+        </context-group>
+        <note priority="1" from="description">An explanation for the translator, it does not change the id</note>
+      </trans-unit>
+      <trans-unit id="8870347258622001976" datatype="html">
+        <source>3. Text in code</source>
+        <target>3. Texte dans le code</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.html</context>
+          <context context-type="linenumber">34,35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8224306591051032420" datatype="html">
+        <source>4. Plural and select (ICU)</source>
+        <target>4. Pluriel et sélection (ICU)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.html</context>
+          <context context-type="linenumber">37,39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8673441741583056422" datatype="html">
+        <source> Updated <x id="ICU" equiv-text="{minutes(), plural,
+    =0 {just now}
+    =1 {one minute ago}
+    other {{{ minutes() }} minutes ago}}" xid="1887283401472369100"/>
+</source>
+        <target>Mis à jour <x id="ICU" equiv-text="{minutes(), plural,
+    =0 {just now}
+    =1 {one minute ago}
+    other {{{ minutes() }} minutes ago}}" xid="1887283401472369100"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.html</context>
+          <context context-type="linenumber">43,50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2002272803511843863" datatype="html">
+        <source>{VAR_PLURAL, plural, =0 {just now} =1 {one minute ago} other {<x id="INTERPOLATION"/> minutes ago}}</source>
+        <target>{VAR_PLURAL, plural, =0 {à l'instant} =1 {il y a une minute} other {il y a <x id="INTERPOLATION"/> minutes}}</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.html</context>
+          <context context-type="linenumber">44,47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8012344910054029733" datatype="html">
+        <source>Male</source>
+        <target>Homme</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.html</context>
+          <context context-type="linenumber">50,51</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5667840900782067941" datatype="html">
+        <source>Female</source>
+        <target>Femme</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.html</context>
+          <context context-type="linenumber">51,52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8693603235657020323" datatype="html">
+        <source>Other</source>
+        <target>Autre</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.html</context>
+          <context context-type="linenumber">52,53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2038237970596867496" datatype="html">
+        <source> The author is <x id="ICU" equiv-text="{gender(), select,
+    male {male}
+    female {female}
+    other {not specified}}" xid="2098184961937257150"/>
+</source>
+        <target>L'auteur est <x id="ICU" equiv-text="{gender(), select,
+    male {male}
+    female {female}
+    other {not specified}}" xid="2098184961937257150"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.html</context>
+          <context context-type="linenumber">55,62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2098184961937257150" datatype="html">
+        <source>{VAR_SELECT, select, male {male} female {female} other {not specified}}</source>
+        <target>{VAR_SELECT, select, male {un homme} female {une femme} other {non précisé}}</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.html</context>
+          <context context-type="linenumber">56,60</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1755721720683761288" datatype="html">
+        <source>5. Dates and numbers</source>
+        <target>5. Dates et nombres</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.html</context>
+          <context context-type="linenumber">62,63</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7694406619712880375" datatype="html">
+        <source>The same number, forced to German format:</source>
+        <target>Le même nombre, forcé au format allemand :</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.html</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="welcomeMessage" datatype="html">
+        <source>Hello, <x id="name" equiv-text="this.userName"/>!</source>
+        <target>Bonjour, <x id="name" equiv-text="this.userName"/> !</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.ts</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="documentTitle" datatype="html">
+        <source>Internationalization demo</source>
+        <target>Démo d'internationalisation</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.ts</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

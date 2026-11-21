@@ -7,7 +7,7 @@
 ![Angular](https://img.shields.io/badge/Angular-22-DD0031?style=for-the-badge&logo=angular&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![Vitest](https://img.shields.io/badge/Tests-Vitest-6E9F18?style=for-the-badge&logo=vitest&logoColor=white)
-![Sections](https://img.shields.io/badge/Sections-26-8A2BE2?style=for-the-badge)
+![Sections](https://img.shields.io/badge/Sections-27-8A2BE2?style=for-the-badge)
 ![Status](https://img.shields.io/badge/Notes-Verified%20against%20angular.dev-success?style=for-the-badge)
 
 [Learning path](#-learning-path) · [Sections](#-sections) · [Status labels](#-status-labels) · [Running a project](#-running-a-sample-project) · [Repository layout](#-repository-layout)
@@ -54,7 +54,7 @@ flowchart LR
     style Q fill:#2e8b57,color:#fff
 ```
 
-Sections `011`, `014`, `015`, `016` and `017` are standalone topics you can read whenever you need them. Sections `022` to `025` (security, accessibility, performance and images, error handling) are notes-only topics to read once you are comfortable with the basics.
+Sections `011`, `014`, `015`, `016` and `017` are standalone topics you can read whenever you need them. Sections `022` to `026` (security, accessibility, performance and images, error handling, internationalization) are notes-first topics (only internationalization has a sample project) to read once you are comfortable with the basics.
 
 ---
 
@@ -88,6 +88,7 @@ Sections `011`, `014`, `015`, `016` and `017` are standalone topics you can read
 | 023 | [Accessibility](./023.%20Accessibility) | ARIA and native elements, focus after navigation, CDK a11y tools, `@angular/aria` (notes only) | 🟢 |
 | 024 | [Performance and Images](./024.%20Performance%20and%20Images) | `NgOptimizedImage`, image loaders, build budgets, slow template computations (notes only) | 🟢 |
 | 025 | [Error Handling](./025.%20Error%20Handling) | `ErrorHandler`, global error listeners, errors in async code and resources, startup and test gotchas (notes only) | 🟢 |
+| 026 | [Internationalization](./026.%20Internationalization) | `@angular/localize`, marking text, ICU plurals, extracting and translating, building and deploying locales, locale-aware pipes, with a runnable sample in three languages | 🟢 |
 
 ---
 
