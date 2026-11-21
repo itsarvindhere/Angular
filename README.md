@@ -54,7 +54,7 @@ flowchart LR
     style Q fill:#2e8b57,color:#fff
 ```
 
-Sections `011`, `014`, `015`, `016` and `017` are standalone topics you can read whenever you need them. Sections `022` to `026` (security, accessibility, performance and images, error handling, internationalization) are notes-first topics (only internationalization has a sample project) to read once you are comfortable with the basics.
+Sections `011`, `014`, `015`, `016` and `017` are standalone topics you can read whenever you need them. Sections `022` to `026` (security, accessibility, performance and images, error handling, internationalization) are notes-first topics (security and accessibility are notes only, the others also ship a sample project) to read once you are comfortable with the basics.
 
 ---
 
@@ -86,8 +86,8 @@ Sections `011`, `014`, `015`, `016` and `017` are standalone topics you can read
 | 021 | [Deferrable Views](./021.%20Deferrable%20Views) | `@defer`, triggers, prefetching, SSR and incremental hydration | 🟢 |
 | 022 | [Security](./022.%20Security) | XSS and sanitization, `DomSanitizer`, Content Security Policy and Trusted Types, XSRF in `HttpClient`, where to keep the auth token (notes only) | 🟢 |
 | 023 | [Accessibility](./023.%20Accessibility) | ARIA and native elements, focus after navigation, CDK a11y tools, `@angular/aria` (notes only) | 🟢 |
-| 024 | [Performance and Images](./024.%20Performance%20and%20Images) | `NgOptimizedImage`, image loaders, build budgets, slow template computations (notes only) | 🟢 |
-| 025 | [Error Handling](./025.%20Error%20Handling) | `ErrorHandler`, global error listeners, errors in async code and resources, startup and test gotchas (notes only) | 🟢 |
+| 024 | [Performance and Images](./024.%20Performance%20and%20Images) | `NgOptimizedImage`, image loaders, build budgets, slow template computations, with a runnable sample | 🟢 |
+| 025 | [Error Handling](./025.%20Error%20Handling) | `ErrorHandler`, global error listeners, errors in async code and resources, startup and test gotchas, with a runnable sample | 🟢 |
 | 026 | [Internationalization](./026.%20Internationalization) | `@angular/localize`, marking text, ICU plurals, extracting and translating, building and deploying locales, locale-aware pipes, with a runnable sample in three languages | 🟢 |
 
 ---

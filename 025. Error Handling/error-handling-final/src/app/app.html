@@ -1,0 +1,47 @@
+<h1>Error handling demo</h1>
+
+<h2>Unexpected errors reach the global handler</h2>
+<p>
+  <button (click)="throwInHandler()">1. Throw in a click handler</button>
+  <button (click)="rejectPromise()">2. Unhandled promise rejection</button>
+  <button (click)="throwInTimer()">3. Throw inside setTimeout</button>
+  <button (click)="showAsync.set(true)">4. Fail inside the async pipe</button>
+</p>
+@if (showAsync()) {
+  <p class="muted">Async pipe value: {{ failing$ | async }}</p>
+}
+
+<h2>Expected errors are handled where they happen</h2>
+<p>
+  <button (click)="parseBadJson()">5. Parse bad JSON (try/catch)</button>
+  <button (click)="loadFromDeadServer()">6. Load from a server that is down (resource)</button>
+</p>
+@if (friendly()) {
+  <p class="notice">{{ friendly() }}</p>
+}
+@if (posts.error()) {
+  <p class="notice">Could not load the posts. The resource kept the error itself: {{ posts.error()?.message }}</p>
+} @else if (posts.isLoading()) {
+  <p class="muted">Loading...</p>
+}
+
+<h2>What the global ErrorHandler received</h2>
+@if (log.entries().length === 0) {
+  <p class="muted">Nothing yet. Press buttons 1 to 4, then 5 and 6, and compare.</p>
+} @else {
+  <table>
+    <thead>
+      <tr><th>Time</th><th>Page</th><th>Message</th></tr>
+    </thead>
+    <tbody>
+      @for (entry of log.entries(); track $index) {
+        <tr>
+          <td>{{ entry.time }}</td>
+          <td>{{ entry.page }}</td>
+          <td>{{ entry.message }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+  <p><button (click)="log.clear()">Clear</button></p>
+}

@@ -1,0 +1,78 @@
+<h1>Performance demo</h1>
+
+<h2>1. The LCP image: priority</h2>
+<p>
+  The first big image is marked <code>priority</code>, so it is not lazy loaded and gets a high fetch priority.
+</p>
+<img
+  ngSrc="laptop-desk.jpg"
+  data-name="hero (priority)"
+  width="1024"
+  height="1024"
+  sizes="(max-width: 640px) 100vw, 50vw"
+  priority
+/>
+
+<h2>2. Lazy images, placeholder and srcset</h2>
+<p>
+  Images below the fold are lazy loaded by default. This one also has a blur-up placeholder and a manual srcset.
+  On localhost the image arrives instantly, so to see the placeholder first, run <code>npm run slow-images</code> in a
+  second terminal and open this page with <code>?slow</code> at the end of the address.
+</p>
+<img
+  ngSrc="student.jpg"
+  data-name="student (lazy, placeholder, ngSrcset)"
+  width="1024"
+  height="1024"
+  ngSrcset="320w, 640w, 1024w"
+  sizes="(max-width: 640px) 100vw, 50vw"
+  placeholder
+/>
+
+<h2>3. fill: when you do not know the size</h2>
+<div class="fill-box">
+  <img ngSrc="student.jpg" data-name="student (fill)" fill />
+</div>
+
+<h2>4. What NgOptimizedImage generated</h2>
+<table>
+  <thead>
+    <tr><th>Image</th><th>loading</th><th>fetchpriority</th><th>srcset</th></tr>
+  </thead>
+  <tbody>
+    @for (row of imgRows(); track row.name) {
+      <tr>
+        <td>{{ row.name }}</td>
+        <td>{{ row.loading }}</td>
+        <td>{{ row.fetchpriority }}</td>
+        <td>{{ row.srcset }}</td>
+      </tr>
+    }
+  </tbody>
+</table>
+
+<h2>5. Slow computations in a template</h2>
+<p>
+  The same calculation three ways. Type in the box, which changes this component's state and checks the template again.
+  Then press the button to see how many times each version really ran.
+</p>
+<p>
+  <input
+    type="text"
+    placeholder="Type anything here"
+    [value]="note()"
+    (input)="note.set($any($event.target).value)"
+    aria-label="Type anything here"
+  />
+</p>
+<table class="counts">
+  <thead>
+    <tr><th>Version</th><th>Result</th><th>Times it ran</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Method call in the template</td><td>{{ heavyMethod(n()) }}</td><td>{{ counts().method }}</td></tr>
+    <tr><td>Pure pipe</td><td>{{ n() | heavy }}</td><td>{{ counts().pipe }}</td></tr>
+    <tr><td>computed() signal</td><td>{{ heavyComputed() }}</td><td>{{ counts().computed }}</td></tr>
+  </tbody>
+</table>
+<p><button (click)="refreshCounts()">Refresh counts</button></p>

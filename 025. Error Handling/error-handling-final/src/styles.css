@@ -1,0 +1,209 @@
+/* Theme for the Angular learning-notes sample projects.
+   Direction: a printed worksheet with the code editor open beside it.
+   Calm, exact, a little warm. Buttons are keycaps ("press it and see").
+   Only plain HTML elements are styled, so templates stay exactly as the notes show them.
+   Design process: unslop by Damir Sokolovsky (@heydamir), CC BY 4.0. */
+
+:root {
+  /* Warm neutral ramp, light */
+  --page: #f7f4ee;
+  --card: #fdfbf7;
+  --raised: #efe9df;
+  --text: #1f1b16;
+  --text-2: #5e554a;
+  --text-3: #7b7266;
+  --hairline: rgb(31 27 22 / 10%);
+  --hairline-strong: rgb(31 27 22 / 18%);
+  --keycap-edge: rgb(31 27 22 / 22%);
+
+  /* Angular red, darkened so it reaches 4.5:1 on the page */
+  --accent: #c8002c;
+
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  --mono: ui-monospace, "Cascadia Code", "SF Mono", Menlo, Consolas, monospace;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --page: #161513;
+    --card: #1c1a18;
+    --raised: #262421;
+    --text: #efe9de;
+    --text-2: #aaa398;
+    --text-3: #8a847a;
+    --hairline: rgb(239 233 222 / 8%);
+    --hairline-strong: rgb(239 233 222 / 16%);
+    --keycap-edge: rgb(0 0 0 / 55%);
+    --accent: #ff6b82;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 48px 24px 96px;
+  background: var(--page);
+  color: var(--text);
+  font: 400 16px/24px var(--sans);
+  font-variant-numeric: tabular-nums;
+}
+
+app-root {
+  display: block;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+h1 {
+  margin: 0 0 32px;
+  font-size: clamp(28px, 5vw, 36px);
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+h2 {
+  margin: 40px 0 12px;
+  padding-top: 24px;
+  border-top: 1px solid var(--hairline);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+  color: var(--text-2);
+}
+
+h1 + h2 {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+p {
+  margin: 8px 0;
+}
+
+hr {
+  display: none; /* sections are already separated by the heading rules */
+}
+
+/* Keycap buttons: a lower edge that gives way when pressed */
+button {
+  margin: 0 4px 8px 0;
+  padding: 8px 16px;
+  font: 500 13px/20px var(--mono);
+  color: var(--text);
+  background: var(--card);
+  border: 1px solid var(--hairline-strong);
+  border-radius: 6px;
+  box-shadow: 0 2px 0 var(--keycap-edge);
+  cursor: pointer;
+  transition:
+    background-color 150ms var(--ease),
+    transform 120ms var(--ease),
+    box-shadow 120ms var(--ease);
+}
+
+button:hover {
+  background: var(--raised);
+}
+
+button:active {
+  transform: translateY(2px);
+  box-shadow: 0 0 0 var(--keycap-edge);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--page);
+}
+
+input,
+select,
+textarea {
+  padding: 8px 12px;
+  font: inherit;
+  color: var(--text);
+  background: var(--card);
+  border: 1px solid var(--hairline-strong);
+  border-radius: 8px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--accent);
+}
+
+ul {
+  margin: 8px 0;
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--hairline);
+}
+
+li:last-child {
+  border-bottom: 0;
+}
+
+a {
+  color: var(--accent);
+  text-underline-offset: 4px;
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 24px 16px 64px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  button {
+    transition: none;
+  }
+}
+
+/* Demo helpers (025) */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font: 400 12px/16px var(--mono);
+}
+
+th,
+td {
+  padding: 8px 8px 8px 0;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--hairline);
+}
+
+th {
+  color: var(--text-3);
+  font-weight: 500;
+}
+
+.notice {
+  margin: 8px 0;
+  padding: 8px 12px;
+  border: 1px solid var(--hairline-strong);
+  border-radius: 8px;
+  background: var(--card);
+}
+
+.muted {
+  color: var(--text-3);
+}
